@@ -1,3 +1,7 @@
 tensorflow
-flask
+numpy 
+pandas
+plotly
+streamlit
+st-pages
 EdgeGPT==0.12.1
