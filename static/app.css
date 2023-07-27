@@ -1,0 +1,14 @@
+.card-body-container {
+    position: relative;
+}
+
+.card-group {
+    position: absolute; 
+    right: 10px;
+    left: 10px;
+}
+
+.form-chat {
+    position: absolute;
+    top: 80%;
+}
