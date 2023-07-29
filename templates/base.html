@@ -1,0 +1,26 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="icon" type="image/svg+xml" href="https://cdn.glitch.global/343e6495-330f-4443-8e57-3bf9de3c1c76/SDD%20logo.png?v=1689302299743">
+    <!-- Boostrap custom css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Boostrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- nav bar -->
+    {% include 'navbar.html' %}
+
+    <!-- custom css -->
+    <div class="main">
+        {% block main %}{% endblock %}
+    </div>
+
+    
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

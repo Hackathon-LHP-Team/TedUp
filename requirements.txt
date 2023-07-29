@@ -5,3 +5,4 @@ plotly
 streamlit
 st-pages
 EdgeGPT==0.12.1
+flask-wtf

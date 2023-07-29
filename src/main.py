@@ -33,7 +33,6 @@ async def main(res, input_text):
     output_response = re.sub('\[\^\d+\^\]', '', bot_response)
     # use regex to get the output in correct format
     res = output_response
-    await bot.close()
     return res
 
 if __name__ == "__main__":

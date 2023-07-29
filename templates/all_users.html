@@ -1,0 +1,24 @@
+<!-- base.html -->
+{% extends 'base.html' %}
+<!-- content block -->
+{% block main %}
+    <h1 class="ms-3">Contributors Community</h1>
+
+    <br>
+    <div class="container">
+        <div class="row mt-4">
+                {% for user, index_img in zip(all_users, list_index_str) %}
+                    <div class="card ms-3 bg-light" style="width: 20rem;">
+                        <img src="static/imgs/{{index_img}}.jpg" class="card-img-top" alt="..."  style="height:200px">
+                        <div class="card-body">
+                        <h5 class="card-title">{{user.name}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

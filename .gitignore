@@ -2,3 +2,4 @@
 __pycache__/
 Deep Learning training/model_v1.1/models/BERT_model_12_classes_v1.1.h5
 Deep Learning training/model_v1.1/models/BERT_model_12_classes_weights_v1.1.index
+node_modules/
