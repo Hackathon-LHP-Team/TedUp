@@ -178,8 +178,13 @@ def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
     return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
 
-
+@app.route("/download")
+def download():
+    return render_template("download.html")
  
+ 
+ 
+
 
 
 

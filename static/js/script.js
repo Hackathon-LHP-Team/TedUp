@@ -45,3 +45,34 @@ $(document).ready(function () {
     $(table).DataTable();
   });
 });
+
+/* Animation up on scroll */
+const appear1 = new IntersectionObserver((cards) => {
+  cards.forEach((card) => {
+       console.log(card)
+       if(card.isIntersecting) {
+            card.target.classList.add("upAlready");
+       } else {
+            card.target.classList.remove("upAlready");
+       }
+  });
+});
+const hiddenElement1 = document.querySelectorAll(".up");
+hiddenElement1.forEach((el) => appear1.observe(el));
+
+/* Animation go left on scroll */
+const appear2 = new IntersectionObserver((cards) => {
+  cards.forEach((card) => {
+       console.log(card)
+       if(card.isIntersecting) {
+            card.target.classList.add("moveRightAlready");
+       } else {
+            card.target.classList.remove("moveRightAlready");
+       }
+  });
+});
+const hiddenElement2 = document.querySelectorAll(".moveRight");
+hiddenElement2.forEach((el) => appear2.observe(el));
+
+
+/* Scroll animation */

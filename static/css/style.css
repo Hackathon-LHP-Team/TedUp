@@ -27,7 +27,8 @@ button {
 @media (min-width: 992px) {
   body {
     overflow: auto !important;
-  }
+      /* The image used */
+    }
   .main {
     margin-left: var(--offcanvas-content-margin-left);
     margin-top: var(--offcanvas-content-margin-top);
