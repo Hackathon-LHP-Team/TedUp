@@ -5,4 +5,8 @@ plotly
 streamlit
 st-pages
 EdgeGPT==0.12.1
+werkzeug
 flask-wtf
+flask_sqlalchemy
+flask_login
+flask-migrate

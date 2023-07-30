@@ -1,60 +1,59 @@
-<!-- base.html -->
-{% extends 'base.html' %}
-<!-- content block -->
-{% block main %}
+<!-- nav bar -->
+{% include 'navbar.html' %}
 
-    {% if name %}
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ message }}
-            <a class="btn-close" href="{{ url_for('all_users') }}" role="button"></a>
-        </div>
-    {% endfor %}
 
-    {% else %}
-        <!-- Form Registration -->
-        <div class="card mb-3 ms-4 rounded-4" style="max-width: 1200px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="static/imgs/img_registration_2.jpg" class="img-fluid rounded-start" style="width:480; height: 854;" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h2 class="card-title">Create an account</h2>
-                        <br>
 
-                        <form method="POST">
-                            {{ form.hidden_tag() }}
-                            
-                            {{ form.name.label(class = 'form-label') }}
-                            {{ form.name(class = 'form-control') }}
-              
-                            {{ form.email.label(class = 'form-label mt-4') }}
-                            {{ form.email(class = 'form-control') }}
-              
-                            {{ form.user_name.label(class = 'form-label mt-4') }}
-                            {{ form.user_name(class = 'form-control') }}
-              
-                            {{ form.password_hash.label(class = 'form-label mt-4') }}
-                            {{ form.password_hash(class = 'form-control') }}
-              
-                            {{ form.password_hash2.label(class = 'form-label mt-4') }}
-                            {{ form.password_hash2(class = 'form-control') }}
-                
-                            <br>
-                            <div class="d-grid gap-2">
-                                {{ form.submit(class = 'btn btn-primary') }}
-                                <a href="{{ url_for('login') }}" type="button" class="btn btn-outline-primary" role="button">Log in if you have an account</a>
+{% if name %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <a class="btn-close" href="{{ url_for('all_users') }}" role="button"></a>
+    </div>
+{% endfor %}
+
+{% else %}
+
+<div id="hero" class="hero route bg-image" style="background-image: url(https://i.pinimg.com/originals/c7/1f/87/c71f87a30b503eda26410c02ea99839d.gif)">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+        <div class="table-cell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3"></div>
+                        <div class="col-6">
+                            <div class="shadow-sm p-5 mt-5 bg-black mb-5 rounded">
+                                <form method="POST">
+                                    {{ form.hidden_tag() }}
+                                    <div class="mb-3 row mt-3">
+                                        <div class="text-left col-sm-4 col-form-label">
+                                            {{ form.name.label(class = 'form-label') }} 
+                                            {{ form.email.label(class = 'form-label mt-4') }}
+                                            {{ form.user_name.label(class = 'form-label mt-4') }}
+                                            {{ form.password_hash.label(class = 'form-label mt-4') }}
+                                            {{ form.password_hash2.label(class = 'form-label mt-4') }}
+                                        </div>
+                                        
+                                        <div class="col-sm-8">
+                                            {{ form.name(class = 'form-control form-border-radius') }}                     
+                                            {{ form.email(class = 'form-control margin-top-form form-border-radius') }}
+                                            {{ form.user_name(class = 'form-control  margin-top-form form-border-radius') }}      
+                                            {{ form.password_hash(class = 'form-control  margin-top-form form-border-radius') }}
+                                            {{ form.password_hash2(class = 'form-control  margin-top-form form-border-radius') }}
+                                        </div>
+                                        <div class="d-grid gap-2 mt-5">
+                                            {{ form.submit(class = 'btn btn-primary') }}
+                                            <a href="{{ url_for('login') }}" type="button" class="btn btn-outline-primary" role="button">Log in if you have an account</a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-
-                    </div>
+                        </div>
+                    <div class="col-3"></div>
                 </div>
             </div>
         </div>
+    </div>
+
 
     {% endif %}
 
-
-
-{% endblock %}

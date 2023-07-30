@@ -1,8 +1,8 @@
-"""add blog database
+"""user login
 
-Revision ID: fe8b9083f921
+Revision ID: fd03f7c942c4
 Revises: 
-Create Date: 2023-07-29 21:47:52.148485
+Create Date: 2023-07-31 00:31:24.823224
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fe8b9083f921'
+revision = 'fd03f7c942c4'
 down_revision = None
 branch_labels = None
 depends_on = None

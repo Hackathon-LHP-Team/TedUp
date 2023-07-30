@@ -1,75 +1,42 @@
-<!-- base.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Website</title>
-    <link rel="icon" type="image/svg+xml" href="https://cdn.glitch.global/343e6495-330f-4443-8e57-3bf9de3c1c76/SDD%20logo.png?v=1689302299743">
-    <!-- Boostrap custom css -->
-    <!-- Boostrap icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<!-- nav bar -->
+{% include 'navbar.html' %}
 
-    <!-- Vendor CSS Files -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="static/css/index.css" rel="stylesheet">
-</head>
-<body>
-    <!-- nav bar -->
-    {% include 'navbar.html' %}
-
-    <!-- https://i.pinimg.com/originals/c1/99/17/c199171c618724240dcad785f3345d68.gif -->
-    <div id="hero" class="hero route bg-image" style="background-image: url(https://i.pinimg.com/originals/c1/99/17/c199171c618724240dcad785f3345d68.gif)">
-        <div class="overlay-itro"></div>
-        <div class="hero-content display-table">
+<!-- https://i.pinimg.com/originals/c1/99/17/c199171c618724240dcad785f3345d68.gif -->
+<div id="hero" class="hero route bg-image" style="background-image: url(https://i.pinimg.com/originals/c7/1f/87/c71f87a30b503eda26410c02ea99839d.gif)">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
         <div class="table-cell">
             <div class="container">
-    
-                <div class="main">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3"></div>
-                            <div class="col-6">
-                                <div class="shadow-sm p-3 bg-black mb-5 rounded">
-                                    <form>
-                                        <div class="mb-3">
-                                          <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1">
-                                        </div>
-                                        <div class="mb-3 form-check">
-                                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                      </form>
+                <div class="row">
+                    <div class="col-3"></div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8">
+                                    <div class="shadow-sm p-5 bg-black mb-5 rounded">
+                                        <form method="POST">
+                                            {{ form.hidden_tag() }}
+        
+                                            {{ form.email.label(class = 'form-label') }}
+                                            {{ form.email(class = 'form-control') }}
+                                            
+                                            {{ form.password_hash.label(class = 'form-label mt-4') }}
+                                            {{ form.password_hash(class = 'form-control ') }}
+                                            
+                                            <br>
+                                            <div class="d-grid gap-2 mt-4">
+                                                {{ form.submit(class = 'btn btn-primary') }}
+                                                <a href="{{ url_for('registration') }}" type="button" class="btn btn-outline-primary" role="button">Or create an account</a>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
+                                <div class="col-2"></div>
                             </div>
-                            <div class="col-3"></div>
+                            
                         </div>
-                    </div>
+                    <div class="col-3"></div>
                 </div>
-    
-                <p class="hero-subtitle"><span class="typed" data-typed-items="mental, healing, for, adolescents"></span></p>
             </div>
         </div>
-        </div>
     </div>
-    
-
-    
-    <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="static/vendor/typed.js/typed.umd.js"></script>
-    <script src="static/vendor/php-email-form/validate.js"></script>
-</body>
-</html>

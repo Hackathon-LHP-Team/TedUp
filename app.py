@@ -47,6 +47,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import numpy as np
 import random 
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 '''
 Define key and variables
@@ -57,10 +58,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
 '''
 Database
 '''
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     email =  db.Column(db.String(120), nullable=False, unique=True)
@@ -92,12 +97,17 @@ class Blogs(db.Model):
 Form 
 '''
 class Registration(FlaskForm):
-    name = StringField("Enter your name:", validators=[DataRequired()])
-    email = StringField("Enter your email:", validators=[DataRequired()])
-    user_name = StringField("Enter your user name:", validators=[DataRequired()])
-    password_hash = PasswordField("Enter your password:", validators=[DataRequired(), EqualTo('password_hash2', message='Password Must Match')])
-    password_hash2 = PasswordField("Confirm your password:", validators=[DataRequired()])
+    name = StringField("Enter name:", validators=[DataRequired()])
+    email = StringField("Enter email:", validators=[DataRequired()])
+    user_name = StringField("Enter user name:", validators=[DataRequired()])
+    password_hash = PasswordField("Enter password:", validators=[DataRequired(), EqualTo('password_hash2', message='Password Must Match')])
+    password_hash2 = PasswordField("Confirm password:", validators=[DataRequired()])
     submit = SubmitField("Register now")   
+    
+class Login(FlaskForm):
+    email = StringField("Enter your email:", validators=[DataRequired()])
+    password_hash = PasswordField("Enter your password:", validators=[DataRequired()])
+    submit = SubmitField("Login now")   
     
 class PostBlogForm(FlaskForm):
     title = StringField("Title:", validators=[DataRequired()])
@@ -135,7 +145,28 @@ def registration():
     return render_template("registration.html", form=form, name=name, all_users=all_users)
 
 
-@app.route("/all_users")
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(int(user_id))
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = Login()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(email=form.email.data).first()
+        if user:
+            if check_password_hash(user.password_hash, form.password_hash.data):
+                login_user(user)
+                return redirect(url_for('all_users'))
+            else:
+                flash('Wrong password. Please try again')
+        else:
+            flash('User does not exist. Please sign up to create an account')
+    return render_template("login.html", form=form)
+
+
+@app.route("/all_users", methods=["GET", "POST"])   
+@login_required 
 def all_users():
     list_index = list (range (1, 8)) 
     random.shuffle (list_index) 
@@ -143,11 +174,8 @@ def all_users():
     all_users = Users.query.order_by(Users.date_added)
     return render_template("all_users.html", all_users=all_users, list_index_str=list_index_str, zip=zip)
     
-@app.route("/login")
-def login():
-    return render_template("login.html")
-    
 @app.route("/create_blog", methods=["GET", "POST"]) 
+@login_required
 def create_blog():
     title = None
     form = PostBlogForm()
@@ -228,6 +256,11 @@ def delete_blog(id):
 @app.route("/download")
 def download():
     return render_template("download.html")
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
  
  
  
