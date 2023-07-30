@@ -1,0 +1,50 @@
+<!-- base.html -->
+{% extends 'base.html' %}
+<!-- content block -->
+{% block main %}
+
+    {% if title %}
+
+    {% else %}
+        <!-- Form To Post a blog -->
+        <div class="card mb-3 ms-4 rounded-4" style="max-width: 1200px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="static/imgs/img_registration.jpg" class="img-fluid rounded-start" style="width:480; height: 854;" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title">Editing</h2>
+                        <br>
+
+                        <form method="POST">
+                            {{ form.hidden_tag() }}
+                            
+                            {{ form.title.label(class = 'form-label') }}
+                            {{ form.title(class = 'form-control') }}
+              
+                            {{ form.author.label(class = 'form-label mt-4') }}
+                            {{ form.author(class = 'form-control') }}
+              
+                            {{ form.content.label(class = 'form-label mt-4') }}
+                            {{ form.content(class = 'form-control', rows="10")}}
+
+                            {{ form.slug.label(class = 'form-label mt-4') }}
+                            {{ form.slug(class = 'form-control') }}
+              
+                            <br>
+                            {{ form.submit(class = 'btn btn-primary') }}
+                            <a href="{{ url_for('all_blogs') }}" class="btn btn-primary">Back</a>
+                            
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+
+{% endblock %}

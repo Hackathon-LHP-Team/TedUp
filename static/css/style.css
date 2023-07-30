@@ -9,9 +9,24 @@ button {
   --offcanvas-content-margin-left: 100px;
   --offcanvas-content-margin-right: 60px;
   --offcanvas-content-margin-top: 80px;
+  --dark-color: black;
+  --body-font-color: #b9b9b9;
+  --body-font-active: rgb(255, 255, 255);
+  --purple-color: #612ec9;
+  --purple-color-light: #7A50D0;
+  --purple-color-lighter: #8858e9;
+  --purple-color-lightest: #AA88EF; 
 }
 .sidebar-nav {
   width: var(--offcanvas-width);
+}
+a {
+  text-decoration: none;
+  color: var(--dark-color);
+}
+a:hover {
+  color: var(--purple-color-lighter);
+  transition: 0.2s
 }
 /* .sidebar-link {
   display: flex;

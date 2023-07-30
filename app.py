@@ -178,6 +178,53 @@ def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
     return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
 
+
+@app.route("/all_blogs/<int:id>")
+def blog(id):
+    blog = Blogs.query.get_or_404(id)
+    return render_template('blog.html', blog=blog)
+
+@app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
+def edit_blog(id):
+    blog = Blogs.query.get_or_404(id)
+    form = PostBlogForm()
+    if form.validate_on_submit():
+        blog.title = form.title.data
+        blog.author = form.author.data
+        blog.content = form.content.data
+        blog.slug = form.slug.data
+
+        db.session.add(blog)
+        db.session.commit()
+        return redirect(url_for('blog', id=blog.id))
+
+    form.title.data = blog.title
+    form.author.data = blog.author
+    form.content.data = blog.content
+    form.slug.data = blog.slug
+    return render_template('edit_blog.html', form=form)
+
+@app.route("/all_blogs/delete_blog/<int:id>", methods=["GET", "POST"])
+def delete_blog(id):
+    blog_to_delete = Blogs.query.get_or_404(id)
+    try:
+        db.session.delete(blog_to_delete)
+        db.session.commit()
+        list_index = list (range (1, 8)) 
+        random.shuffle (list_index) 
+        list_index_str = ["avatar_" + str(index) for index in list_index]
+        all_blogs = Blogs.query.order_by(Blogs.date_posted)
+        return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
+    except:
+        flash("Something went wrong, please reload and try again")
+        list_index = list (range (1, 8)) 
+        random.shuffle (list_index) 
+        list_index_str = ["avatar_" + str(index) for index in list_index]
+        all_blogs = Blogs.query.order_by(Blogs.date_posted)
+        return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
+        
+        
+
 @app.route("/download")
 def download():
     return render_template("download.html")

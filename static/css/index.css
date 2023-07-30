@@ -1,23 +1,18 @@
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+/*--/ ===================General=================== /--*/
+:root {
+  --dark-color: black;
+  --body-font-color: #b9b9b9;
+  --body-font-active: rgb(255, 255, 255);
+  --purple-color: #612ec9;
+  --purple-color-light: #7A50D0;
+  --purple-color-lighter: #8858e9;
+  --purple-color-lightest: #AA88EF; 
+}
+
 body {
   background-color: #000000;
   color: #4e4e4e;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-:root {
-  --body-font-color: #b9b9b9;
-  --purple-color: rgb(138, 19, 207);
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #1e1e1e;
 }
 
 a {
@@ -26,8 +21,13 @@ a {
   transition: all 0.5s;
 }
 
+.bg-black{
+  background-color: #000000;
+  opacity: 0.8;
+}
+
 a:hover {
-  color: var(--purple-color);
+  color: var(--purple-color-lighter);
   text-decoration: none;
   transition: all 0.1s ease-in-out;
 }
@@ -126,7 +126,7 @@ a:hover {
   vertical-align: middle;
 }
 
-/*--/ Sections /--*/
+/*--/ ===================Sections=================== /--*/
 
 p.lead {
   font-size: 14px;
@@ -191,8 +191,7 @@ p.lead {
   position: relative;
   line-height: 0.5;
   margin-left: 80px;
-  color: var(--purple-color);
-  opacity: 0.5;
+  color: var(--purple-color-light);
 }
 
 .core-features {
@@ -204,11 +203,13 @@ p.lead {
   font-size: 5rem;
   position: relative;
   margin-left: 80px;
+  color: var(--purple-color-lighter)
 }
 
 .developer-docs-header {
   font-size: 5rem;
   position: relative;
+  color: var(--purple-color-lighter)
 }
 
 .title-left:before {
@@ -223,7 +224,6 @@ p.lead {
 .box-pl2 {
   padding-left: 2rem;
 }
-
 
 
 .box-shadow-full {
@@ -241,7 +241,7 @@ p.lead {
   }
 }
 
-/*------/ Socials /------*/
+/*--/ =================== Social =================== /--*/
 .socials {
   padding: 1.5rem 0;
 }
@@ -268,7 +268,7 @@ p.lead {
   transition: all 500ms ease;
 }
 
-/*------/ Ul resect /------*/
+/*--/ =================== UL resect =================== /--*/
 .ul-resect,
 .widget-tags ul,
 .widget-sidebar .list-sidebar,
@@ -290,7 +290,7 @@ p.lead {
   margin-right: 10px;
 }
 
-/*------/ Ico Circle /------*/
+/*--/ =================== Ico Circle =================== /--*/
 .ico-circle {
   height: 100px;
   width: 100px;
@@ -333,7 +333,7 @@ p.lead {
   width: 25px;
 }
 
-/*--/ Scrolltop s /--*/
+/*--/ =================== Scroll top =================== /--*/
 .scrolltop-mf {
   position: relative;
   display: none;
@@ -358,9 +358,7 @@ p.lead {
   border-radius: 50%;
 }
 
-/*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
+/*--/ =================== Back to top button =================== /--*/
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -391,7 +389,7 @@ p.lead {
   opacity: 1;
 }
 
-/*------/ Prelaoder /------*/
+/*--/ =================== Preloader =================== /--*/
 #preloader {
   position: fixed;
   top: 0;
@@ -400,7 +398,7 @@ p.lead {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
-  background: #fff;
+  background: var(--dark-color);
 }
 
 #preloader:before {
@@ -409,7 +407,7 @@ p.lead {
   top: calc(50% - 30px);
   left: calc(50% - 30px);
   border: 6px solid #f2f2f2;
-  border-top: 6px solid #0078ff;
+  border-top: 6px solid var(--purple-color-light);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -426,7 +424,7 @@ p.lead {
   }
 }
 
-/*------/ Button /------*/
+/*--/ =================== Button =================== /--*/
 .button {
   display: inline-block;
   padding: 0.3rem 0.6rem;
@@ -475,9 +473,7 @@ p.lead {
   border-radius: 0.3rem;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+/*--/ =================== Header =================== /--*/
 #header {
   transition: all 0.5s;
   z-index: 997;
@@ -505,9 +501,7 @@ p.lead {
   padding: 12px 0;
 }
 
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
+/*--/ =================== Navigation bar =================== /--*/
 /**
 * Desktop Navigation 
 */
@@ -763,7 +757,7 @@ p.lead {
 }
 
 /*--------------------------------------------------------------
-# Hero Section
+# Main theme Section
 --------------------------------------------------------------*/
 .hero {
   height: 100vh;
@@ -851,7 +845,7 @@ p.lead {
 }
 
 /*--------------------------------------------------------------
-# About
+# Core Features
 --------------------------------------------------------------*/
 .about-mf .box-shadow-full {
   padding-top: 4rem;
