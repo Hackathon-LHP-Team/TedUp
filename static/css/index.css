@@ -94,6 +94,17 @@ a {
   font-size: 18px;
 }
 
+.card-title-blog {
+  font-size: 25px;
+  color: var(--bs-btn-active-color);
+  font-weight: bold;
+}
+
+.blog-show-title {
+  font-size: 6rem;
+  line-height: 80px;
+}
+
 a:hover {
   color: var(--purple-color-lightest);
   text-decoration: none;
@@ -157,6 +168,7 @@ a:hover {
   background-size: cover;
   background-position: center center;
 }
+
 
 @media (max-width: 1024px) {
   .bg-image {
@@ -858,6 +870,7 @@ p.lead {
   opacity: 0.9;
 }
 
+
 .hero .hero-title {
   color: #fff;
   font-weight: 600;
@@ -919,6 +932,18 @@ p.lead {
 
 .hero-single .breadcrumb a {
   color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Main theme Blog section
+--------------------------------------------------------------*/
+
+.text-white {
+  color: var(--bs-btn-active-color);
+}
+
+.opacity-1 {
+  opacity: 1;
 }
 
 /*--------------------------------------------------------------

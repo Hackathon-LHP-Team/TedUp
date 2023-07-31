@@ -100,7 +100,7 @@ class Blogs(db.Model):
 '''
 Form 
 '''
-from form_backup import Registration, Login, PostBlogForm, UpdateInfo
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo
  
     
 '''
@@ -162,7 +162,8 @@ def all_users():
 @login_required 
 def dashboard(id):
     user = Users.query.get_or_404(id)
-    return render_template('dashboard.html', user=user)
+    all_blogs = Blogs.query.order_by(Blogs.date_posted)
+    return render_template('dashboard.html', user=user, all_blogs=all_blogs)
 
 @app.route("/dashboard/update_info/<int:id>", methods=["GET", "POST"])
 @login_required
@@ -216,7 +217,7 @@ def all_blogs():
     return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
 
 
-@app.route("/all_blogs/<int:id>")
+@app.route("/blog/<int:id>")
 def blog(id):
     blog = Blogs.query.get_or_404(id)
     return render_template('blog.html', blog=blog)
@@ -225,7 +226,7 @@ def blog(id):
 @login_required
 def edit_blog(id):
     blog = Blogs.query.get_or_404(id)
-    form = PostBlogForm()
+    form = UpdateBlogForm()
     if form.validate_on_submit():
         blog.title = form.title.data
         blog.content = form.content.data
@@ -238,9 +239,9 @@ def edit_blog(id):
     form.title.data = blog.title
     form.content.data = blog.content
     form.slug.data = blog.slug
-    return render_template('edit_blog.html', form=form)
+    return render_template('edit_blog.html', form=form, blog=blog)
 
-@app.route("/all_blogs/delete_blog/<int:id>", methods=["GET", "POST"])
+@app.route("/blog/delete_blog/<int:id>", methods=["GET", "POST"])
 def delete_blog(id):
     blog_to_delete = Blogs.query.get_or_404(id)
     try:

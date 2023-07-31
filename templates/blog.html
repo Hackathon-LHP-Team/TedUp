@@ -2,11 +2,12 @@
 {% include 'navbar.html' %}
 
 
-<div id="hero" class="hero route bg-image">
-    <div class="overlay-itro"></div>
+<div class="hero bg-image" style="background-image: url(https://i.pinimg.com/originals/b6/e2/08/b6e2089749c711d9509da32fa73ea10d.gif)">
+    <div class="overlay-itro"> </div>
+
     <div class="hero-content display-table">
-        <div class="table-cell-2">
-            <div class="container text-left opacity-8">
+        <div class="table-cell-2 opacity-1">
+            <div class="container text-left">
                 <!-- content block -->
                 <h3 class="ms-3">Read this story might help you!</h3>
                 <br>
@@ -20,17 +21,23 @@
                                         Back
                                     </a>
                                 </div>
-                                <div class="col-6">
-                                    <a href= "{{ url_for('edit_blog', id=blog.id) }}">
-                                        <i class="bi bi-arrow-right"></i>
-                                        Edit
-                                    </a>
-                                </div>
+                                {% if blog.poster.id == current_user.id %}
+                                    <div class="col-6">
+                                        <a href= "{{ url_for('edit_blog', id=blog.id) }}">
+                                            <i class="bi bi-arrow-right"></i>
+                                            Edit
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-6">
-                            {{blog.title}}
-                            {{blog.poster.user_name}}
+                            <div class="col blog-show-title mt-4">
+                                {{blog.title}}
+                            </div>
+                            <div class="col mt-5">
+                                This is from user: {{blog.poster.user_name}}
+                            </div> 
                         </div>
                         <div class="col-6 text-break">
                             {{blog.content}}
