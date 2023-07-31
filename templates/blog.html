@@ -1,34 +1,43 @@
-<!-- base.html -->
-{% extends 'base.html' %}
-<!-- content block -->
-{% block main %}
-    <h3 class="ms-3">Read this story might help you!</h3>
+<!-- nav bar -->
+{% include 'navbar.html' %}
 
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-6">
-                        <a href= "{{ url_for('all_blogs') }}">
-                            <i class="bi bi-arrow-left"></i>
-                            Back
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href= "{{ url_for('edit_blog', id=blog.id) }}">
-                            <i class="bi bi-arrow-right"></i>
-                            Edit
-                        </a>
+
+<div id="hero" class="hero route bg-image">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+        <div class="table-cell-2">
+            <div class="container text-left opacity-8">
+                <!-- content block -->
+                <h3 class="ms-3">Read this story might help you!</h3>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href= "{{ url_for('all_blogs') }}">
+                                        <i class="bi bi-arrow-left"></i>
+                                        Back
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href= "{{ url_for('edit_blog', id=blog.id) }}">
+                                        <i class="bi bi-arrow-right"></i>
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            {{blog.title}}
+                            {{blog.poster.user_name}}
+                        </div>
+                        <div class="col-6 text-break">
+                            {{blog.content}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                {{blog.title}}
-            </div>
-            <div class="col-6 text-break">
-                {{blog.content}}
+                <!-- end content block -->
             </div>
         </div>
     </div>
-{% endblock %}

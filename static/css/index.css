@@ -7,6 +7,9 @@
   --purple-color-light: #7A50D0;
   --purple-color-lighter: #8858e9;
   --purple-color-lightest: #AA88EF; 
+  --dark-light-color: #1e1e1e;
+  --bs-border-width: 1px;
+  --bs-border-style: solid;
 }
 
 body {
@@ -19,6 +22,20 @@ a {
   color: var(--body-font-color);
   text-decoration: none;
   transition: all 0.5s;
+}
+
+.card-primary-color {
+  background-color: var(--dark-light-color);
+  color: var(--body-font-color);
+}
+
+
+.opacity-8 {
+  opacity: 0.8;
+}
+
+.border {
+  border: var(--bs-border-width) var(--bs-border-style) var(--dark-light-color) !important
 }
 
 .btn-primary {
@@ -57,11 +74,11 @@ a {
 
 .margin-top-form {
   margin-top: 1.1rem;
-  opacity: 0.8;
 }
 
 .form-border-radius {
   border-radius: 2px;
+  opacity: 0.8;
 }
 
 .text-left {
@@ -73,8 +90,12 @@ a {
   opacity: 0.8;
 }
 
+.card-title {
+  font-size: 18px;
+}
+
 a:hover {
-  color: var(--purple-color-lighter);
+  color: var(--purple-color-lightest);
   text-decoration: none;
   transition: all 0.1s ease-in-out;
 }
@@ -171,6 +192,10 @@ a:hover {
 .table-cell {
   display: table-cell;
   vertical-align: middle;
+}
+
+.table-cell-2 {
+  margin-top: 120px;
 }
 
 /*--/ ===================Sections=================== /--*/

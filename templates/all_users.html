@@ -1,25 +1,32 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-<!-- content block -->
-{% block main %}
-    <h1 class="ms-3">Contributors Community</h1>
-
-    <br>
-    <div class="container">
-        <div class="row mt-4">
-                {% for user, index_img in zip(all_users, list_index_str) %}
-                    <div class="card ms-3 bg-light" style="width: 20rem;">
-                        <img src="static/imgs/{{index_img}}.jpg" class="card-img-top" alt="..."  style="height:200px">
-                        <div class="card-body">
-                        <h5 class="card-title">{{user.name}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View</a>
+<div id="hero" class="hero route bg-image">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+        <div class="table-cell-2">
+            <!-- content block -->
+            <h1>Thank you for joining our community</h1>
+            <div class="container">
+                <br>
+                <div class="row mt-4">
+                    {% for user in all_users %}
+                            <div class="col-3 mt-4">
+                                <div class="card card-primary-color" style="max-width: 19rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{user.user_name}}</h5>
+                                    <p class="card-text">Every user confidential information is protected by system. Everyone can just only see the displayed name</p>
+                                    <br>
+                                    <a href="#" class="btn btn-primary">See blogs from this user</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- end content block -->   
         </div>
     </div>
-{% endblock %}
+</div>
 
 

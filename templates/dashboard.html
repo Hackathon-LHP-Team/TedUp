@@ -1,0 +1,56 @@
+<!-- nav bar -->
+{% include 'navbar.html' %}
+
+<div id="hero" class="hero route bg-image">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+        <div class="table-cell-2">
+            <!-- content block -->
+            <h1> Hello {{user.name}}. This is your dashboard</h1>
+            <p class="opacity-8 mt-4" >This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with every <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
+            <div class="container">
+                <br>
+                <div class="row mt-4"> 
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-6">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4 border rounded">
+                                <!-- https://i.pinimg.com/originals/a9/fb/81/a9fb8104c5a396e8fdc4e607f04860d7.gif -->
+                                <!-- https://i.pinimg.com/originals/f0/7f/41/f07f414b486e6ed9da095f310444ee04.gif -->
+                                <img src="https://i.pinimg.com/originals/a9/fb/81/a9fb8104c5a396e8fdc4e607f04860d7.gif" class="img-fluid rounded-start" alt="..." style="height:230px">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card text-left card-primary-color">
+                                    <div class="card-header">
+                                        Personal information
+                                    </div> 
+                                    <div class="card-body">
+                                        {% if user.id == 1 %}
+                                            <h5 class="card-title">You are {{user.id}}-st member</h5>
+                                        {% elif user.id == 2 %}
+                                            <h5 class="card-title">You are {{user.id}}-nd member</h5>
+                                        {% elif user.id == 3%}
+                                            <h5 class="card-title">You are {{user.id}}-rd member</h5>
+                                        {% else %}
+                                            <h5 class="card-title">You are {{user.id}}-th member</h5>
+                                        {% endif %}                                        
+                                        <br>
+                                        <p class="card-text">Your name: {{user.name}} <br> Your email: {{user.email}} <br> Your display name: {{user.user_name}}</p>
+                                        <a href="{{ url_for('update_info', id=user.id)}}" class="btn btn-primary">Edit info</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- end content block -->   
+        </div>
+    </div>
+</div>

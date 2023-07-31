@@ -49,6 +49,7 @@ import numpy as np
 import random 
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
+
 '''
 Define key and variables
 '''
@@ -69,8 +70,10 @@ class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     email =  db.Column(db.String(120), nullable=False, unique=True)
-    user_name = db.Column(db.String(120), nullable=False, unique=True)
+    user_name = db.Column(db.String(120), nullable=False)
     password_hash = db.Column(db.String(200))
+    posts = db.relationship('Blogs', backref='poster')
+    
     @property
     def password():
         raise AttributeError('password is not a readable attribute')
@@ -84,37 +87,21 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return '<Name %r>' % self.name
     
+    
 class Blogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    author = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     slug = db.Column(db.String(255))
+    poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 
 '''
 Form 
 '''
-class Registration(FlaskForm):
-    name = StringField("Enter name:", validators=[DataRequired()])
-    email = StringField("Enter email:", validators=[DataRequired()])
-    user_name = StringField("Enter user name:", validators=[DataRequired()])
-    password_hash = PasswordField("Enter password:", validators=[DataRequired(), EqualTo('password_hash2', message='Password Must Match')])
-    password_hash2 = PasswordField("Confirm password:", validators=[DataRequired()])
-    submit = SubmitField("Register now")   
-    
-class Login(FlaskForm):
-    email = StringField("Enter your email:", validators=[DataRequired()])
-    password_hash = PasswordField("Enter your password:", validators=[DataRequired()])
-    submit = SubmitField("Login now")   
-    
-class PostBlogForm(FlaskForm):
-    title = StringField("Title:", validators=[DataRequired()])
-    author = StringField("Author:", validators=[DataRequired()])
-    content = StringField("Content:", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Slug", validators=[DataRequired()])
-    submit = SubmitField("Post now")   
+from form_backup import Registration, Login, PostBlogForm, UpdateInfo
+ 
     
 '''
 Route 
@@ -140,7 +127,7 @@ def registration():
         form.email.data = ""
         form.user_name.data = ""
         form.password_hash.data = ""
-        flash("Thank you for joining us!")
+        return redirect(url_for('login'))
     all_users = Users.query.order_by(Users.date_added)
     return render_template("registration.html", form=form, name=name, all_users=all_users)
 
@@ -168,11 +155,33 @@ def login():
 @app.route("/all_users", methods=["GET", "POST"])   
 @login_required 
 def all_users():
-    list_index = list (range (1, 8)) 
-    random.shuffle (list_index) 
-    list_index_str = ["avatar_" + str(index) for index in list_index]
     all_users = Users.query.order_by(Users.date_added)
-    return render_template("all_users.html", all_users=all_users, list_index_str=list_index_str, zip=zip)
+    return render_template("all_users.html", all_users=all_users)
+
+@app.route("/dashboard/<int:id>", methods=["GET", "POST"])   
+@login_required 
+def dashboard(id):
+    user = Users.query.get_or_404(id)
+    return render_template('dashboard.html', user=user)
+
+@app.route("/dashboard/update_info/<int:id>", methods=["GET", "POST"])
+@login_required
+def update_info(id):
+    user = Users.query.get_or_404(id)
+    form = UpdateInfo()
+    if form.validate_on_submit():
+        user.name = form.name.data
+        user.email = form.email.data
+        user.user_name = form.user_name.data
+
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('dashboard', id=user.id))
+
+    form.name.data = user.name
+    form.email.data = user.email
+    form.user_name.data = user.user_name
+    return render_template('update_info.html', form=form, user=user)
     
 @app.route("/create_blog", methods=["GET", "POST"]) 
 @login_required
@@ -180,8 +189,9 @@ def create_blog():
     title = None
     form = PostBlogForm()
     if form.validate_on_submit():
+        poster = current_user.id
         post = Blogs(title=form.title.data,
-                     author=form.author.data,
+                     poster_id = poster,
                      content=form.content.data,
                      slug=form.slug.data
                      )
@@ -190,7 +200,6 @@ def create_blog():
         
         title = form.title.data
         form.title.data = ''
-        form.author.data = ''
         form.content.data = ''
         form.slug.data = ''
         
@@ -213,12 +222,12 @@ def blog(id):
     return render_template('blog.html', blog=blog)
 
 @app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
+@login_required
 def edit_blog(id):
     blog = Blogs.query.get_or_404(id)
     form = PostBlogForm()
     if form.validate_on_submit():
         blog.title = form.title.data
-        blog.author = form.author.data
         blog.content = form.content.data
         blog.slug = form.slug.data
 
@@ -227,7 +236,6 @@ def edit_blog(id):
         return redirect(url_for('blog', id=blog.id))
 
     form.title.data = blog.title
-    form.author.data = blog.author
     form.content.data = blog.content
     form.slug.data = blog.slug
     return render_template('edit_blog.html', form=form)
@@ -258,6 +266,7 @@ def download():
     return render_template("download.html")
 
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))

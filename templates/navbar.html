@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
 
     <!-- Vendor CSS Files -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}">
 
     <!-- Customize boostrap -->
-    <link href="static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
 
 </head>
 <body>
@@ -37,6 +38,7 @@
                                 <li><a class="nav-link scrollto" href="{{ url_for('all_blogs')}}">Read blogs</a></li>
                                
                                 {% if current_user.is_authenticated %}
+                                <li><a class="nav-link scrollto " href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
                                 <li><a class="nav-link scrollto " href="{{ url_for('create_blog')}}">Create blog</a></li>
                                 <li><a class="nav-link scrollto " href="{{ url_for('logout')}}">Log out</a></li>
                                 
@@ -55,13 +57,12 @@
     </header>
 </body>
 
-    <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="static/vendor/typed.js/typed.umd.js"></script>
-    <script src="static/vendor/php-email-form/validate.js"></script>
-
+    <script src="{{ url_for('static', filename='vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/typed.js/typed.umd.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
 </html>
 
 

@@ -1,12 +1,12 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-
 <div id="hero" class="hero route bg-image" style="background-image: url(https://i.pinimg.com/originals/c7/1f/87/c71f87a30b503eda26410c02ea99839d.gif)">
     <div class="overlay-itro"></div>
     <div class="hero-content display-table">
         <div class="table-cell">
             <div class="container">
+                {% if user.id == current_user.id %}
                 <!-- content block -->
                 <div class="row">
                     <div class="col-3"></div>
@@ -16,26 +16,35 @@
                                     {{ form.hidden_tag() }}
                                     <div class="mb-3 row mt-3">
                                         <div class="text-left col-sm-4 col-form-label">
-                                            {{ form.title.label(class = 'form-label') }}
-                                            {{ form.content.label(class = 'form-label mt-4') }}
-                                            {{ form.slug.label(class = 'form-label mt-4') }}
+                                            {{ form.name.label(class = 'form-label') }} 
+                                            {{ form.email.label(class = 'form-label mt-4') }}
+                                            {{ form.user_name.label(class = 'form-label mt-4') }}
                                         </div>
                                         
                                         <div class="col-sm-8">
-                                            {{ form.title(class = 'form-control form-border-radius') }}
-                                            {{ form.content(class = 'form-control  margin-top-form form-border-radius', rows="10")}}
-                                            {{ form.slug(class = 'form-control margin-top-form form-border-radius') }}
+                                            {{ form.name(class = 'form-control form-border-radius') }}                     
+                                            {{ form.email(class = 'form-control margin-top-form form-border-radius') }}
+                                            {{ form.user_name(class = 'form-control  margin-top-form form-border-radius') }}       
                                         </div>
                                         <div class="d-grid gap-2 mt-5">
                                             {{ form.submit(class = 'btn btn-primary') }}
+                                            <a href="{{ url_for('dashboard', id=user.id) }}" type="button" class="btn btn-outline-primary" role="button">Back to dashboard</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     <div class="col-3"></div>
+                    {% else %}
+                        <div class="alert card-primary-color alert-dismissible fade show" role="alert">
+                            <h3>Sorry you are not this user. Please log in with your account</h3>
+                            <a class="btn-close" href="{{ url_for('login') }}" role="button"></a>
+                        </div>
+                    {% endif %}
                 </div>
                 <!-- end content block -->
             </div>
         </div>
     </div>
+
+
