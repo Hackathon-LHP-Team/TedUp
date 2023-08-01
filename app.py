@@ -48,6 +48,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import numpy as np
 import random 
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+import pandas as pd
+import os
+import time
+
+
 
 
 '''
@@ -63,6 +68,43 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+csv_path = 'utility_matrix.csv'
+exit_blog = False
+
+'''
+Utility matrix
+'''
+
+def init_or_update_csv():
+
+    df = pd.read_csv(csv_path)
+    num_cols = len(df.columns)
+    num_rows = len(df.index)
+    num_users = Users.query.count()
+    num_blogs = Blogs.query.count()
+        
+    if num_users > num_cols:
+        temp_col = [0] * num_rows
+        temp_col = pd.DataFrame(temp_col)
+        df = pd.concat([df, temp_col], axis=1)
+        df = df.to_numpy()
+        df = pd.DataFrame(df)
+        df.to_csv(csv_path, index=False)
+
+    if num_blogs > num_rows:
+        temp_col = [0] * num_cols
+        temp_col = pd.DataFrame(temp_col)
+        df = pd.concat([df.T, temp_col], axis=1)
+        df = df.T.to_numpy()
+        df = pd.DataFrame(df)
+        df.to_csv(csv_path, index=False)
+        
+        
+def fill_uitlity_matrix(blog_id, user_id, duration):
+    
+    df = pd.read_csv(csv_path)
+    df[user_id - 1][blog_id - 1] = duration
+    df.to_csv(csv_path, index=False)
 
 '''
 Database
@@ -94,7 +136,6 @@ class Blogs(db.Model):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    slug = db.Column(db.String(255))
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 
@@ -144,6 +185,7 @@ def registration():
             user = Users(name=form.name.data, email=form.email.data, user_name=form.user_name.data, password_hash=hased_pw)
             db.session.add(user)
             db.session.commit()
+            init_or_update_csv()
 
         name = form.name.data
         form.name.data = ""
@@ -217,7 +259,6 @@ def create_blog():
         post = Blogs(title=form.title.data,
                      poster_id = poster,
                      content=form.content.data,
-                     slug=form.slug.data
                      )
         db.session.add(post)
         db.session.commit()
@@ -226,7 +267,8 @@ def create_blog():
         title = form.title.data
         form.title.data = ''
         form.content.data = ''
-        form.slug.data = ''
+        
+        init_or_update_csv()
         return redirect(url_for('dashboard', id=current_user.id))
               
     return render_template("create_blog.html", title=title, form=form)
@@ -240,10 +282,38 @@ def all_blogs():
     return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
 
 
+def convert_to_sec(time_to_convert):
+    format_str = "%H:%M:%S"
+    time_struct = time.strptime(time_to_convert, format_str)
+    hour = time_struct.tm_hour
+    minute = time_struct.tm_min
+    second = time_struct.tm_sec
+    seconds = hour * 3600 + minute * 60 + second
+    return seconds
+
+@app.route("/time/<int:start_time_sec>/<int:id>", methods=["GET", "POST"])
+def time(start_time_sec, id):
+    end_time = datetime.utcnow()
+    end_time_str = end_time.strftime("%H:%M:%S")
+    end_time_sec = convert_to_sec(end_time_str)
+    duration = end_time_sec - start_time_sec
+    
+    num_users = Users.query.count()
+    num_blogs = Blogs.query.count()
+    
+    fill_uitlity_matrix(id, current_user.id, duration)
+
+    return render_template('time.html', start_time_sec=start_time_sec, end_time_sec=end_time_sec, duration=duration, num_users=num_users, num_blogs=num_blogs, id=id)
+
+import time
 @app.route("/blog/<int:id>")
 def blog(id):
     blog = Blogs.query.get_or_404(id)
-    return render_template('blog.html', blog=blog)
+    start_time = datetime.utcnow()
+    start_time_str = start_time.strftime("%H:%M:%S")
+    start_time_sec = convert_to_sec(start_time_str)
+    print(start_time_sec)
+    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime)
 
 @app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
 @login_required
@@ -253,7 +323,6 @@ def edit_blog(id):
     if form.validate_on_submit():
         blog.title = form.title.data
         blog.content = form.content.data
-        blog.slug = form.slug.data
 
         db.session.add(blog)
         db.session.commit()
@@ -261,7 +330,6 @@ def edit_blog(id):
 
     form.title.data = blog.title
     form.content.data = blog.content
-    form.slug.data = blog.slug
     return render_template('edit_blog.html', form=form, blog=blog)
 
 @app.route("/delete_blog/<int:id>", methods=["GET", "POST"])

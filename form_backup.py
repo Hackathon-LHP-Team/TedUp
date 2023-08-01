@@ -20,13 +20,11 @@ class Login(FlaskForm):
 class PostBlogForm(FlaskForm):
     title = StringField("Enter Title:", validators=[DataRequired()])
     content = StringField("Enter Content:", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Enter slug")
     submit = SubmitField("Post story now")   
     
 class UpdateBlogForm(FlaskForm):
     title = StringField("Enter Title:", validators=[DataRequired()])
     content = StringField("Enter Content:", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Enter slug")
     submit = SubmitField("Update story now")   
     
 class UpdateInfo(FlaskForm):
