@@ -109,7 +109,7 @@ def init_or_update_csv():
 def fill_uitlity_matrix(blog_id, user_id, duration):
     
     df = pd.read_csv(csv_path)
-    df[user_id - 1][blog_id - 1] = duration
+    df.iloc[blog_id - 1][user_id - 1] = duration
     df.to_csv(csv_path, index=False)
 
 '''
@@ -281,11 +281,8 @@ def create_blog():
 
 @app.route("/all_blogs")
 def all_blogs():
-    list_index = list (range (1, 8)) 
-    random.shuffle (list_index) 
-    list_index_str = ["avatar_" + str(index) for index in list_index]
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
-    return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
+    return render_template("all_blogs.html", all_blogs=all_blogs)
 
 
 def convert_to_sec(time_to_convert):
@@ -308,8 +305,7 @@ def time(start_time_sec, id):
     num_blogs = Blogs.query.count()
     
     fill_uitlity_matrix(id, current_user.id, duration)
-
-    return render_template('time.html', start_time_sec=start_time_sec, end_time_sec=end_time_sec, duration=duration, num_users=num_users, num_blogs=num_blogs, id=id)
+    return redirect(url_for('all_blogs'))
 
 import time
 @app.route("/blog/<int:id>")
