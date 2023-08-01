@@ -17,7 +17,7 @@
                                     <h5 class="card-title">{{user.user_name}}</h5>
                                     <p class="card-text">Every user confidential information is protected by system. Everyone can just only see the displayed name</p>
                                     <br>
-                                    <a href="#" class="btn btn-primary">See blogs from this user</a>
+                                    <a href="{{url_for('other_user_blogs', id=user.id)}}" class="btn btn-primary">See blogs from this user</a>
                                 </div>
                             </div>
                         </div>

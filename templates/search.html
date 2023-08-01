@@ -19,24 +19,21 @@
         <div class="table-cell-3">
             <!-- content block -->
             <div class="container">
-                <h1> Welcome {{current_user.name}} to stories gallary</h1>
-                <p class="opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome it might help you a lot to solve your problems</p>
+                <h2> Searching for "{{searched}}"</h2>
+                <p class="opacity-8 mt-4"> Here is the stories most suitable with your search</p>
                 <br>
                 
                 <div class="row mt-4">
-                    {% for blog in all_blogs %}
+                    {% for blog in blogs %}
                         <div class="col-4 mt-4">
-                            <div class="card">
-                                <div class="card-header card-secondary-color">
-                                    Featured story
-                                </div>
-                                <div class="card-body card-primary-color">
+                            <div class="card card-primary-color">
+                                <div class="card-body">
                                     <h3 class="card-title-blog">{{blog.title}}</h3>
                                     <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
                                     <p class="card-text mt-4">{{blog.content[:150]}}......</p>
                                     <br>
                                     <div class="d-grid gap-2">
-                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read now</a>
                                     </div>
                                 </div>
                             </div>

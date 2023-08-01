@@ -5,7 +5,7 @@ def customization():
     page_bg_img = f"""
     <style>
     [data-testid="stAppViewContainer"] > .main {{
-        background-image: url("https://i.pinimg.com/originals/4a/af/d6/4aafd6ec3818053b30dd894fdc23dea9.gif");
+        
         background-size: cover;
         background-position: top left;
         background-repeat: no-repeat;

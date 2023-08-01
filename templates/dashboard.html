@@ -54,31 +54,51 @@
 
             <p class="opacity-8  mt-5" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
 
-            <div class="container  mt-4">
-                <div class="row">
-                    <div class="col-1"></div>
-                        <div class="col-10">
-                            {% for blog in all_blogs %}
-                                {% if blog.poster.id == current_user.id %}
-                                    <div class="col-4 mt-4">
-                                        <div class="card card-primary-color">
-                                            <div class="card-body">
-                                                <h3 class="card-title">{{blog.title}}</h3>
-                                                <p class="card-text mt-4">{{blog.content[:100]}}......</p>
-                                                <br>
-                                                <div class="d-grid gap-2">
-                                                    <a href="{{url_for('edit_blog', id=blog.id)}}" class="btn btn-outline-primary">Edit content</a>
+            <div class="container mt-4">
+
+                <div class="row mt-4">
+                    {% for blog in all_blogs %}
+                        {% if blog.poster.id == current_user.id %}
+                            <div class="col-3 mt-4">
+                                <div class="card">
+                                    <div class="card-body card-primary-color">
+                                        <h3 class="card-title-blog">{{blog.title}}</h3>
+                                        <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
+                                        <p class="card-text mt-4">{{blog.content[:150]}}......</p>
+                                        <br>
+                                        <div class="d-grid gap-2">
+                                            <a href="{{url_for('edit_blog', id=blog.id)}}" class="btn btn-outline-primary">Edit content</a>
+                                            <!-- Button trigger modal -->                                            
+                                            <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete content</a>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <div class="modal-body">
+                                                Are you sure to delete this story?
+                                                </div>
+                                                <div class="modal-footer">
+                                                <a href="{{ url_for('delete_blog', id=blog.id)}}" type="button" class="btn btn-secondary">Delete</a>
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <!-- end content block -->   
         </div>
     </div>
 </div>
+

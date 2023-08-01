@@ -1,0 +1,37 @@
+<!-- nav bar -->
+{% include 'navbar.html' %}
+
+<div id="hero" class="hero route bg-image">
+    <div class="overlay-itro"></div>
+    <div class="hero-content display-table">
+        <div class="table-cell-2">
+            <!-- content block -->
+            <h1>Enjoy all stories from {{user.user_name}}</h1>
+            <div class="container  mt-4">
+                <div class="row">
+                    <div class="col-1"></div>
+                        <div class="col-10">
+                            {% for blog in all_blogs %}
+                                {% if blog.poster.id == user.id %}
+                                    <div class="col-4 mt-4">
+                                        <div class="card card-primary-color">
+                                            <div class="card-body">
+                                                <h3 class="card-title">{{blog.title}}</h3>
+                                                <p class="card-text mt-4">{{blog.content[:100]}}......</p>
+                                                <br>
+                                                <div class="d-grid gap-2">
+                                                    <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+            <!-- end content block -->   
+        </div>
+    </div>
+</div>

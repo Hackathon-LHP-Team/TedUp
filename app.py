@@ -63,6 +63,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+
 '''
 Database
 '''
@@ -100,8 +101,28 @@ class Blogs(db.Model):
 '''
 Form 
 '''
-from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo
- 
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm
+
+
+'''
+Search Function 
+'''
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
+
+@app.route("/search", methods=["POST"])
+def search():
+    form = SearchForm()
+    blogs = Blogs.query
+    if form.validate_on_submit():
+        searched = form.searched.data
+        blogs = blogs.filter(Blogs.content.like('%' + searched + '%'))
+        blogs = blogs.order_by(Blogs.title).all()
+        
+        return render_template("search.html", form=form, searched=searched, blogs=blogs)
+
     
 '''
 Route 
@@ -109,6 +130,8 @@ Route
 @app.route("/")
 def home():
     return render_template("home.html")
+
+
 
 @app.route("/registration", methods=["GET", "POST"]) 
 def registration():
@@ -199,13 +222,13 @@ def create_blog():
         db.session.add(post)
         db.session.commit()
         
+        
         title = form.title.data
         form.title.data = ''
         form.content.data = ''
         form.slug.data = ''
-        
-        flash("Create a blog post succesfully")
-        
+        return redirect(url_for('dashboard', id=current_user.id))
+              
     return render_template("create_blog.html", title=title, form=form)
 
 @app.route("/all_blogs")
@@ -241,26 +264,21 @@ def edit_blog(id):
     form.slug.data = blog.slug
     return render_template('edit_blog.html', form=form, blog=blog)
 
-@app.route("/blog/delete_blog/<int:id>", methods=["GET", "POST"])
+@app.route("/delete_blog/<int:id>", methods=["GET", "POST"])
 def delete_blog(id):
     blog_to_delete = Blogs.query.get_or_404(id)
     try:
         db.session.delete(blog_to_delete)
         db.session.commit()
-        list_index = list (range (1, 8)) 
-        random.shuffle (list_index) 
-        list_index_str = ["avatar_" + str(index) for index in list_index]
-        all_blogs = Blogs.query.order_by(Blogs.date_posted)
-        return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
+        return redirect(url_for('dashboard', id=current_user.id))
     except:
-        flash("Something went wrong, please reload and try again")
-        list_index = list (range (1, 8)) 
-        random.shuffle (list_index) 
-        list_index_str = ["avatar_" + str(index) for index in list_index]
-        all_blogs = Blogs.query.order_by(Blogs.date_posted)
-        return render_template("all_blogs.html", all_blogs=all_blogs, list_index_str=list_index_str, zip=zip)
+        return redirect(url_for('dashboard', id=current_user.id))
         
-        
+@app.route("/other_user_blogs/<int:id>", methods=["GET", "POST"])
+def other_user_blogs(id):
+    user = Users.query.get_or_404(id)
+    all_blogs = Blogs.query.order_by(Blogs.date_posted)
+    return render_template('other_user_blogs.html', user=user, all_blogs=all_blogs)
 
 @app.route("/download")
 def download():

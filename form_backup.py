@@ -3,6 +3,7 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField, Valid
 from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, EqualTo, Length
 
+
 class Registration(FlaskForm):
     name = StringField("Enter name:", validators=[DataRequired()])
     email = StringField("Enter email:", validators=[DataRequired()])
@@ -19,13 +20,13 @@ class Login(FlaskForm):
 class PostBlogForm(FlaskForm):
     title = StringField("Enter Title:", validators=[DataRequired()])
     content = StringField("Enter Content:", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Enter slug", validators=[DataRequired()])
+    slug = StringField("Enter slug")
     submit = SubmitField("Post story now")   
     
 class UpdateBlogForm(FlaskForm):
     title = StringField("Enter Title:", validators=[DataRequired()])
     content = StringField("Enter Content:", validators=[DataRequired()], widget=TextArea())
-    slug = StringField("Enter slug", validators=[DataRequired()])
+    slug = StringField("Enter slug")
     submit = SubmitField("Update story now")   
     
 class UpdateInfo(FlaskForm):
@@ -33,3 +34,7 @@ class UpdateInfo(FlaskForm):
     email = StringField("Enter email:", validators=[DataRequired()])
     user_name = StringField("Enter displayed name:", validators=[DataRequired()])
     submit = SubmitField("Update now")   
+
+class SearchForm(FlaskForm):
+    searched = StringField("Searched", validators=[DataRequired()]) 
+    submit = SubmitField("Search now")  
