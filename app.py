@@ -72,7 +72,7 @@ csv_path = 'utility_matrix.csv'
 exit_blog = False
 
 '''
-Utility matrix
+Utility matrix - Recsystem
 '''
 
 def init_or_update_csv():
@@ -80,6 +80,7 @@ def init_or_update_csv():
     df = pd.read_csv(csv_path)
     num_cols = len(df.columns)
     num_rows = len(df.index)
+    
     num_users = Users.query.count()
     num_blogs = Blogs.query.count()
         
@@ -92,9 +93,14 @@ def init_or_update_csv():
         df.to_csv(csv_path, index=False)
 
     if num_blogs > num_rows:
-        temp_col = [0] * num_cols
+        df = df.T
+        df.to_csv(csv_path, index=False)
+        df = pd.read_csv(csv_path)
+        num_rows = len(df.index)
+        
+        temp_col = [0] * num_rows
         temp_col = pd.DataFrame(temp_col)
-        df = pd.concat([df.T, temp_col], axis=1)
+        df = pd.concat([df, temp_col], axis=1)
         df = df.T.to_numpy()
         df = pd.DataFrame(df)
         df.to_csv(csv_path, index=False)
