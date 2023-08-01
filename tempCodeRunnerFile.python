@@ -1,0 +1,6 @@
+import pandas as pd
+
+blog_id = 8
+csv_path = 'utility_matrix.csv'
+df = pd.read_csv(csv_path)
+print(df.drop([blog_id-1]))

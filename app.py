@@ -107,11 +107,15 @@ def init_or_update_csv():
         
         
 def fill_uitlity_matrix(blog_id, user_id, duration):
-    
     df = pd.read_csv(csv_path)
     df.iloc[blog_id - 1][user_id - 1] = duration
     df.to_csv(csv_path, index=False)
 
+def delete_row_utility_matrix(blog_id):
+    df = pd.read_csv(csv_path)
+    df = df.drop([blog_id-1])
+    df.to_csv(csv_path, index=False)
+    
 '''
 Database
 '''
@@ -340,6 +344,7 @@ def delete_blog(id):
     try:
         db.session.delete(blog_to_delete)
         db.session.commit()
+        delete_row_utility_matrix(id)
         return redirect(url_for('dashboard', id=current_user.id))
     except:
         return redirect(url_for('dashboard', id=current_user.id))
