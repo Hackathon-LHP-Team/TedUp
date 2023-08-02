@@ -1648,3 +1648,35 @@ footer .credits {
 footer .credits a {
   color: #fff;
 }
+
+/*--/ =================== Animation CSS =================== /--*/
+
+.moveRight {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateX(-400px);
+  transition: all 1.5s;}
+.moveRightAlready {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);}
+
+.moveLeft {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateX(400px);
+  transition: all 1.5s;}
+.moveLeftAlready {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);}
+
+.up {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(200px);
+  transition: all 1.5s;}
+.upAlready {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);}

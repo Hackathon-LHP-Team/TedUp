@@ -60,7 +60,7 @@ const appear1 = new IntersectionObserver((cards) => {
 const hiddenElement1 = document.querySelectorAll(".up");
 hiddenElement1.forEach((el) => appear1.observe(el));
 
-/* Animation go left on scroll */
+/* Animation go right on scroll */
 const appear2 = new IntersectionObserver((cards) => {
   cards.forEach((card) => {
        console.log(card)
@@ -75,4 +75,16 @@ const hiddenElement2 = document.querySelectorAll(".moveRight");
 hiddenElement2.forEach((el) => appear2.observe(el));
 
 
-/* Scroll animation */
+/* Animation go left on scroll */
+const appear3 = new IntersectionObserver((cards) => {
+  cards.forEach((card) => {
+       console.log(card)
+       if(card.isIntersecting) {
+            card.target.classList.add("moveLeftAlready");
+       } else {
+            card.target.classList.remove("moveLeftAlready");
+       }
+  });
+});
+const hiddenElement3 = document.querySelectorAll(".moveLeft");
+hiddenElement3.forEach((el) => appear3.observe(el));
