@@ -143,7 +143,6 @@ a {
 .card-title-blog {
   font-size: 25px;
   color: var(--bs-btn-active-color);
-  font-weight: bold;
 }
 
 .blog-show-title {
@@ -1114,7 +1113,7 @@ p.lead {
   height: 60px;
   width: 60px;
   line-height: 1.5;
-  box-shadow: 0 0 0 10px #cde1f8;
+  box-shadow: 0 0 0 10px #ffffff;
 }
 
 .counter-num .counter {

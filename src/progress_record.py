@@ -6,6 +6,7 @@ from page_setup_config import page_configure
 # machine learning libs
 import numpy as np
 
+
 # set up page configuration
 page_configure()
 
@@ -33,4 +34,6 @@ tab1.line_chart(data)
 
 tab2.subheader("Data Record")
 tab2.write(data)
+
+
 

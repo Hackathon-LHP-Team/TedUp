@@ -7,7 +7,7 @@
         <div class="table-cell-2">
             <!-- content block -->
             <h1> Hello {{user.name}}. This is your dashboard</h1>
-            <p class="opacity-8 mt-4" >This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with every <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
+            <p class="opacity-8 mt-4" >This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with everyone <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
             <div class="container">
                 <br>
                 <div class="row mt-3"> 
@@ -75,17 +75,17 @@
                                         <!-- Modal -->
                                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
-                                            <div class="modal-content">
+                                            <div class="modal-content card-primary-color">
                                                 <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                Are you sure to delete this story?
+                                                    Are you sure to delete this story?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <a href="{{ url_for('delete_blog', id=blog.id)}}" type="button" class="btn btn-secondary">Delete</a>
-                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                    <a href="{{ url_for('delete_blog', id=blog.id)}}" type="button" class="btn btn-outline-primary">Delete</a>
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
                                                 </div>
                                             </div>
                                             </div>
