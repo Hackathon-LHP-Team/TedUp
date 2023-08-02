@@ -1,0 +1,59 @@
+<!-- nav bar -->
+{% include 'navbar.html' %}
+
+
+
+<div id="hero" class="hero route bg-image">
+    
+    <div class="overlay-itro"></div>
+    
+    <div class="hero-content display-table">
+        <br> <br> <br> 
+        <div class="container-fluid" style="max-width: 300px;">
+            <form method="POST" class="d-flex" role="search" action="{{url_for('search')}}">
+                {{ form.hidden_tag() }}
+                <input class="search-custom" placeholder="Search" name="searched">
+                <button class="btn btn-outline-search" type="submit"><i class="bi bi-search"></i></button>
+                <a href="{{url_for('recsys')}}" style="margin-top: 6px;" >
+                    <i class="bi bi-bell ms-4">
+                    </i>
+                </a>
+            </form>
+        </div>
+        <div class="table-cell-3">
+            <!-- content block -->
+            <div class="container">
+                <h1> Welcome {{current_user.name}}. You might like these stories</h1>
+                <p class="opacity-8 mt-4"> Our recommder system suggests these stories based on your activity on this website</p>
+                <br>
+                <div class="row mt-4">
+                    {% for blog_suggested_id in result %}
+                        {% for blog in all_blogs %}
+                            {% if blog.id == blog_suggested_id %}
+                                <div class="col-4 mt-4">
+                                    <div class="card">
+                                        <div class="card-header card-secondary-color">
+                                            Recommended Stories
+                                        </div>
+                                        <div class="card-body card-primary-color">
+                                            <h3 class="card-title-blog">{{blog.title}}</h3>
+                                            <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
+                                            <p class="card-text mt-4">{{blog.content[:150]}}......</p>
+                                            <br>
+                                            <div class="d-grid gap-2">
+                                                <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- end content block -->
+        </div>
+    </div>
+
+    <script>
+    </script>
