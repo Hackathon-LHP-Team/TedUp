@@ -1,8 +1,0 @@
-import pandas as pd
-import numpy
-
-utility_matrix = pd.read_csv('utility_matrix.csv')
-print(utility_matrix)
-
-# user 4 (index 4) read the blog 1 in 271s
-# let see how I update this value

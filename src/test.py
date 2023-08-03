@@ -16,22 +16,17 @@ score_obj = score(Chats)
 # Call the methods on the object
 tokenizer = score_obj.generate_token()
 padded_chat_seq = score_obj.tokenize_text(tokenizer)
-padded_text_seq = score_obj.tokenize_text_test(tokenizer, Chats[1])
-# print(padded_chat_seq)
+Q_res, s_res = score_obj.Q_value(padded_chat_seq)
+print(s_res)
+print(Q_res)
 
-s = [0]
-print(padded_chat_seq[1])
-print(padded_text_seq)
-print(Chats[1])
-print(score_obj.predict(padded_text_seq))
-# for i in range(1, len(padded_chat_seq)):
-#     y_i = score_obj.predict(padded_chat_seq[i])
-#     y_i = np.argsort(y_i)[0][-3:]
+'''
+results
 
-#     s_i = 0
-#     for j in range(len(y_i)):
-#         s_i += y_i[j]
-#         s_i /= 3
-#     s.append(s_i)
-    
-# print(s)
+1/1 [==============================] - 2s 2s/step
+1/1 [==============================] - 0s 68ms/step
+1/1 [==============================] - 0s 94ms/step
+1/1 [==============================] - 0s 85ms/step
+[0, 1.5, 3.8000000000000003, 3.8000000000000003, 3.633333333333333]
+2.806208333333333
+'''

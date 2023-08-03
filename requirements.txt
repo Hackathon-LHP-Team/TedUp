@@ -11,3 +11,4 @@ flask_sqlalchemy
 flask_login
 flask-migrate
 plotly
+scikit-learn

@@ -13,8 +13,12 @@ from chat_setup_configuration import page_configure
 from css_customization import customization
 from page_management import management
 
+# Data Processing
+import pandas as pd
+
+
 # Load cookies
-cookies = json.loads(open("cookies.json", encoding="utf-8").read()) 
+cookies = json.loads(open("assets/cookies.json", encoding="utf-8").read()) 
 
 # set up page configuration
 page_configure()
@@ -35,7 +39,8 @@ async def main(res, input_text):
     res = output_response
     return res
 
-if __name__ == "__main__":
+
+def chat_function():
     st.title("Virtual Therapist")
 
     # Initialize chat history
@@ -51,9 +56,15 @@ if __name__ == "__main__":
     if prompt := st.chat_input("Tell us your story"):
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
+        
         # Display user message in chat message container
         with st.chat_message("user"):
             st.markdown(prompt)
+            df = pd.read_csv('assets/temp.csv')
+            Chats = prompt
+            Chats = pd.DataFrame([Chats])
+            df = pd.concat([df, Chats], axis=1)
+            df.to_csv('assets/temp.csv', index=False)
 
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
@@ -73,3 +84,8 @@ if __name__ == "__main__":
             
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": full_response})
+    
+    
+    
+
+chat_function()
