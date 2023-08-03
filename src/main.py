@@ -16,7 +16,6 @@ from page_management import management
 # Data Processing
 import pandas as pd
 
-
 # Load cookies
 cookies = json.loads(open("assets/cookies.json", encoding="utf-8").read()) 
 

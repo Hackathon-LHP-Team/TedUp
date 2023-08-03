@@ -61,11 +61,45 @@ def developer():
 
 
 def user():
+    df = pd.read_csv('assets/Chats.csv')
+    st.dataframe(df, use_container_width=True)
+    Chat_need_process = df.iloc[:,(len(df.columns) - 1)].tolist()
+    st.write(Chat_need_process)
+    
+    # Create an object of the class
+    score_obj = score(Chat_need_process)
+
+    # Call the methods on the object
+    tokenizer = score_obj.generate_token()
+    padded_chat_seq = score_obj.tokenize_text(tokenizer)
+    Q_res, s_res = score_obj.Q_value(padded_chat_seq)
+    
+    # s_res = s_res[1:]
+    # st.write(s_res)
+    
+    # s_res_list = pd.read_csv('assets/s_res_list.csv')
+    # s_res_list = s_res_list.T
+    # s_res_list.to_csv('assets/s_res_list.csv', index=False)
+    # s_res_list = pd.read_csv('assets/s_res_list.csv')
+    # st.write(s_res_list)
+    
+    # s_res = pd.DataFrame(s_res)
+    # s_res = s_res.T
+    # s_res_list = pd.concat([s_res_list, s_res], axis=1, ignore_index=True)
+    # s_res_list = s_res_list.T
+    # print(s_res_list)
+    # st.write(s_res_list)
+    # s_res_list.to_csv('assets/s_res_list.csv', index=False)   
+    
+def user2():
     pass
+
 
 with tab1:
     # developer()
+    # user()
     pass
+    
     
 with tab2:
     st.subheader("Overall Analysis - Q value")
