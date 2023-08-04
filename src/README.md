@@ -8,10 +8,14 @@ See how the Deep neural nets are trained [here](https://colab.research.google.co
 
 Here is the math formula of Q-value function:
 
-$$\hat{y}^i = \text{model.predict}([\text{chat}^i]) \space | \space \text{with} \space i =1...N$$
+$$
+\hat{y}^i = \text{model.predict}([\text{chat}^i]) \space | \space \text{with} \space i =1...N
+$$
+
 $$
 \hat{y}^i_1, \hat{y}^i_2, \hat{y}^i_3 = \arg\max^3(y^i)
 $$
+
 $$
 s_i = \frac{1}{3}\sum_{j=1}^3 f(classes[\hat{y}^i_j])
 $$
