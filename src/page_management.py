@@ -7,6 +7,5 @@ def management():
             Page("home.py", "Home"),
             Page("main.py", "App"),
             Page("progress_record.py", "Progress Record"),
-            Page("Help.py", "Help"),
         ]
     )

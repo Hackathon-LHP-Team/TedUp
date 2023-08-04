@@ -7,53 +7,10 @@ from page_setup_config import page_configure
 # set up page configuration
 page_configure()
 
-# define the on_change function
-# def on_change(key):
-#     selection = st.session_state[key]
-#     pass
-
-# # create the option menu
-# selected5 = option_menu(None, ["Home", "Upload", "Tasks", 'Settings'],
-#                         icons=['house', 'cloud-upload', "list-task", 'gear'],
-#                         on_change=on_change, key='menu_5', orientation="horizontal",
-#                         styles={
-#                             "nav-link-selected": {"background-color": "black"},
-#                         })
-
-
-
-
-# st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
-
-
-# with st.sidebar:
-#         tabs = on_hover_tabs(tabName=['Dashboard', 'Money', 'Economy'], 
-#                              iconName=['dashboard', 'money', 'economy'],
-#                              styles = {'navtab': {'background-color':'#111',
-#                                                   'color': '#818181',
-#                                                   'font-size': '14px',
-#                                                   'font-family: georgia'
-#                                                   'transition': '.3s',
-#                                                   'white-space': 'nowrap',
-#                                                   },
-#                                        'tabOptionsStyle': {':hover :hover': {'color': '#241efb',
-#                                                                       'cursor': 'pointer'}},
-#                                        'iconStyle':{'position':'fixed',
-#                                                     'left':'7.5px',
-#                                                     'text-align': 'left'},
-#                                        'tabStyle' : {'list-style-type': 'none',
-#                                                      'margin-bottom': '30px',
-#                                                      'padding-left': '30px'}},
-#                              key="1")
-
-# if tabs =='Dashboard':
-#     st.title("Navigation Bar")
-#     st.write('Name of option is {}'.format(tabs))
-
-# elif tabs == 'Money':
-#     st.title("Paper")
-#     st.write('Name of option is {}'.format(tabs))
-
-# elif tabs == 'Economy':
-#     st.title("Tom")
-#     st.write('Name of option is {}'.format(tabs))
+st.title('Welcome')
+st.markdown('Are you feeling down, stressed, or overwhelmed? Do you need someone to talk to who can understand your emotions and help you cope? If yes, then you have come to the right place. Meet Virtual Therapist, a chatbot that can be your best friend and guide. Virtual Therapist is not just a chatbot, but a smart system that can analyze your emotions and track your mental health quality. Virtual Therapist uses a deep neural network that can classify your emotions into 12 categories. It also computes a score called Q value, which represents your mental health quality on a scale of 1 to 5. The higher the Q value, the better your mental health. You can use the Q value to monitor your mood and see how it changes over time. Virtual Therapist is easy and fun to use. All you have to do is type in the text box below and press enter. You can chat with Virtual Therapist about anything that is on your mind, such as your problems, feelings, goals, or dreams. Virtual Therapist will listen to you attentively and offer you helpful advice. You can also use the icons on the sidebar to adjust the settings, view the app information, or contact us. We hope you enjoy using Virtual Therapist and find it beneficial for your well-being. Remember, you are not alone and we are here for you')
+st.markdown('')
+st.markdown('')
+st.subheader('Main Function:')
+st.markdown('''App page: You can chat with chatbot and tell it your story. It will help you with your problems''')
+st.markdown('Progress Record: Analyse your emotions through each text and each chat and give you warning if your mood has a tendency to go down significantly')
