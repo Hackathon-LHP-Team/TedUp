@@ -3,7 +3,7 @@
 
 This blog recommeneder system uses user-to-user collaborative filtering to suggest blogs for user. The value in the utility matrix is the actual time user spend on a particular blog. Then the class recsys in the `recommender_sytem_backup.py` file will predict the zero values in the matrix (the blogs that one particular user has not read). Finally the function `compute` will return the descending probability vector showing which blogs user might like and spend much time reading
 
-```
+```python
 class recys:
   def cosine(self, a, b):
     # add the epsilon to avoid denominator being 0
@@ -55,8 +55,10 @@ class recys:
     threshold = mean[current_user_logined_id - 1]
     result = [i for i, j in dictionary if j >= threshold]
 ```
+
 This class receive the current_user.id from flask database. Let's check the result with this command
-```
+
+```python
 result = recys()
 print(result.compute(current_user_logined_id=4))
 ```
