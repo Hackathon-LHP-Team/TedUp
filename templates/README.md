@@ -1,6 +1,9 @@
 # README
 ## Recommender System
 
+View [colab notebook](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/Deep%20Learning%20training/model_v1.1/Recommender_System.ipynb) for more explanation
+See [video demo](https://youtu.be/60lsw11DEyM) to see how it actually works on wesite
+
 This blog recommeneder system uses user-to-user collaborative filtering to suggest blogs for user. The value in the utility matrix is the actual time user spend on a particular blog. Then the class recsys in the `recommender_sytem_backup.py` file will predict the zero values in the matrix (the blogs that one particular user has not read). Finally the function `compute` will return the descending probability vector showing which blogs user might like and spend much time reading
 
 ```python
