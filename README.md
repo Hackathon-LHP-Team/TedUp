@@ -16,3 +16,95 @@ architecture.
 - A chatbot that can respond to the user’s story with empathetic and supportive messages, and suggest some practical solutions to help them cope with their negative emotions and improve their well-being.
 - We also have a time series analysis model that can predict the user’s future emotional trends based on their past diary entries. This component can help the user monitor their progress and identify potential risks or opportunities for intervention.
 We evaluated our solution using a self-scraping dataset of online diaries from various websites. We compared different architectures and models for each component and selected the best ones based on their accuracy and performance.
+
+## How to run the code
+First you need to clone this repository to your local system. Open terminal and then paste this command line
+```
+git clone https://github.com/Hackathon-LHP-Team/Virtual-Therapist.git
+```
+Next move into the cloned directory
+```
+cd Skin-Disease-Detector
+```
+(optional) Type this to open your default code editor. As usual, it will open vscode if you use vscode as your default code editor
+```
+. code
+```
+Create a virtual environment with venv to avoid conflicts in library versions and modules
+```
+python -m venv .venv
+```
+Activate the environment
+```
+.\.venv\Scripts\activate
+```
+Install all neccessary libraries with a specific version
+```
+pip install -r requirements.txt
+```
+Now if you want to view all libraries and modules in your virtual environment, paste this command line
+```
+pip freeze
+```
+To run the server backend flask python, run this line of command
+```
+flask --debug run
+```
+Now, the website should be available at the port `127.0.0.1:5000`
+
+To run the streamlit app, move into the `src` folder
+```
+cd src
+```
+Now run the app with this command
+```
+streamlit run main.py
+```
+
+## Code Structure
+        ├───src
+    │   ├───assets
+    │   └───.streamlit
+    ├───templates
+    ├───.git
+    │   ├───hooks
+    │   ├───objects
+    │   │   ├───pack
+    │   │   └───info
+    │   ├───info
+    │   ├───refs
+    │   │   ├───tags
+    │   │   ├───remotes
+    │   │   │   └───origin
+    │   │   └───heads
+    │   └───logs
+    │       └───refs
+    │           ├───remotes
+    │           │   └───origin
+    │           └───heads
+    ├───instance
+    ├───Deep Learning training
+    │   └───model_v1.1
+    │       ├───dataset
+    │       ├───imgs
+    │       └───models
+    ├───Research Papers
+    ├───static
+    │   ├───imgs
+    │   ├───scss
+    │   ├───css
+    │   ├───js
+    │   └───vendor
+    │       ├───purecounter
+    │       ├───bootstrap
+    │       │   ├───css
+    │       │   └───js
+    │       ├───swiper
+    │       ├───glightbox
+    │       │   ├───css
+    │       │   └───js
+    │       ├───bootstrap-icons
+    │       │   └───fonts
+    │       └───typed.js
+    └───migrations
+        └───versions
