@@ -2,7 +2,53 @@
 ## Recommender System
 
 View [colab notebook](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/Deep%20Learning%20training/model_v1.1/Recommender_System.ipynb) for more explanation
+
 See [video demo](https://youtu.be/60lsw11DEyM) to see how it actually works on wesite
+
+Update utility matrix when new user register, new blog is created, user read a blog, user delete a blog
+
+```python
+def init_or_update_csv():
+
+    df = pd.read_csv(csv_path)
+    num_cols = len(df.columns)
+    num_rows = len(df.index)
+    
+    num_users = Users.query.count()
+    num_blogs = Blogs.query.count()
+        
+    if num_users > num_cols:
+        temp_col = [0] * num_rows
+        temp_col = pd.DataFrame(temp_col)
+        df = pd.concat([df, temp_col], axis=1)
+        df = df.to_numpy()
+        df = pd.DataFrame(df)
+        df.to_csv(csv_path, index=False)
+
+    if num_blogs > num_rows:
+        df = df.T
+        df.to_csv(csv_path, index=False)
+        df = pd.read_csv(csv_path)
+        num_rows = len(df.index)
+        
+        temp_col = [0] * num_rows
+        temp_col = pd.DataFrame(temp_col)
+        df = pd.concat([df, temp_col], axis=1)
+        df = df.T.to_numpy()
+        df = pd.DataFrame(df)
+        df.to_csv(csv_path, index=False)
+        
+        
+def fill_uitlity_matrix(blog_id, user_id, duration):
+    df = pd.read_csv(csv_path)
+    df.iloc[blog_id - 1][user_id - 1] = duration
+    df.to_csv(csv_path, index=False)
+
+def delete_row_utility_matrix(blog_id):
+    df = pd.read_csv(csv_path)
+    df = df.drop([blog_id-1])
+    df.to_csv(csv_path, index=False)
+```
 
 This blog recommeneder system uses user-to-user collaborative filtering to suggest blogs for user. The value in the utility matrix is the actual time user spend on a particular blog. Then the class recsys in the `recommender_sytem_backup.py` file will predict the zero values in the matrix (the blogs that one particular user has not read). Finally the function `compute` will return the descending probability vector showing which blogs user might like and spend much time reading
 
