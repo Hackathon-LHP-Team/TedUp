@@ -4,9 +4,11 @@
 
 In the `score.py`, I define a class that can be used to classify emotions, analyze sentiment, and compute the Q-value representing user's mental health/emotion quality.
 
-See how the Deep neural nets are trained [here](https://colab.research.google.com/drive/1AQZ2_iISey7iFYD-VGi8QxaTPGJjXCCI?usp=sharing)
+See how the `Deep neural nets` are trained [here](https://colab.research.google.com/drive/1AQZ2_iISey7iFYD-VGi8QxaTPGJjXCCI?usp=sharing)
 
-Here is the math formula of Q-value function:
+Here is the math formula of `Q-value function` ([See demo video here](https://youtu.be/NkX4Q-JG3D4))
+
+
 
 $$
 \hat{y}^i = \text{model.predict}([\text{chat}^i]) \space | \space \text{with} \space i =1...N
