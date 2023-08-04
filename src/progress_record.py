@@ -155,9 +155,9 @@ def barchart_2():
 
 with tab1:
     # developer()
-    # user()
+    user()
+    # pass
     
-    pass
     
 with tab2:
     st.subheader("Overall Analysis - Q value")
@@ -171,7 +171,7 @@ with tab2:
     st.plotly_chart(fig, use_container_width=True)
     
     # barchart()
-    # barchart_2()
+    barchart_2()
     
 with tab3:
     df = pd.read_csv('assets/Emotion_assessment.csv')
