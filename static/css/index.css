@@ -1,12 +1,13 @@
 /*--/ ===================General=================== /--*/
 :root {
   --dark-color: black;
-  --body-font-color: #b9b9b9;
+  --body-font-size: 1.3rem;
+  --body-font-color: #d0cfcf;
   --body-font-active: rgb(255, 255, 255);
-  --purple-color: #612ec9;
-  --purple-color-light: #7A50D0;
-  --purple-color-lighter: #8858e9;
-  --purple-color-lightest: #AA88EF; 
+  --purple-color: rgb(150, 48, 214);
+  --purple-color-light: rgb(159, 74, 212);
+  --purple-color-lighter: rgb(169, 96, 214);
+  --purple-color-lightest: rgb(187, 134, 220); 
   --dark-light-color: #1e1e1e;
   --bs-border-width: 1px;
   --bs-border-style: solid;
@@ -16,6 +17,8 @@ body {
   background-color: #000000;
   color: #4e4e4e;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -113,11 +116,6 @@ a {
   color: var(--bs-btn-active-color);
 }
 
-
-
-
-
-
 .margin-top-form {
   margin-top: 1.1rem;
 }
@@ -129,6 +127,8 @@ a {
 
 .text-left {
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .bg-black{
@@ -219,6 +219,9 @@ a:hover {
   .bg-image {
     background-attachment: scroll;
   }
+  .developer-docs-header {
+    font-size: 1.9rem;
+  }
 }
 
 .overlay-mf {
@@ -259,10 +262,16 @@ a:hover {
   margin-top: 40px;
 }
 
+.downloadbtn {
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 1.8em;
+}
+
 /*--/ ===================Sections=================== /--*/
 
 p.lead {
-  font-size: 14px;
+  font-size: var(--body-font-size);
   color: var(--body-font-color);
 }
 
@@ -287,7 +296,7 @@ p.lead {
 
 /*--/ Title A /--*/
 .title-box {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .title-a {
@@ -323,26 +332,34 @@ p.lead {
   font-size: 10rem;
   position: relative;
   line-height: 0.5;
-  margin-left: 80px;
+  margin-left: 0.5em;
   color: var(--purple-color-light);
 }
 
 .core-features {
-  margin-left: 150px;
+  margin-left: 10em;
   width: 300px;
 }
 
-.core-features-header {
-  font-size: 5rem;
+.developer-docs-header {
+  font-size:4rem;
   position: relative;
-  margin-left: 80px;
-  color: var(--purple-color-lighter)
+  color: var(--purple-color-lighter);
+  line-height: 0.9;
 }
 
-.developer-docs-header {
-  font-size: 5rem;
-  position: relative;
-  color: var(--purple-color-lighter)
+.developer-docs-header span {
+  color: var(--body-font-color);
+  font-size: 0.7em;
+}
+
+@media (max-width: 1300px) {
+  .our-story {
+    font-size: 7rem;
+  }
+  .core-features {
+    margin-left: 5em;
+  }
 }
 
 .title-left:before {
@@ -371,6 +388,44 @@ p.lead {
 @media (min-width: 768px) {
   .box-shadow-full {
     padding: 3rem;
+  }
+}
+
+/*--/ =================== SCROLLER AREA =================== /--*/
+.scroller {
+  overflow: hidden;
+  margin: 2rem;
+  white-space: nowrap;
+  position: relative;
+  height: auto;
+}
+
+#scroll-item {
+  display: inline-block;
+  animation: scroll 38s linear infinite;
+  color: transparent;
+  -webkit-text-stroke: var(--purple-color) 3px;
+}
+
+.scroller h3 {
+  font-size: 100px;
+  font-weight: 800;
+  padding-left: 60px;
+  display: inline-block;
+  transition: all linear 0.2s;
+  cursor: default;
+}
+
+.scroller h3:hover {
+  color: var(--purple-color);
+}
+
+@keyframes scroll {
+  from {
+       transform: translateX(0);
+  }
+  to {
+       transform: translateX(-100%);
   }
 }
 
@@ -555,6 +610,23 @@ p.lead {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.page {
+  min-height: 80vh;
+  height: auto;
+}
+
+.lead span {
+  color: var(--purple-color-lightest);
+}
+
+.list-group-item {
+  color: var(--body-font-color);
+}
+
+.list-group-item:hover, .listgroup a .active {
+  color: white;
 }
 
 /*--/ =================== Button =================== /--*/
@@ -808,7 +880,7 @@ p.lead {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(78, 78, 78, 0.9);
+  background: rgb(61, 39, 61);
   transition: 0.3s;
   z-index: 999;
 }
@@ -827,7 +899,7 @@ p.lead {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-color: black;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -846,13 +918,13 @@ p.lead {
 .navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
-  color: #4e4e4e;
+  color: #c0c0c0;
 }
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #0078ff;
+  color: var(--purple-color-lighter);
 }
 
 .navbar-mobile .getstarted,
@@ -922,7 +994,7 @@ p.lead {
   padding: 0;
   height: 100%;
   width: 100%;
-  opacity: 0.9;
+  opacity: 0.2;
 }
 
 .blog-theme .overlay-itro {
@@ -934,7 +1006,7 @@ p.lead {
 .hero .hero-title {
   color: #fff;
   font-weight: 600;
-  font-size: 3rem;
+  text-shadow: 3px 3px #000000;
 }
 
 @media (min-width: 768px) {
@@ -946,6 +1018,7 @@ p.lead {
 .hero .hero-subtitle {
   font-size: 1.5rem;
   font-weight: 600;
+  text-shadow: 2.5px 2.5px #000000;
 }
 
 @media (min-width: 768px) {
@@ -1132,25 +1205,19 @@ p.lead {
   border-radius: 10px;
 }
 
-.work-box:hover img {
-  transform: scale(1.3);
-}
-
-.work-img {
-  display: block;
-  overflow: hidden;
-}
-
 .work-img img {
-  transition: all 1s;
+  transition: all 0.2s;
+}
+.work-box:hover img {
+  transform: translateY(-25px);
 }
 
 .work-content {
-  padding: 2rem 3% 1rem 4%;
+  padding: 0 1% 1rem 5%;
 }
 
 .work-content .w-more {
-  color: #4e4e4e;
+  color: #707070;
   font-size: 0.8rem;
 }
 
@@ -1174,8 +1241,17 @@ p.lead {
 }
 
 .w-title {
-  font-size: 2rem;
   color: var(--body-font-color)
+}
+
+.work-content p {
+  font-size: var(--body-font-size);
+}
+
+@media (max-width: 1190px) {
+  .work-content p {
+    font-size: 1.5em;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1469,7 +1545,6 @@ p.lead {
 .card-blog .post-date {
   color: #4e4e4e;
   display: inline-block;
-  float: right;
 }
 
 /*--------------------------------------------------------------

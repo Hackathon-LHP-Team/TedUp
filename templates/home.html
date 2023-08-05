@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}">
 
   <!-- Customize boostrap -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
 </head>
 
@@ -34,7 +34,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <!-- ======= left logo ======= -->
-            <h1 class="logo"><a href="index.html"></a></h1>
+            <h1 class="logo"><img src="static/imgs/logo.png"></h1>
             <!-- <a href="index.html" class="logo"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <!-- ======= right navbar ======= -->
@@ -45,7 +45,7 @@
                         <li><a class="nav-link scrollto" href="#services">Features</a></li>
                         <li><a class="nav-link scrollto " href="#work">App</a></li>
                         <li><a class="nav-link scrollto " href="{{url_for ('all_blogs')}}">Blogs</a></li>
-                    <li><a class="nav-link scrollto" href="{{url_for('registration')}}">Sign up</a></li>
+                        <li><a class="nav-link scrollto" href="{{url_for('registration')}}">Sign up</a></li>
                     </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -53,13 +53,13 @@
     </header>
 
     <!-- ======= Main theme Section ======= -->
-    <div id="hero" class="hero route bg-image" style="background-image: url(https://i.pinimg.com/originals/bb/f3/99/bbf399ef3eb7649b9cc2b69656b574af.gif)">
+    <div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/purple.jpeg)">
         <div class="overlay-itro"></div>
         <div class="hero-content display-table">
             <div class="table-cell">
                 <div class="container">
-                    <h1 class="hero-title mb-4">Virutal Therapist</h1>
-                    <p class="hero-subtitle"><span class="typed" data-typed-items="mental, healing, for, adolescents"></span></p>
+                    <h1 class="hero-title mb-3">Virtual Therapist</h1>
+                    <p class="hero-subtitle"><span class="typed" data-typed-items="mental, healing, for adolescents, feel better, with us"></span></p>
                     <p class="pt-3"><a class="btn btn-outline-light btn js-scroll px-4" href="#about" role="button">Explore More</a></p> 
                 </div>
             </div>
@@ -70,58 +70,51 @@
 
     <!-- ======= Our Story Section ======= -->
     <section id="about" class="about-mf sect-pt4 route">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="box-shadow-full">
+        <div class="page">
+            <div class="row mt-5 m-3 p-5">
+                <div class="col-sm-14">
+                    <div class="row">
+                        <div class="col-md-5">
+                                <div class="title-box-2"><h5 class="our-story"> Our <br> Story</h5></div>
+                        </div>
 
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="title-box-2"><h5 class="our-story"> Our <br> Story</h5></div>
-                                </div>   
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <div class="about-me pt-4 pt-md-0">
-                                    <p class="lead">
-                                        Adolescents are facing various challenges to their
-                                        mental health due to their exposure to online
-                                        risks and pressures, such as cyberbullying,
-                                        misinformation, social comparison, and
-                                        unrealistic expectations. They also have to deal
-                                        with the stress and anxiety from their academic
-                                        and personal lives, which can affect their self-
-                                        esteem and well-being. These factors can lead to
-                                        negative emotions and behaviors, such as
-                                        depression, isolation, self-harm, and substance
-                                        abuse.  
-                                    </p>
-                                    <p class="lead">
-                                        Teenagers are reluctant to ask for help
-                                        because of the stigma around mental health
-                                        disorders, and there are also additional
-                                        limitations including waiting lists and geographic
-                                        restrictions. There is a significant gap in the
-                                        treatment that should be available conveniently
-                                        and cost-effectively, and the services available at
-                                        hand. The ratio of therapists, psychiatrists,
-                                        psychiatric social workers and mental health
-                                        nurses to patients is 1: 10,000, even in developed
-                                        countries (Kislay, 2020).
-                                    </p>
-                                    <p class="lead">
-                                        The disparity in the
-                                        system means that most people with mental
-                                        health problems will never get the support they  
-                                        need. In response, we developed a technology-
-                                        based application that provides online support
-                                        and guidance to adolescents with mental health
-                                        problems.
-                                    </p>
-                                </div>
+                        <div class="col-md-7">
+                            <div class="pt-4 pt-md-0">
+                                <p class="lead">
+                                    <span>Adolescents</span> are facing various challenges to their
+                                    mental health due to their exposure to online
+                                    risks and pressures, such as cyberbullying,
+                                    misinformation, social comparison, and
+                                    unrealistic expectations. They also have to deal
+                                    with the <span>stress and anxiety from their academic
+                                    and personal lives</span>, which can affect their self-
+                                    esteem and well-being. These factors can lead to
+                                    negative emotions and behaviors, such as
+                                    depression, isolation, self-harm, and substance
+                                    abuse.  
+                                </p>
+                                <p class="lead">
+                                    Teenagers are reluctant to ask for help
+                                    because of the stigma around mental health
+                                    disorders, and there are also additional
+                                    <span>limitations including waiting lists and geographic
+                                    restrictions</span>. There is a significant gap in the
+                                    treatment that should be available conveniently
+                                    and cost-effectively, and the services available at
+                                    hand. The ratio of therapists, psychiatrists,
+                                    psychiatric social workers and mental health
+                                    nurses to patients is 1: 10,000, even in developed
+                                    countries (Kislay, 2020).
+                                </p>
+                                <p class="lead">
+                                    The disparity in the
+                                    system means that <span>most people with mental
+                                    health problems will never get the support they  
+                                    need</span>. In response, we developed a technology-
+                                    based application that provides online support
+                                    and guidance to adolescents with mental health
+                                    problems.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -130,18 +123,32 @@
         </div>
     </section>
 
+    <!-- ======= Scroller Section ======= -->
+    <div class="scroller">
+        <div id="scroll-item">
+            <h3>CHATTING.</h3>
+            <h3>USE APP.</h3>
+            <h3>READ STORY.</h3>
+            <h3>WRITE BLOGS.</h3>
+            <h3>CHATTING.</h3>
+            <h3>USE APP.</h3>
+            <h3>READ STORY.</h3>
+            <h3>WRITE BLOGS.</h3>
+          </div>
+    </div>
+
     <!-- ======= Features Section ======= -->
     <section id="services" class="services-mf pt-5 route">
-        <div class="container">
-            <div class="row">
+        <div class="page">
+            <div class="row mt-5 m-3 p-5">
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="title-box">
-                                <h3 class="core-features-header">Core Features</h3>
+                            <div class="title-box-2">
+                                <h5 class="our-story">Core <br> Aspects</h5>
                             </div>
     
-                            <div class="col-4">
+                            <div class="col-4 mt-5 pt-5 pb-5">
                                 <div class="list-group core-features" id="list-tab" role="tablist">
                                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home"><i class="bi bi-bookmark-heart"></i> <strong>Chatbot</strong>: Express your thoughts confidentially, without judgment.</a>
                                     <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile"><i class="bi bi-ui-checks-grid"></i> <strong>Progress Record</strong> Tracking precisely you mental health quality throught tim</a>
@@ -220,15 +227,58 @@
         </div>
     </div>
 
+    <!-- ======= Download Section ======= -->
+    <section class="page sect-pt4 portfolio-mf route" id="work">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box text-center">
+                        <h3 class="developer-docs-header"><span>Save time, secure, reliable and more</span><br>Not all heroes wear capes, some wear codes</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-5">
+                <div class="col-md-7">
+                    <p class="lead">
+                        <span>If you are feeling stressed, anxious, depressed, or lonely,</span> 
+                        you may benefit from chatting with a virtual therapist. 
+                        A virtual therapist is an artificial intelligence program 
+                        that can listen to your problems, offer support, and suggest 
+                        helpful solutions. You can chat with a virtual therapist anytime, 
+                        anywhere, and as long as you want, without any judgment or stigma.
+                    </p>
+                    <p class="lead">
+                        <span>Download our app</span> today and start chatting with your virtual therapist. 
+                        You will be amazed by how much better you can feel after a session. Our app is 
+                        free now, so don't miss this opportunity to improve your mental 
+                        health and happiness.
+                    </p>
+                    <br><br>
+                    <div class="text-center"><a href="" class="btn btn-outline-primary downloadbtn">Download for free</a></div>
+                </div>
+
+                <div class="col-md-5">
+                    <a href="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                        <div class="work-img">
+                        <img src="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" alt="" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ======= More Section ======= -->
     <br><br>
-    <section id="work" class="portfolio-mf sect-pt4 route">
+    <section class="portfolio-mf sect-pt4 route">
         <div class="container">
             
             <div class="row">
                 <div class="col-sm-12">
                     <div class="title-box text-center">
-                        <h3 class="developer-docs-header">With Virtapist, you've got someone in your corner</h3>
+                        <h3 class="developer-docs-header"><span>With our Virtual Therapist,</span><br>you've got someone in your corner</h3>
                     </div>
                 </div>
             </div>
@@ -237,18 +287,18 @@
             
                 <div class="col-md-4">
                     <div class="work-box">
-                        <a href="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                        <a href="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
                             <div class="work-img">
-                            <img src="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" alt="" class="img-fluid">
+                            <img src="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" alt="" class="img-fluid">
                             </div>
                         </a>
                         <div class="work-content">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-9">
                                     <h2 class="w-title">Boost your confidence</h2>
-                                    <p>Learn how to swap negative self-critique for radical acts of self-compassion</p>
+                                    <p>Learn how to swap negative self-critique for radical acts of self-compassion.</p>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="w-like">
                                         <a href="http://localhost:8501/App"> <i class="bi bi-arrow-right-square"></i></span></a>
                                     </div>
@@ -260,18 +310,18 @@
 
                 <div class="col-md-4">
                     <div class="work-box">
-                        <a href="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                        <a href="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
                             <div class="work-img">
-                                <img src="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" alt="" class="img-fluid">
+                                <img src="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" alt="" class="img-fluid">
                             </div>
                         </a>
                         <div class="work-content">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <h2 class="w-title">Change thought patterns</h2>
-                                    <p>Retrain your brain to embrace positive thinking and avoid unnecessary stress and anxiety.</p>
+                                    <p>Retrain your brain to embrace positive thinking and avoid unnecessary stress.</p>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="w-like">
                                         <a href="http://localhost:8501/App"><i class="bi bi-arrow-right-square"></i></span></a>
                                     </div>
@@ -283,18 +333,18 @@
 
                 <div class="col-md-4">
                     <div class="work-box">
-                        <a href="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                        <a href="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
                             <div class="work-img">
-                                <img src="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" alt="" class="img-fluid">
+                                <img src="https://media.giphy.com/media/S6q7p6G70qH6YVupi3/giphy.gif" alt="" class="img-fluid">
                             </div>
                         </a>
                         <div class="work-content">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <h2 class="w-title">Monitor your mental quality</h2>
-                                    <p>Understand how you improve mental health through time with precise sentiment tracking system</p>
+                                    <p>Understand how you improve your mental health with precise sentiment tracking system.</p>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="w-like">
                                         <a href="http://localhost:8501/App"> <i class="bi bi-arrow-right-square"></i></span></a>
                                     </div>
@@ -332,7 +382,7 @@
                             </ul>
                         </div>
                         <div class="col-md-3">
-                            <p style="margin-left:25px">Deveoper docs</p>
+                            <p style="margin-left:25px">Developer docs</p>
                             <ul>
                                 <a href="{{ url_for('registration')}}"><li class="list-group-item">Research Paper</li></a>
                                 <a href="{{ url_for('all_blogs')}}"><li class="list-group-item">Github</li></a>

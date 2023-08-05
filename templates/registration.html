@@ -21,34 +21,34 @@
                 <!-- content block -->
                 <div class="row">
                     <div class="col-3"></div>
-                        <div class="col-6">
-                            <div class="shadow-sm p-5 mt-5 bg-black mb-5 rounded">
-                                <form method="POST">
-                                    {{ form.hidden_tag() }}
-                                    <div class="mb-3 row mt-3">
-                                        <div class="text-left col-sm-4 col-form-label">
-                                            {{ form.name.label(class = 'form-label') }} 
-                                            {{ form.email.label(class = 'form-label mt-4') }}
-                                            {{ form.user_name.label(class = 'form-label mt-4') }}
-                                            {{ form.password_hash.label(class = 'form-label mt-4') }}
-                                            {{ form.password_hash2.label(class = 'form-label mt-4') }}
-                                        </div>
-                                        
-                                        <div class="col-sm-8">
-                                            {{ form.name(class = 'form-control form-border-radius') }}                     
-                                            {{ form.email(class = 'form-control margin-top-form form-border-radius') }}
-                                            {{ form.user_name(class = 'form-control  margin-top-form form-border-radius') }}      
-                                            {{ form.password_hash(class = 'form-control  margin-top-form form-border-radius') }}
-                                            {{ form.password_hash2(class = 'form-control  margin-top-form form-border-radius') }}
-                                        </div>
-                                        <div class="d-grid gap-2 mt-5">
-                                            {{ form.submit(class = 'btn btn-primary') }}
-                                            <a href="{{ url_for('login') }}" type="button" class="btn btn-outline-primary" role="button">Log in if you have an account</a>
-                                        </div>
+                    <div class="col-6">
+                        <div class="shadow-sm p-5 mt-5 bg-black mb-5 rounded">
+                            <form method="POST">
+                                {{ form.hidden_tag() }}
+                                <div class="mb-3 row mt-3">
+                                    <div class="text-left col-sm-4 col-form-label">
+                                        {{ form.name.label(class = 'form-label') }} 
+                                        {{ form.email.label(class = 'form-label mt-4') }}
+                                        {{ form.user_name.label(class = 'form-label mt-4') }}
+                                        {{ form.password_hash.label(class = 'form-label mt-4') }}
+                                        {{ form.password_hash2.label(class = 'form-label mt-4') }}
                                     </div>
-                                </form>
-                            </div>
+                                    
+                                    <div class="col-sm-8">
+                                        {{ form.name(class = 'form-control form-border-radius') }}                     
+                                        {{ form.email(class = 'form-control margin-top-form form-border-radius') }}
+                                        {{ form.user_name(class = 'form-control  margin-top-form form-border-radius') }}      
+                                        {{ form.password_hash(class = 'form-control  margin-top-form form-border-radius') }}
+                                        {{ form.password_hash2(class = 'form-control  margin-top-form form-border-radius') }}
+                                    </div>
+                                    <div class="d-grid gap-2 mt-5">
+                                        {{ form.submit(class = 'btn btn-primary') }}
+                                        <a href="{{ url_for('login') }}" type="button" class="btn btn-outline-primary" role="button">Log in if you have an account</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                    </div>
                     <div class="col-3"></div>
                 </div>
                 <!-- end content block -->
