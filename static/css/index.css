@@ -1,7 +1,7 @@
 /*--/ ===================General=================== /--*/
 :root {
   --dark-color: black;
-  --body-font-size: 1.3rem;
+  --body-font-size: 1.2rem;
   --body-font-color: #d0cfcf;
   --body-font-active: rgb(255, 255, 255);
   --purple-color: rgb(150, 48, 214);
@@ -43,6 +43,28 @@ a {
   width: 100%;
   color: var(--bs-btn-active-color);
 }
+
+.form-control-registration { 
+  border: none; 
+  border-bottom: 
+  2px solid white; 
+  outline: none; 
+  background: transparent; 
+  width: 80%;
+  margin-left: 30px;
+  color: var(--bs-btn-active-color);
+}
+
+.form-control-login { 
+  border: none; 
+  border-bottom: 
+  2px solid white; 
+  outline: none; 
+  background: transparent; 
+  width: 100%;
+  color: var(--bs-btn-active-color);
+}
+
 
 .search-custom {
   background-color: transparent;
@@ -117,7 +139,7 @@ a {
 }
 
 .margin-top-form {
-  margin-top: 1.1rem;
+  margin-top: 1.6rem;
 }
 
 .form-border-radius {
@@ -133,7 +155,10 @@ a {
 
 .bg-black{
   background-color: #000000;
-  opacity: 0.8;
+}
+
+.opacity-9 {
+  opacity: 0.9;
 }
 
 .card-title {
@@ -265,7 +290,7 @@ a:hover {
 .downloadbtn {
   padding-left: 1em;
   padding-right: 1em;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 /*--/ ===================Sections=================== /--*/
