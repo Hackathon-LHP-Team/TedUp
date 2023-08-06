@@ -32,6 +32,12 @@ feedback. We assume that technology-based applications can be a viable and scala
 ### Recommender System (User-to-user collaborative filtering)
 [View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/templates/README.md)
 
+
+# What's next
+- Expand the dataset to make the AI model more generalized and practical
+- Impove the time series for progess record analyis 
+- Solve the "cold start" problem of the recommender system
+
 ## How to run the code
 First you need to clone this repository to your local system. Open terminal and then paste this command line
 ```
