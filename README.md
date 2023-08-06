@@ -30,7 +30,7 @@ feedback. We assume that technology-based applications can be a viable and scala
 [View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/src)
 
 ### Recommender System (User-to-user collaborative filtering)
-[View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/src)
+[View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/templates/README.md)
 
 ## How to run the code
 First you need to clone this repository to your local system. Open terminal and then paste this command line
