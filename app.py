@@ -1,38 +1,3 @@
-'''
-Structure of the web
-Homepage
-    - Navbar:
-        - Logo + Virtual Therapist
-        - Developer docs:
-            - Documentations (how to clone this website and run code)
-            - Github (Deep learning notebook, resources)
-            - Research paper
-        - About us
-        - Experience app
-        - Account
-    - Main theme:
-        - Motion image 
-        - "explore now" button
-    - Our Story / Introduction (With Virtual Therapist, you've got someone in your corner) -> 4 main features
-    - Demo (two options: video or gif image with options bar) -> Small conversation, meaningful progress
-    - Core/key features (images needed):
-        - Chatbot as virtual therapist
-        - Artificial Intelligence using Deep Neural Network 
-        - Syetem for Mental health quality assessment
-    - Team members
-        - Name + task (leader: Idea pitching, AI engineer, Backend developer)
-        - Name + task (frontend developers)
-        - Name + Task (Persona + Design)
-    
-App page:
-    - Sidebar:
-        - Your conversations
-        - Your history record
-        - System messages
-        - Blogs (optional)
-'''
-
-
 import tensorflow as tf
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash, send_from_directory, current_app
 from flask_wtf import FlaskForm
@@ -51,8 +16,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 import pandas as pd
 import os
 import time
-
-
 
 
 '''
@@ -74,47 +37,8 @@ exit_blog = False
 '''
 Utility matrix - Recsystem
 '''
-
-def init_or_update_csv():
-
-    df = pd.read_csv(csv_path)
-    num_cols = len(df.columns)
-    num_rows = len(df.index)
-    
-    num_users = Users.query.count()
-    num_blogs = Blogs.query.count()
-        
-    if num_users > num_cols:
-        temp_col = [0] * num_rows
-        temp_col = pd.DataFrame(temp_col)
-        df = pd.concat([df, temp_col], axis=1)
-        df = df.to_numpy()
-        df = pd.DataFrame(df)
-        df.to_csv(csv_path, index=False)
-
-    if num_blogs > num_rows:
-        df = df.T
-        df.to_csv(csv_path, index=False)
-        df = pd.read_csv(csv_path)
-        num_rows = len(df.index)
-        
-        temp_col = [0] * num_rows
-        temp_col = pd.DataFrame(temp_col)
-        df = pd.concat([df, temp_col], axis=1)
-        df = df.T.to_numpy()
-        df = pd.DataFrame(df)
-        df.to_csv(csv_path, index=False)
-        
-        
-def fill_uitlity_matrix(blog_id, user_id, duration):
-    df = pd.read_csv(csv_path)
-    df.iloc[blog_id - 1][user_id - 1] = duration
-    df.to_csv(csv_path, index=False)
-
-def delete_row_utility_matrix(blog_id):
-    df = pd.read_csv(csv_path)
-    df = df.drop([blog_id-1])
-    df.to_csv(csv_path, index=False)
+from recommender_sytem_backup import utility_matrix_management
+util_matrix = utility_matrix_management(csv_path=csv_path)
     
 '''
 RecSys
@@ -168,7 +92,9 @@ def compute(current_user_logined_id):
     dictionary = sorted(dictionary.items(), key=lambda item: item[1], reverse=True)
     threshold = mean[current_user_logined_id - 1]
     result = [i for i, j in dictionary if j >= threshold]
-    return result[:3]
+    if len(result) > 3:
+      return result[:3]
+    return result
     
 '''
 Database
@@ -253,7 +179,7 @@ def registration():
             user = Users(name=form.name.data, email=form.email.data, user_name=form.user_name.data, password_hash=hased_pw)
             db.session.add(user)
             db.session.commit()
-            # init_or_update_csv()
+            util_matrix.init_or_update_csv(Users_query=Users.query.count(), Blogs_query=Blogs.query.count())
 
         name = form.name.data
         form.name.data = ""
@@ -336,7 +262,7 @@ def create_blog():
         form.title.data = ''
         form.content.data = ''
         
-        init_or_update_csv()
+        util_matrix.init_or_update_csv(Users_query=Users.query.count(), Blogs_query=Blogs.query.count())
         return redirect(url_for('dashboard', id=current_user.id))
               
     return render_template("create_blog.html", title=title, form=form)
@@ -363,10 +289,7 @@ def time(start_time_sec, id):
     end_time_sec = convert_to_sec(end_time_str)
     duration = end_time_sec - start_time_sec
     
-    num_users = Users.query.count()
-    num_blogs = Blogs.query.count()
-    
-    fill_uitlity_matrix(id, current_user.id, duration)
+    util_matrix.fill_uitlity_matrix(blog_id=id, user_id=current_user.id, duration=duration)
     return redirect(url_for('all_blogs'))
 
 import time
@@ -394,15 +317,17 @@ def edit_blog(id):
 
     form.title.data = blog.title
     form.content.data = blog.content
-    return render_template('edit_blog.html', form=form, blog=blog)
+    return render_template('edit_blog.html', form=form, blog=blog) 
+
 
 @app.route("/delete_blog/<int:id>", methods=["GET", "POST"])
+@login_required
 def delete_blog(id):
     blog_to_delete = Blogs.query.get_or_404(id)
     try:
         db.session.delete(blog_to_delete)
         db.session.commit()
-        delete_row_utility_matrix(id)
+        util_matrix.delete_row_utility_matrix(blog_id=id)
         return redirect(url_for('dashboard', id=current_user.id))
     except:
         return redirect(url_for('dashboard', id=current_user.id))

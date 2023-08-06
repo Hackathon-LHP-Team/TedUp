@@ -6,7 +6,8 @@
     <title>Virtual Therapist</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://cdn.glitch.global/343e6495-330f-4443-8e57-3bf9de3c1c76/SDD%20logo.png?v=1689302299743">
+    <link href="https://cdn.glitch.global/0b0c1622-4f23-4acc-8587-e456a037e413/favicon.png?v=1691305859804" rel="icon">
+    <link href="https://cdn.glitch.global/0b0c1622-4f23-4acc-8587-e456a037e413/favicon.png?v=1691305859804" rel="apple-touch-icon">
     
     <!-- Boostrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
@@ -35,11 +36,12 @@
                         <nav id="navbar" class="navbar ">
                             <ul>
                                 <li><a class="nav-link scrollto" href="{{ url_for('home')}}">Home</a></li>
-                                <li><a class="nav-link scrollto" href="{{ url_for('all_users')}}">All users</a></li>
                                 <li><a class="nav-link scrollto" href="http://localhost:8501/App">Use App</a></li>
-                                <li><a class="nav-link scrollto" href="{{ url_for('all_blogs')}}">Read stories</a></li>
+                               
                                
                                 {% if current_user.is_authenticated %}
+                                <li><a class="nav-link scrollto" href="{{ url_for('all_users')}}">All users</a></li>
+                                <li><a class="nav-link scrollto" href="{{ url_for('all_blogs')}}">Read stories</a></li>
                                 <li><a class="nav-link scrollto " href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
                                 <li><a class="nav-link scrollto " href="{{ url_for('create_blog')}}">Share story</a></li>
                                 <li><a class="nav-link scrollto " href="{{ url_for('logout')}}">Log out</a></li>

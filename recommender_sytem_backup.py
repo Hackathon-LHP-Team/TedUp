@@ -1,6 +1,50 @@
 import pandas as pd
 import numpy as np
 
+class utility_matrix_management:
+  def __init__(self, csv_path):
+    self.csv_path = csv_path
+    
+  def init_or_update_csv(self, Users_query, Blogs_query):
+      df = pd.read_csv(self.csv_path)
+      num_cols = len(df.columns)
+      num_rows = len(df.index)
+      
+      num_users = Users_query
+      num_blogs = Blogs_query
+          
+      if num_users > num_cols:
+          temp_col = [0] * num_rows
+          temp_col = pd.DataFrame(temp_col)
+          df = pd.concat([df, temp_col], axis=1)
+          df = df.to_numpy()
+          df = pd.DataFrame(df)
+          df.to_csv(self.csv_path, index=False)
+
+      if num_blogs > num_rows:
+          df = df.T
+          df.to_csv(self.csv_path, index=False)
+          df = pd.read_csv(self.csv_path)
+          num_rows = len(df.index)
+          
+          temp_col = [0] * num_rows
+          temp_col = pd.DataFrame(temp_col)
+          df = pd.concat([df, temp_col], axis=1)
+          df = df.T.to_numpy()
+          df = pd.DataFrame(df)
+          df.to_csv(self.csv_path, index=False)
+          
+  def fill_uitlity_matrix(self, blog_id, user_id, duration):
+      df = pd.read_csv(self.csv_path)
+      if duration > df.iloc[blog_id - 1][user_id - 1]:
+        df.iloc[blog_id - 1][user_id - 1] = duration
+        df.to_csv(self.csv_path, index=False)
+
+  def delete_row_utility_matrix(self, blog_id):
+      df = pd.read_csv(self.csv_path)
+      df = df.drop([blog_id-1])
+      df.to_csv(self.csv_path, index=False)
+
 class recys:
   # function to compute similarity between users
   def cosine(self, a, b):
@@ -66,6 +110,3 @@ class recys:
     if len(result) > 3:
       return result[:3]
     return result
-
-result = recys()
-print(result.compute(current_user_logined_id=4))
