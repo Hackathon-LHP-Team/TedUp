@@ -4,7 +4,7 @@
 [![> Notebook & dataset](https://img.shields.io/badge/Notebook%20Dataset-red)](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/Deep%20Learning%20training/model_v1.1)
 [![> Video Demo](https://img.shields.io/badge/Video%20Demo-yellow)](https://www.youtube.com/watch?v=4ihejsiQ43E&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&pp=iAQB)
 [![> Pitching slide](https://img.shields.io/badge/Pitching%20slide-black)](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/LHP%20Team%20-%20Virtual%20Therapst.pdf)
-[![> All models](https://img.shields.io/badge/Pitching%20slide-white)](https://drive.google.com/drive/folders/16ig9NcXq4Cn39F2h7c8YvgRFNaegVj7F?usp=sharing)
+[![> All models](https://img.shields.io/badge/All%20models-white)](https://drive.google.com/drive/folders/16ig9NcXq4Cn39F2h7c8YvgRFNaegVj7F?usp=sharing)
 
 
 
