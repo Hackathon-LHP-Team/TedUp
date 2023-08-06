@@ -113,6 +113,9 @@ def user():
     df_emotion_assessment = pd.DataFrame(data={"Your Chat Text": User_chat_text, "Emotion Assessment Score": s_res_list})
     df_emotion_assessment.to_csv('assets/Emotion_assessment.csv', index=False)
     
+    
+
+# Developer mode
 def barchart():
     list_emotions = []
     df = pd.read_csv('assets/Chats.csv')
@@ -132,6 +135,8 @@ def barchart():
     st.plotly_chart(fig, use_container_width=True)
     
     
+
+# User mode
 def barchart_2():
     df = pd.read_csv('assets/Chats.csv')
     Chat_need_process = df.iloc[:,(len(df.columns) - 1)].values.tolist()
@@ -152,11 +157,20 @@ def barchart_2():
     fig = px.histogram(list_emotions, color=list_emotions.iloc[:,0])
     st.plotly_chart(fig, use_container_width=True)
     list_emotions.to_csv('assets/list_emotions.csv', index=False)
+    
+    num_positive = len(df[df == 'Positive Emotions'])
+    num_negative = len(df[df == 'Negative Emotions'])
+    
+    if num_negative < num_positive:
+        st.success("You have positive emotions more frequently than negative emotions. It's awesome. Wish you keep this progress.")
+    else:
+        st.warning("You have negative emotions more frequently than positive emotions. It's not good. If this trend continues, we will send this case to emergency service.")
+         
+        
 
 with tab1:
     # developer()
     user()
-    # pass
     
     
 with tab2:
@@ -172,6 +186,7 @@ with tab2:
     
     # barchart()
     barchart_2()
+    
     
 with tab3:
     df = pd.read_csv('assets/Emotion_assessment.csv')
