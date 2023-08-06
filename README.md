@@ -1,4 +1,4 @@
-# Virtual-Therapist
+# Virtual Therapist
 
 [![> Research Paper](https://img.shields.io/badge/Research%20Paper-blue)](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/Virtual%20Therapist.pdf)
 [![> Notebook & dataset](https://img.shields.io/badge/Notebook%20Dataset-red)](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/Deep%20Learning%20training/model_v1.1)
