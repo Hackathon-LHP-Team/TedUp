@@ -1,68 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
-body,
-button {
-  font-family: "Inter", sans-serif;
-}
-:root {
-  --offcanvas-width: 270px;
-  --topNavbarHeight: 48px;
-  --offcanvas-content-margin-left: 100px;
-  --offcanvas-content-margin-right: 60px;
-  --offcanvas-content-margin-top: 80px;
-  --dark-color: black;
-  --body-font-color: #b9b9b9;
-  --body-font-active: rgb(255, 255, 255);
-  --purple-color: #612ec9;
-  --purple-color-light: #7A50D0;
-  --purple-color-lighter: #8858e9;
-  --purple-color-lightest: #AA88EF; 
-}
-
-.sidebar-nav {
-  width: var(--offcanvas-width);
-}
-a {
-  text-decoration: none;
-  color: var(--dark-color);
-}
-a:hover {
-  color: var(--purple-color-lighter);
-  transition: 0.2s
-}
-/* .sidebar-link {
-  display: flex;
-  align-items: center;
-}
-.sidebar-link .right-icon {
-  display: inline-flex;
-}
-.sidebar-link[aria-expanded="true"] .right-icon {
-  transform: rotate(180deg);
-} */
-
-@media (min-width: 992px) {
-  body {
-    overflow: auto !important;
-      /* The image used */
-    }
-  .main {
-    margin-left: var(--offcanvas-content-margin-left);
-    margin-top: var(--offcanvas-content-margin-top);
-    margin-right: var(--offcanvas-content-margin-right);
-  }
-
-  .offcanvas-backdrop::before {
-    display: none;
-  }
-  .sidebar-nav {
-    -webkit-transform: none;
-    transform: none;
-    visibility: visible !important;
-    height: calc(100% - var(--topNavbarHeight));
-    top: var(--topNavbarHeight);
-  }
-}
-
 /*--/ =================== Animation CSS =================== /--*/
 
 .moveRight {
@@ -78,7 +13,7 @@ a:hover {
 .moveLeft {
   opacity: 0;
   filter: blur(10px);
-  transform: translateX(400px);
+  transform: translateX(100px);
   transition: all 1.5s;}
 .moveLeftAlready {
   opacity: 1;
@@ -91,6 +26,6 @@ a:hover {
   transform: translateY(200px);
   transition: all 1.5s;}
 .upAlready {
-  opacity: 1;
+  opacity: 0.9;
   filter: blur(0);
   transform: translateY(0);}

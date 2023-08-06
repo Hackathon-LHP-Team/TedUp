@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="col-4"></div>
                         <div class="col-4">
-                            <div class="row">
-                                <div class="shadow-sm p-5 bg-black mb-5 rounded opacity-9">
+                            <div class="row opacity-9">
+                                <div class="shadow-sm p-5 bg-black mb-5 rounded up">
                                     <!-- login form -->
                                     <form method="POST">
                                         {{ form.hidden_tag() }}
@@ -39,3 +39,6 @@
         </div>
     </div>
 <!-- end main block -->
+
+<!-- floating effect -->
+<script src="{{ url_for('static', filename='js/scroll.js') }}"></script>

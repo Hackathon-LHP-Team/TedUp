@@ -160,10 +160,9 @@
                         <div class="col-md-6">
                             <div class="col-8">
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""></div>
-                                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""> </div>
-                                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> <img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""></div>
-                                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"> <img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""></div>
+                                    <div class="tab-pane fade show active moveLeft" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""></div>
+                                    <div class="tab-pane fade moveLeft" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""> </div>
+                                    <div class="tab-pane fade moveLeft" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> <img src="static\imgs\publish-example-dark.png" style="width:800px" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -341,7 +340,7 @@
                         <div class="work-content">
                             <div class="row">
                                 <div class="col-sm-10">
-                                    <h2 class="w-title">Monitor mental quality</h2>
+                                    <h2 class="w-title">Monitor your mental quality</h2>
                                     <p>Understand how you improve your mental health with precise sentiment tracking system.</p>
                                 </div>
                                 <div class="col-sm-2">
@@ -424,6 +423,8 @@
 
     <!-- Template Main JS File -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+
 
 </body>
 
