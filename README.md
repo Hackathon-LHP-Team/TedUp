@@ -15,12 +15,19 @@ The application uses natural language processing and artificial intelligence to 
 
 feedback. We assume that technology-based applications can be a viable and scalable alternative to face-to-face mental health services for adolescents. Our solution consists of four main components:
 
-- A general emotion classifier that can categorize the user’s story (diary) into positive, negative, or neutral emotions, based on a deep neural network with bidirectional LSTM (BiLSTM)
-architecture.
+- A general emotion classifier that can categorize the user’s story (diary) into positive, negative, or neutral emotions, based on a deep neural network with bidirectional LSTM (BiLSTM) architecture. We evaluated our solution using a self-scraping dataset of online diaries from various websites. We compared different architectures and models for each component and selected the best ones based on their accuracy and performance.
 - A complex emotion classifier that can further classify the user’s story into 12 fine-grained emotion categories, such as anger, sadness, remorse, fear, depression, lonely, joy, love, optimism, gratitude, and pride. This component uses a transfer learning approach with BERT pretrained model to achieve better performance. The results from this step are then used to quantify the user’s mental health quality based on a our mathematical formula.
 - A chatbot that can respond to the user’s story with empathetic and supportive messages, and suggest some practical solutions to help them cope with their negative emotions and improve their well-being.
-- We also have a time series analysis model that can predict the user’s future emotional trends based on their past diary entries. This component can help the user monitor their progress and identify potential risks or opportunities for intervention.
-We evaluated our solution using a self-scraping dataset of online diaries from various websites. We compared different architectures and models for each component and selected the best ones based on their accuracy and performance.
+- We have a time series analysis model that can predict the user’s future emotional trends based on their past diary entries. This component can help the user monitor their progress and identify potential risks or opportunities for intervention. (This feature need time to be improved)
+- Finally, there is a recommender system using neighbourhood collaborative filtering to suggest the best=fit blogs that can solve problems for users in a personalized way.
+
+
+## Explore the product's features
+### Q-system (Emotions Classifications and Q-value function)
+[View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/src)
+
+### Recommender System (User-to-user collaborative filtering)
+[View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/tree/main/src)
 
 ## How to run the code
 First you need to clone this repository to your local system. Open terminal and then paste this command line
