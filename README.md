@@ -54,7 +54,7 @@ git clone https://github.com/Hackathon-LHP-Team/Virtual-Therapist.git
 ```
 Next move into the cloned directory
 ```
-cd Skin-Disease-Detector
+cd Virtual-Therapist
 ```
 (optional) Type this to open your default code editor. As usual, it will open vscode if you use vscode as your default code editor
 ```
