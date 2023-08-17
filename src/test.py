@@ -19,14 +19,3 @@ padded_chat_seq = score_obj.tokenize_text(tokenizer)
 Q_res, s_res = score_obj.Q_value(padded_chat_seq)
 print(s_res)
 print(Q_res)
-
-'''
-results
-
-1/1 [==============================] - 2s 2s/step
-1/1 [==============================] - 0s 68ms/step
-1/1 [==============================] - 0s 94ms/step
-1/1 [==============================] - 0s 85ms/step
-[0, 1.5, 3.8000000000000003, 3.8000000000000003, 3.633333333333333]
-2.806208333333333
-'''
