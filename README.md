@@ -33,6 +33,14 @@ feedback. We assume that technology-based applications can be a viable and scala
 ### Recommender System (User-to-user collaborative filtering)
 [View now](https://github.com/Hackathon-LHP-Team/Virtual-Therapist/blob/main/templates/README.md)
 
+## Playlist Video Demo
+[Link to playlist](https://www.youtube.com/playlist?list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV)
+
+- [Overall walkthrough of our product](https://www.youtube.com/watch?v=4ihejsiQ43E&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&index=1)
+- [Chatting and monitoring your mental health progress](https://www.youtube.com/watch?v=O9DBS1uLPKc&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&index=2)
+- [How to signup, login, and create post](https://www.youtube.com/watch?v=ylvl6Ik4gDw&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&index=3)
+- [Recommender System](https://www.youtube.com/watch?v=iaAHY0NucaI&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&index=4)
+- [Q-system (Emotions classifications and Q-value functions)](https://www.youtube.com/watch?v=NkX4Q-JG3D4&list=PL49eoaM3kiojx1y0D4b31UdhEM9SMfriV&index=5)
 
 # What's next
 - Expand the dataset to make the AI model more generalized and practical
@@ -46,7 +54,7 @@ git clone https://github.com/Hackathon-LHP-Team/Virtual-Therapist.git
 ```
 Next move into the cloned directory
 ```
-cd Skin-Disease-Detector
+cd Virtual-Therapist
 ```
 (optional) Type this to open your default code editor. As usual, it will open vscode if you use vscode as your default code editor
 ```
