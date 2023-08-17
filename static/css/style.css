@@ -1,5 +1,4 @@
-/*--/ =================== Animation CSS =================== /--*/
-
+/*--/ =================== Animation CSS - Floating effect =================== /--*/
 .moveRight {
   opacity: 0;
   filter: blur(10px);

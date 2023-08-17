@@ -18,8 +18,6 @@
                         <br>
                         <div class="row">
                             <div class="col-md-4 border rounded">
-                                <!-- https://i.pinimg.com/originals/a9/fb/81/a9fb8104c5a396e8fdc4e607f04860d7.gif -->
-                                <!-- https://i.pinimg.com/originals/f0/7f/41/f07f414b486e6ed9da095f310444ee04.gif -->
                                 <img src="https://i.pinimg.com/originals/a9/fb/81/a9fb8104c5a396e8fdc4e607f04860d7.gif" class="img-fluid rounded-start" alt="..." style="height:230px">
                             </div>
                             <div class="col-md-8">
@@ -54,13 +52,15 @@
 
             <p class="opacity-8  mt-5" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
 
+            <!-- Posts Management -->
             <div class="container mt-4">
 
                 <div class="row mt-4">
                     {% for blog in all_blogs %}
                         {% if blog.poster.id == current_user.id %}
                             <div class="col-3 mt-4">
-                                <div class="card">
+                                <!-- Card display posts -->  
+                                <div class="card">                                    
                                     <div class="card-body card-primary-color">
                                         <h3 class="card-title-blog">{{blog.title}}</h3>
                                         <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
@@ -72,7 +72,7 @@
                                             <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete content</a>
                                         </div>
 
-                                        <!-- Modal -->
+                                        <!-- Delete Confirmation Modal -->
                                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                             <div class="modal-content card-primary-color">

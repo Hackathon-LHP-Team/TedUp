@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+# ----------- Database utility matrix management -----------
 class utility_matrix_management:
   def __init__(self, csv_path):
     self.csv_path = csv_path
@@ -48,6 +49,9 @@ class utility_matrix_management:
       df = pd.read_csv(self.csv_path)
       df = df.drop([blog_id-1])
       df.to_csv(self.csv_path, index=False)
+
+
+# ----------- Similarity Computation -----------
 
 class recys:
   # function to compute similarity between users

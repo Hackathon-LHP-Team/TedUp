@@ -2,23 +2,26 @@
 {% include 'navbar.html' %}
 
 
-
 <div id="hero" class="hero route bg-image">
-    
     <div class="overlay-itro"></div>
     
     <div class="hero-content display-table">
         <br> <br> <br> 
         <div class="container-fluid" style="max-width: 300px;">
+            <!-- Searching bar -->
             <form method="POST" class="d-flex" role="search" action="{{url_for('search')}}">
                 {{ form.hidden_tag() }}
                 <input class="search-custom" placeholder="Search" name="searched">
                 <button class="btn btn-outline-search" type="submit"><i class="bi bi-search"></i></button>
+                <!-- Suggestion -->
                 <a href="{{url_for('recsys')}}" style="margin-top: 6px;" >
                     <i class="bi bi-book ms-4"></i>
                 </a>
+                <!-- End Suggestion -->
             </form>
+            <!-- End Searching bar -->
         </div>
+        
         <div class="table-cell-3">
             <!-- content block -->
             <div class="container">

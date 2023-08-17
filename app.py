@@ -1,4 +1,9 @@
+# Machine Learning libs
 import tensorflow as tf
+import numpy as np
+import pandas as pd
+
+# Flask Backend Framework
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash, send_from_directory, current_app
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy 
@@ -7,22 +12,18 @@ from datetime import datetime
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
 from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, EqualTo, Length
-import os
 from werkzeug.utils import secure_filename
-from werkzeug.security import generate_password_hash, check_password_hash
-import numpy as np
-import random 
+from werkzeug.security import generate_password_hash, check_password_hash 
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
-import pandas as pd
+
+# Other supplemetary libs
 import os
 import time
 
 
-'''
-Define key and variables
-'''
+# ----------- Keys and Global Variables -----------
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "hackathon_round_2" 
+app.config["SECRET_KEY"] = "hackathon_round_3_LHP_team" 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -34,71 +35,13 @@ login_manager.login_view = 'login'
 csv_path = 'utility_matrix.csv'
 exit_blog = False
 
-'''
-Utility matrix - Recsystem
-'''
-from recommender_sytem_backup import utility_matrix_management
+# ----------- Recommender System -----------
+from recommender_sytem_backup import utility_matrix_management, recys
 util_matrix = utility_matrix_management(csv_path=csv_path)
+recys = recys()
     
-'''
-RecSys
-'''
-def cosine(a, b):
-    # add the epsilon to avoid denominator being 0
-    return a.dot(b) / ((np.linalg.norm(a) * np.linalg.norm(b)) + np.finfo(np.float64).eps)
-
-# function in flask backend
-def compute(current_user_logined_id):
-    utility_matrix = pd.read_csv("utility_matrix.csv")
-    utility_matrix.replace(0, np.nan, inplace=True)
-    mean = utility_matrix.mean(skipna=True)
-    utility_matrix = utility_matrix.sub(mean, axis=1)
-    utility_matrix = utility_matrix.fillna(0)
-    utility_matrix = utility_matrix.values
-
-    num_user = utility_matrix.shape[1]
-    user_to_user_similarity_matrix = np.zeros((num_user, num_user))
-
-    for i in range(num_user):
-      for j in range(num_user):
-        user_i = utility_matrix[:,i]
-        user_j = utility_matrix[:,j]
-        index_not_zero = (user_i > 0) & (user_j > 0)
-        user_to_user_similarity_matrix[i,j] = cosine(user_i[index_not_zero], user_j[index_not_zero])
-      
-    zero_rating_indices = np.where(utility_matrix == 0)
-    for blog, user in zip(zero_rating_indices[0], zero_rating_indices[1]):
-      similar_users = user_to_user_similarity_matrix[user]
-      blog_time_spent = utility_matrix[blog]
-      index = blog_time_spent > 0
-      blog_time_spent = blog_time_spent[index]
-      similar_users = similar_users[index]
-      utility_matrix[blog, user] = np.sum(blog_time_spent * similar_users) / (np.sum(similar_users) + np.finfo(np.float64).eps)
-
-    mean = mean.values
-    utility_matrix = utility_matrix + mean
-    utility_matrix = pd.DataFrame(utility_matrix)
-    utility_matrix.to_csv("filled_utility_matrix.csv", index=False) 
-
-    utility_matrix = pd.read_csv("utility_matrix.csv")
-    utility_matrix_filled = pd.read_csv("filled_utility_matrix.csv")
-
-    zero_rating_indices = np.where(utility_matrix == 0)
-    dictionary = {}
-    for blog, user in zip(zero_rating_indices[0], zero_rating_indices[1]):
-        if user == current_user_logined_id - 1:
-          dictionary[blog + 1] = utility_matrix_filled.iloc[blog, user]
-        
-    dictionary = sorted(dictionary.items(), key=lambda item: item[1], reverse=True)
-    threshold = mean[current_user_logined_id - 1]
-    result = [i for i, j in dictionary if j >= threshold]
-    if len(result) > 3:
-      return result[:3]
-    return result
     
-'''
-Database
-'''
+# ----------- Database -----------
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
@@ -129,15 +72,11 @@ class Blogs(db.Model):
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 
-'''
-Form 
-'''
+# ----------- Form -----------
 from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm
 
 
-'''
-Search Function 
-'''
+# ----------- Search Function -----------
 @app.context_processor
 def base():
     form = SearchForm()
@@ -155,19 +94,13 @@ def search():
         return render_template("search.html", form=form, searched=searched, blogs=blogs)
 
     
-'''
-Route 
-'''
+# ----------- Route -----------
 @app.route("/")
 def home():
     return render_template("home.html")
 
-@app.route("/recsys")
-def recsys():
-    result = compute(current_user_logined_id=current_user.id)
-    all_blogs = Blogs.query.order_by(Blogs.date_posted)
-    return render_template("recsys.html", result=result, all_blogs=all_blogs)
 
+# ----------- Registration and Login -----------
 @app.route("/registration", methods=["GET", "POST"]) 
 def registration():
     name = None
@@ -211,6 +144,7 @@ def login():
     return render_template("login.html", form=form)
 
 
+# ----------- User and Dashboard -----------
 @app.route("/all_users", methods=["GET", "POST"])   
 @login_required 
 def all_users():
@@ -243,6 +177,8 @@ def update_info(id):
     form.user_name.data = user.user_name
     return render_template('update_info.html', form=form, user=user)
     
+    
+# ----------- Blog management -----------
 @app.route("/create_blog", methods=["GET", "POST"]) 
 @login_required
 def create_blog():
@@ -272,6 +208,11 @@ def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
     return render_template("all_blogs.html", all_blogs=all_blogs)
 
+@app.route("/recsys")
+def recsys():
+    result = recys.compute(current_user_logined_id=current_user.id)
+    all_blogs = Blogs.query.order_by(Blogs.date_posted)
+    return render_template("recsys.html", result=result, all_blogs=all_blogs)
 
 def convert_to_sec(time_to_convert):
     format_str = "%H:%M:%S"
@@ -338,10 +279,6 @@ def other_user_blogs(id):
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
     return render_template('other_user_blogs.html', user=user, all_blogs=all_blogs)
 
-@app.route("/download")
-def download():
-    return render_template("download.html")
-
 @app.route("/logout")
 @login_required
 def logout():
@@ -349,17 +286,9 @@ def logout():
     return redirect(url_for('home'))
  
  
- 
 
+# ----------- Additional pages -----------
 
-
-
-
-
-
-'''
-Additional page
-'''
 # Invalid URL
 @app.errorhandler(404)
 def page_not_found(e):

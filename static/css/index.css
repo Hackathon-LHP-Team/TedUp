@@ -1,4 +1,4 @@
-/*--/ ===================General=================== /--*/
+/*--/ =================== General =================== /--*/
 :root {
   --dark-color: black;
   --body-font-size: 1.2rem;
@@ -34,6 +34,7 @@ a {
   border: none;
 }
 
+/*--/ ===================  Form Customization =================== /--*/
 .form-control-blog { 
   border: none; 
   border-bottom: 
@@ -65,7 +66,16 @@ a {
   color: var(--bs-btn-active-color);
 }
 
+.margin-top-form {
+  margin-top: 1.6rem;
+}
 
+.form-border-radius {
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/*--/ ===================  Search Customization =================== /--*/
 .search-custom {
   background-color: transparent;
   border-bottom: var(--bs-btn-active-color);
@@ -86,20 +96,38 @@ a {
 }
 
 
+/*--/ ===================  Card Customization =================== /--*/
 .card-primary-color {
   background-color: var(--dark-light-color);
   color: var(--body-font-color);
 }
 
-
 .opacity-8 {
   opacity: 0.8;
+}
+
+.opacity-9 {
+  opacity: 0.9;
 }
 
 .border {
   border: var(--bs-border-width) var(--bs-border-style) var(--dark-light-color) !important
 }
 
+.bg-black{
+  background-color: #000000;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-title-blog {
+  font-size: 25px;
+  color: var(--bs-btn-active-color);
+}
+
+/*--/ ===================  Button Customization =================== /--*/
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--purple-color-light);
@@ -138,14 +166,6 @@ a {
   color: var(--bs-btn-active-color);
 }
 
-.margin-top-form {
-  margin-top: 1.6rem;
-}
-
-.form-border-radius {
-  border-radius: 2px;
-  opacity: 0.8;
-}
 
 .text-left {
   text-align: left;
@@ -153,27 +173,12 @@ a {
   flex-direction: column;
 }
 
-.bg-black{
-  background-color: #000000;
-}
-
-.opacity-9 {
-  opacity: 0.9;
-}
-
-.card-title {
-  font-size: 18px;
-}
-
-.card-title-blog {
-  font-size: 25px;
-  color: var(--bs-btn-active-color);
-}
-
 .blog-show-title {
   font-size: 6rem;
   line-height: 80px;
 }
+
+/*--/ =================== Default CSS theme =================== /--*/
 
 a:hover {
   color: var(--purple-color-lightest);
@@ -293,7 +298,7 @@ a:hover {
   font-size: 1.5em;
 }
 
-/*--/ ===================Sections=================== /--*/
+/*--/ =================== Sections =================== /--*/
 
 p.lead {
   font-size: var(--body-font-size);

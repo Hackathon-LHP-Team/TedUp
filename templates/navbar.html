@@ -32,24 +32,25 @@
                         
                     </div>
                     <div class="col-8 d-flex justify-content-center" >
-                        <!-- ======= center navbar ======= -->
+                        <!-- Center navbar -->
                         <nav id="navbar" class="navbar ">
                             <ul>
                                 <li><a class="nav-link scrollto" href="{{ url_for('home')}}">Home</a></li>
                                 <li><a class="nav-link scrollto" href="http://localhost:8501/App">Use App</a></li>
                                
-                               
+                                <!-- Login Logic -->
                                 {% if current_user.is_authenticated %}
-                                <li><a class="nav-link scrollto" href="{{ url_for('all_users')}}">All users</a></li>
-                                <li><a class="nav-link scrollto" href="{{ url_for('all_blogs')}}">Read stories</a></li>
-                                <li><a class="nav-link scrollto " href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
-                                <li><a class="nav-link scrollto " href="{{ url_for('create_blog')}}">Share story</a></li>
-                                <li><a class="nav-link scrollto " href="{{ url_for('logout')}}">Log out</a></li>
+                                    <li><a class="nav-link scrollto" href="{{ url_for('all_users')}}">All users</a></li>
+                                    <li><a class="nav-link scrollto" href="{{ url_for('all_blogs')}}">Read stories</a></li>
+                                    <li><a class="nav-link scrollto " href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
+                                    <li><a class="nav-link scrollto " href="{{ url_for('create_blog')}}">Share story</a></li>
+                                    <li><a class="nav-link scrollto " href="{{ url_for('logout')}}">Log out</a></li>
                                 
                                 {% else %}
-                                <li><a class="nav-link scrollto " href="{{url_for ('registration')}}">Sign up</a></li>
-                                <li><a class="nav-link scrollto" href="{{url_for('login')}}">Log in</a></li>
+                                    <li><a class="nav-link scrollto " href="{{url_for ('registration')}}">Sign up</a></li>
+                                    <li><a class="nav-link scrollto" href="{{url_for('login')}}">Log in</a></li>
                                 {% endif %}
+
                             </ul>
                             <i class="bi bi-list mobile-nav-toggle"></i>
                         </nav>
@@ -67,6 +68,7 @@
     <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/typed.js/typed.umd.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+
 </html>
 
 
