@@ -2,58 +2,126 @@
 {% include 'navbar.html' %}
 
 
-<div class="blog-theme bg-image" style="background-image: url(https://i.pinimg.com/736x/b3/fa/d5/b3fad5721c994eff8254b4b7d418a3db.jpg)">
-    <div class="overlay-itro"></div>
+
+
+<div class="blog-theme bg-image text-purple">
+    <div class=""></div>
 
     <div class="hero-content display-table">
         <div class="table-cell-2 opacity-1">
             <div class="container text-left">
                 <!-- content block -->
-                <h3 class="ms-3">Read this story might help you!</h3>
-                <br>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href= "{{ url_for('time', start_time_sec=start_time_sec, id=blog.id)}}">
-                                        <i class="bi bi-arrow-left"></i>
-                                        Back to all stories
-                                    </a>
+                <div class="">
+                    <h3 class="ms-3">Read this story might help you!</h3>
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href= "{{ url_for('time', start_time_sec=start_time_sec, id=blog.id)}}">
+                                            <i class="bi bi-arrow-left"></i>
+                                            Back to all stories
+                                        </a>
+                                    </div>
+                                    {% if blog.poster.id == current_user.id %}
+                                        <div class="col-6">
+                                            <a href= "{{ url_for('edit_blog', id=blog.id) }}">
+                                                <i class="bi bi-arrow-right"></i>
+                                                Edit
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-6">
+                                            <a href= "{{ url_for('other_user_blogs', id=blog.poster.id) }}">
+                                                <i class="bi bi-arrow-right"></i>
+                                                Read more from this user
+                                            </a>
+                                        </div>
+                                    {% endif %}
                                 </div>
-                                {% if blog.poster.id == current_user.id %}
-                                    <div class="col-6">
-                                        <a href= "{{ url_for('edit_blog', id=blog.id) }}">
-                                            <i class="bi bi-arrow-right"></i>
-                                            Edit
-                                        </a>
-                                    </div>
-                                {% else %}
-                                    <div class="col-6">
-                                        <a href= "{{ url_for('other_user_blogs', id=blog.poster.id) }}">
-                                            <i class="bi bi-arrow-right"></i>
-                                            Read more from this user
-                                        </a>
-                                    </div>
-                                {% endif %}
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="col blog-show-title mt-4">
-                                {{blog.title}}
+                            <div class="col-6">
+                                <div class="col blog-show-title mt-4 ">
+                                    {{blog.title}}
+                                </div>
+                                <div class="col mt-5">
+                                    This content is from: {{blog.poster.user_name}}
+                                </div> 
+                
                             </div>
-                            <div class="col mt-5">
-                                This content is from: {{blog.poster.user_name}}
-                            </div> 
-                        </div>
-                        <div class="col-6 text-break text-output">
-                            {{blog.content}}
+                            <div class="col-6 text-break text-output ">
+                                {{blog.content}}
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <!-- end content block -->
+
+                <br><br>
+                <hr>
+                <br>
+                <h1 class="text-center"> More content like this</h1>
+
+                <div class="row mt-4 text-center">
+                        <div class="col-4 mt-4">
+                            <div class="card ">
+                                <div class="card-header card-secondary-color">
+                                    Related story
+                                </div>
+                                <div class="card-body card-primary-color">
+                                    <h3 class="card-title-blog">{{blog.title[:29]}}</h3>
+                                    <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
+                                    <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>
+                                    <br>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4 mt-4">
+                            <div class="card ">
+                                <div class="card-header card-secondary-color">
+                                    Related story
+                                </div>
+                                <div class="card-body card-primary-color">
+                                    <h3 class="card-title-blog">{{blog.title[:29]}}</h3>
+                                    <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
+                                    <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>
+                                    <br>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4 mt-4">
+                            <div class="card ">
+                                <div class="card-header card-secondary-color">
+                                    Related story
+                                </div>
+                                <div class="card-body card-primary-color">
+                                    <h3 class="card-title-blog">{{blog.title[:29]}}</h3>
+                                    <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
+                                    <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>
+                                    <br>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
             </div>
         </div>
 
         <br><br><br>
     </div>
+
+<!-- nav bar -->
+{% include 'footer.html' %}
