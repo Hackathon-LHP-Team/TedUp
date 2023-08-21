@@ -48,6 +48,16 @@ hr {
   padding: 0;
 }
 
+.hr-2 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid black;
+  margin: 1em 0;
+  padding: 0;
+}
+
+
 /*--/ =================== Boder =================== /--*/
 .border-bottom {
   border-bottom: 2px solid var(--purple-color);
@@ -69,6 +79,15 @@ hr {
 
 .text-purple {
   color: var(--purple-color-light);
+}
+
+.big-heading {
+  font-size: 80px;
+  line-height: 80%;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .text-black {
