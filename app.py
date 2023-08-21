@@ -74,7 +74,8 @@ class Blogs(db.Model):
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
-    path = db.Column(db.String(256)) # Option 2: store file path
+    path = db.Column(db.String(256)) 
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     
 
 # ----------- Form -----------
@@ -85,6 +86,16 @@ from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, Updat
 @app.route('/create_podcast')
 def upload_page():
     return render_template('create_podcast.html')
+
+@app.route('/all_podcasts')
+def all_podcasts():
+    all_podcasts = Audio.query.order_by(Audio.date_posted)
+    return render_template("all_podcasts.html", all_podcasts=all_podcasts)
+
+@app.route("/podcast/<int:id>", methods=["GET", "POST"])   
+def podcast(id):
+    podcast = Audio.query.get_or_404(id)
+    return render_template('podcast.html', podcast=podcast)
 
 
 @app.route('/upload', methods=['POST'])

@@ -1,0 +1,15 @@
+<audio controls id="myAudio">
+    <source src="{{ url_for('static', filename = 'audio_files/audio_1.ogg') }}" type="audio/ogg" />
+    <source src="{{ url_for('static', filename = 'audio_files/audio_1.mp3') }}" type="audio/mpeg" />Your browser does not support the audio element.
+</audio>
+
+<button onclick="playAudio()" type="button">Play Podcast</button>
+
+<script>
+    // Get the audio element by id
+    var podcast = document.getElementById('myAudio')
+    // Define a function to play the audio
+    function playAudio() {
+        podcast.play()
+    }
+</script>
