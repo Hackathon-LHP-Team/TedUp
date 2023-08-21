@@ -71,10 +71,38 @@ class Blogs(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
+class Audio(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    path = db.Column(db.String(256)) # Option 2: store file path
+    
 
 # ----------- Form -----------
 from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm
 
+
+# ----------- Podcast -----------
+@app.route('/create_podcast')
+def upload_page():
+    return render_template('create_podcast.html')
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    if file and file.filename.endswith('.mp3') and file.content_length < 10 * 1024 * 1024:
+        name = f'audio_{Audio.query.count() + 1}.mp3'
+        folder = 'static/audio_files'
+        os.makedirs(folder, exist_ok=True)
+        path = os.path.join(folder, name)
+        file.save(path)
+        audio = Audio(name=name)
+        audio.path = path
+        db.session.add(audio)
+        db.session.commit()
+        return f'File {name} uploaded successfully'
+    else:
+        return 'Invalid file type or size'
 
 # ----------- Search Function -----------
 @app.context_processor
