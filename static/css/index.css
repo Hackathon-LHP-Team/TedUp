@@ -9,11 +9,12 @@
   --purple-color-light: #8774f1;
   --pink-color: #ee93a9;    
   --light-color: #febfad;
-  --bg-color: #f3dff0;;
+  --bg-color: #fdf2fc;;
   --dark-light-color: #1e1e1e;
   --bs-border-width: 1px;
   --bs-border-style: solid;
   --white-color: white;
+  --gray-color: #f1f1f1;
 }
 
 body {
@@ -25,14 +26,18 @@ body {
   overflow-x: hidden;
 }
 
+.bg-blog-color{
+  background-color: var(--white-color); 
+}
+
 a {
-  color: var(--white-color);
+  color: var(--purple-color);
   text-decoration: none;
   transition: all 0.5s;
 }
 
 a:hover {
-  color: var(--purple-color);
+  color: var(--white-color);
   text-decoration: none;
   transition: all 0.5s;
 }
@@ -41,10 +46,14 @@ a:hover {
   color: var(--purple-color-light);
 }
 
+.text-black {
+  color: var(--dark-color);
+}
+
 .text-area::-webkit-scrollbar { display: none; }
 .text-output { white-space: pre-line; }
 .card-secondary-color {
-  background-color: var(--purple-color-dark);
+  background-color: var(--purple-color);
   border: none;
   color: var(--bg-color);
 }
@@ -129,12 +138,19 @@ a:hover {
 }
 
 
-/*--/ ===================  Card Customization ========card-secondary-color=========== /--*/
+/*--/ ===================  Card Customization ================== /--*/
 .card-primary-color {
-  background-color: var(--purple-color);
-  color: var(--white-color);
+  background-color: var(--gray-color);
+  color: var(--purple-color);
+  border: 2px solid var(--purple-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
+.card-primary-color-person {
+  background-color: var(--purple-color);
+  color: var(--bg-color);
+}
 
 .opacity-8 {
   opacity: 0.8;
@@ -802,7 +818,6 @@ p.lead {
 
 #header.header-scrolled {
   background: var(--purple-color);
-  opacity: 0.8;
   padding: 12px 0;
 }
 

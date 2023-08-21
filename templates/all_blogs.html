@@ -3,8 +3,22 @@
 
 
 <div id="hero" class="hero route bg-image">
-    <img src="static/imgs/Refined/blogs.png" alt="" style="width: 100%;">
-    <div class=""></div>
+
+        <div class="row" style="margin-top:60px">
+            <div class="col-6">
+                <img src="static/imgs/Refined/Background_space.jpg" alt="" style="width: 100%;">
+                
+            </div>
+            <div class="col-6">
+                <h1 class="text-purple" style="margin-top:70px; margin-left: 20px;">Reading Categories</h1>
+                <h3 class="text-purple" style="margin-top:50px; margin-left: 20px;">News <i class="bi bi-arrow-right"></i></h3>
+                <h3 class="text-purple" style="margin-left: 20px;">Stories <i class="bi bi-arrow-right"></i></h3>
+                
+
+            </div>
+        </div>
+
+    
     
     <div class="hero-content display-table">
         <br> <br> <br> 
@@ -26,7 +40,7 @@
         <div class="table-cell-3">
             <!-- content block -->  
             <div class="container">
-                <h1 class="text-purple"><strong>Welcome {{current_user.name}} to stories gallary</strong> </h1>
+                <h1 class="text-purple">Welcome {{current_user.name}} to stories gallary </h1>
                 <p class="text-purple opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
                 <br>
                 
@@ -38,12 +52,12 @@
                                     Featured story
                                 </div>
                                 <div class="card-body card-primary-color">
-                                    <h3 class="card-title-blog"><strong>{{blog.title[:29]}}</strong></h3>
+                                    <h3 class="card-title-blog">{{blog.title[:29]}}</h3>
                                     <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
-                                    <p class="card-text opacity-8 mt-4">{{blog.content[:150]}}......</p>
+                                    <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>
                                     <br>
                                     <div class="d-grid gap-2">
-                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-secondary">Read story now</a>
+                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
                                     </div>
                                 </div>
                             </div>

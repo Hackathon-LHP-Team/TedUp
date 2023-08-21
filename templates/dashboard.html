@@ -1,7 +1,7 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-<div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/Refined/Background_mountain.png)">
+<div id="hero" class="hero route bg-image">
     <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell-2">
@@ -18,10 +18,10 @@
                         <br>
                         <div class="row">
                             <div class="col-md-4 border rounded">
-                                <img src="https://i.pinimg.com/originals/a9/fb/81/a9fb8104c5a396e8fdc4e607f04860d7.gif" class="img-fluid rounded-start" alt="..." style="height:230px">
+                                <img src="" class="img-fluid rounded-start" alt="..." style="height:230px">
                             </div>
                             <div class="col-md-8">
-                                <div class="card text-left card-primary-color">
+                                <div class="card text-left card-primary-color-person">
                                     <div class="card-header">
                                         Personal information
                                     </div> 
@@ -37,7 +37,7 @@
                                         {% endif %}                                        
                                         <br>
                                         <p class="card-text">Your name: {{user.name}} <br> Your email: {{user.email}} <br> Your display name: {{user.user_name}}</p>
-                                        <a href="{{ url_for('update_info', id=user.id)}}" class="btn btn-primary">Edit info</a>
+                                        <a href="{{ url_for('update_info', id=user.id)}}" class="btn btn-outline-secondary">Edit info</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                 
             </div>
 
-            <p class="opacity-8  mt-5" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
+            <p class="opacity-8  mt-5 text-purple" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
 
             <!-- Posts Management -->
             <div class="container mt-4">
@@ -62,7 +62,7 @@
                                 <!-- Card display posts -->  
                                 <div class="card">                                    
                                     <div class="card-body card-primary-color">
-                                        <h3 class="card-title-blog">{{blog.title}}</h3>
+                                        <h3 class="card-title-blog">{{blog.title[:20]}}</h3>
                                         <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
                                         <p class="card-text mt-4">{{blog.content[:150]}}......</p>
                                         <br>
@@ -98,6 +98,7 @@
                 </div>
             </div>
             <!-- end content block -->   
+            <br><br><br>
         </div>
     </div>
 </div>
