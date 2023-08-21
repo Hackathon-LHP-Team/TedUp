@@ -2,19 +2,23 @@
 :root {
   --dark-color: black;
   --body-font-size: 1.2rem;
-  --body-font-color: #d0cfcf;
-  --body-font-active: rgb(255, 255, 255);
-  --purple-color: rgb(150, 48, 214);
-  --purple-color-light: rgb(159, 74, 212);
-  --purple-color-lighter: rgb(169, 96, 214);
-  --purple-color-lightest: rgb(187, 134, 220); 
+  --body-font-color: var(--purple-color);
+  --body-font-active: #8774f1;
+  --purple-color-dark: #5215fc;
+  --purple-color: #885fff;
+  --purple-color-light: #8774f1;
+  --pink-color: #ee93a9;    
+  --light-color: #febfad;
+  --bg-color: #f3dff0;;
   --dark-light-color: #1e1e1e;
   --bs-border-width: 1px;
   --bs-border-style: solid;
+  --white-color: white;
 }
 
 body {
-  background-color: #000000;
+  background-color: var(--bg-color); 
+  background-attachment: fixed;
   color: #4e4e4e;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   max-width: 100%;
@@ -22,23 +26,44 @@ body {
 }
 
 a {
-  color: var(--body-font-color);
+  color: var(--white-color);
   text-decoration: none;
   transition: all 0.5s;
+}
+
+a:hover {
+  color: var(--purple-color);
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.text-purple {
+  color: var(--purple-color-light);
 }
 
 .text-area::-webkit-scrollbar { display: none; }
 .text-output { white-space: pre-line; }
 .card-secondary-color {
-  background-color: var(--purple-color-lightest);
+  background-color: var(--purple-color-dark);
   border: none;
+  color: var(--bg-color);
 }
 
 /*--/ ===================  Form Customization =================== /--*/
 .form-control-blog { 
   border: none; 
   border-bottom: 
-  2px solid white; 
+  2px solid var(--white-color); 
+  outline: none; 
+  background: transparent; 
+  width: 100%;
+  color: var(--bs-btn-active-color);
+}
+
+.form-control-contact { 
+  border: none; 
+  border-bottom: 
+  2px solid var(--purple-color); 
   outline: none; 
   background: transparent; 
   width: 100%;
@@ -77,30 +102,39 @@ a {
 
 /*--/ ===================  Search Customization =================== /--*/
 .search-custom {
-  background-color: transparent;
-  border-bottom: var(--bs-btn-active-color);
-  border: none;
-  color: var(--bs-btn-active-color)
+  color: var(--purple-color);
+  border-bottom: 2px solid var(--purple-color);
+  border: none; 
+  outline: none; 
+  background: transparent; 
+  width: 100%;
 }
 
 .search-custom:active {
-  background-color: transparent;
-  border: none;
-  color: var(--bs-btn-active-color)
+  color: var(--purple-color);
+  border: none; 
+  border-bottom: 2px solid var(--purple-color);
+  outline: none; 
+  background: transparent; 
+  width: 100%;
 }
 
 .search-custom:hover {
-  background-color: transparent;
-  border: none;
-  color: var(--bs-btn-active-color)
+  color: var(--purple-color);
+  border: none; 
+  border-bottom: 2px solid var(--purple-color);
+  outline: none; 
+  background: transparent; 
+  width: 100%;
 }
 
 
-/*--/ ===================  Card Customization =================== /--*/
+/*--/ ===================  Card Customization ========card-secondary-color=========== /--*/
 .card-primary-color {
-  background-color: var(--dark-light-color);
-  color: var(--body-font-color);
+  background-color: var(--purple-color);
+  color: var(--white-color);
 }
+
 
 .opacity-8 {
   opacity: 0.8;
@@ -118,6 +152,10 @@ a {
   background-color: #000000;
 }
 
+.bg-purple{
+  background-color: var(--purple-color);
+}
+
 .card-title {
   font-size: 18px;
 }
@@ -130,40 +168,59 @@ a {
 /*--/ ===================  Button Customization =================== /--*/
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: var(--purple-color-light);
-  --bs-btn-border-color: var(--purple-color-light);
+  --bs-btn-bg: var(--purple-color);
+  --bs-btn-border-color: var(--purple-color);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--purple-color-lighter);
-  --bs-btn-hover-border-color: var(--purple-color-lighter);
+  --bs-btn-hover-bg: var(--purple-color);
+  --bs-btn-hover-border-color: var(--purple-color);
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--purple-color-lighter);
+  --bs-btn-active-bg: var(--purple-color);
   --bs-btn-active-border-color: #0a53be;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: var(--purple-color-light);
-  --bs-btn-disabled-border-color: var(--purple-color-light)
+  --bs-btn-disabled-bg: var(--purple-color);
+  --bs-btn-disabled-border-color: var(--purple-color)
 }
 
 .btn-outline-primary {
-  --bs-btn-color: var(--purple-color-light);
-  --bs-btn-border-color: var(--purple-color-light);
+  --bs-btn-color: var(--purple-color);
+  --bs-btn-border-color: var(--purple-color);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--purple-color-light);
-  --bs-btn-hover-border-color: var(--purple-color-light);
+  --bs-btn-hover-bg: var(--purple-color);
+  --bs-btn-hover-border-color: var(--purple-color);
   --bs-btn-focus-shadow-rgb: 13, 110, 253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--purple-color-light);
-  --bs-btn-active-border-color: var(--purple-color-light);
+  --bs-btn-active-bg: var(--purple-color);
+  --bs-btn-active-border-color: var(--purple-color);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: var(--purple-color-light);
+  --bs-btn-disabled-color: var(--purple-color);
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: var(--purple-color-light);
+  --bs-btn-disabled-border-color: var(--purple-color);
   --bs-gradient: none
 }
 
+.btn-outline-secondary {
+  --bs-btn-color: var(--bg-color);
+  --bs-btn-border-color: var(--bg-color);
+  --bs-btn-hover-color: var(--purple-color);
+  --bs-btn-hover-bg: var(--bg-color);
+  --bs-btn-hover-border-color: var(--bg-color);
+  --bs-btn-focus-shadow-rgb: 13, 110, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--bg-color);
+  --bs-btn-active-border-color: var(--bg-color);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: var(--bg-color);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--bg-color);
+  --bs-gradient: none
+}
+
+
+
 .btn-outline-search {
-  color: var(--bs-btn-active-color);
+  color: var(--purple-color);
 }
 
 
@@ -244,6 +301,14 @@ a:hover {
   background-position: center center;
 }
 
+.bg-image-2 {
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
 
 @media (max-width: 1024px) {
   .bg-image {
@@ -282,6 +347,10 @@ a:hover {
 .table-cell {
   display: table-cell;
   vertical-align: middle;
+}
+
+.table-cell-signup {
+  margin-top: 125px;
 }
 
 .table-cell-2 {
@@ -363,7 +432,7 @@ p.lead {
   position: relative;
   line-height: 0.5;
   margin-left: 0.5em;
-  color: var(--purple-color-light);
+  color: var(--purple-color);
 }
 
 .core-features {
@@ -374,7 +443,7 @@ p.lead {
 .developer-docs-header {
   font-size:4rem;
   position: relative;
-  color: var(--purple-color-lighter);
+  color: var(--purple-color);
   line-height: 0.9;
 }
 
@@ -625,7 +694,7 @@ p.lead {
   top: calc(50% - 30px);
   left: calc(50% - 30px);
   border: 6px solid #f2f2f2;
-  border-top: 6px solid var(--purple-color-light);
+  border-top: 6px solid var(--purple-color);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -648,7 +717,7 @@ p.lead {
 }
 
 .lead span {
-  color: var(--purple-color-lightest);
+  color: var(--purple-color);
 }
 
 .list-group-item {
@@ -656,7 +725,7 @@ p.lead {
 }
 
 .list-group-item:hover, .listgroup a .active {
-  color: white;
+  color: var(--purple-color-light);
 }
 
 /*--/ =================== Button =================== /--*/
@@ -732,7 +801,8 @@ p.lead {
 }
 
 #header.header-scrolled {
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--purple-color);
+  opacity: 0.8;
   padding: 12px 0;
 }
 
@@ -954,7 +1024,7 @@ p.lead {
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: var(--purple-color-lighter);
+  color: var(--purple-color);
 }
 
 .navbar-mobile .getstarted,
@@ -1036,7 +1106,7 @@ p.lead {
 .hero .hero-title {
   color: #fff;
   font-weight: 600;
-  text-shadow: 3px 3px #000000;
+  /* text-shadow: 3px 3px #000000; */
 }
 
 @media (min-width: 768px) {
@@ -1048,7 +1118,7 @@ p.lead {
 .hero .hero-subtitle {
   font-size: 1.5rem;
   font-weight: 600;
-  text-shadow: 2.5px 2.5px #000000;
+  /* text-shadow: 2.5px 2.5px #000000; */
 }
 
 @media (min-width: 768px) {
@@ -1104,6 +1174,11 @@ p.lead {
 .text-white {
   color: var(--bs-btn-active-color);
 }
+
+.text-purple {
+  color: var(--purple-color);
+}
+
 
 .opacity-1 {
   opacity: 1;
@@ -1231,7 +1306,7 @@ p.lead {
   margin-bottom: 3rem;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  background-color: #1e1e1e;
+  background-color: var(--purple-color);
   border-radius: 10px;
 }
 
@@ -1247,7 +1322,7 @@ p.lead {
 }
 
 .work-content .w-more {
-  color: #707070;
+  color: var(--bg-color);
   font-size: 0.8rem;
 }
 
@@ -1271,11 +1346,13 @@ p.lead {
 }
 
 .w-title {
-  color: var(--body-font-color)
+  color: var(--bg-color)
 }
 
 .work-content p {
   font-size: var(--body-font-size);
+  color: var(--bg-color);
+  opacity: 0.6;
 }
 
 @media (max-width: 1190px) {

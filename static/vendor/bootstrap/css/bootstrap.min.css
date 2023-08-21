@@ -5715,7 +5715,7 @@ fieldset:disabled .btn {
 .list-group-item-action:focus,
 .list-group-item-action:hover {
     z-index: 1;
-    color: var(--bs-list-group-action-hover-color);
+    color: #887cc9;
     text-decoration: none;
     /* background-color: var(--bs-list-group-action-hover-bg) */
 }
@@ -5753,7 +5753,7 @@ fieldset:disabled .btn {
 
 .list-group-item.active {
     z-index: 2;
-    color: #b9b9b9;
+    color: #887cc9;
     /* background-color: var(--bs-list-group-active-bg); */
     border-color: var(--bs-list-group-active-border-color)
 }

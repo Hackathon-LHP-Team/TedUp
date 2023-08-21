@@ -1,8 +1,8 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-<div id="hero" class="hero route bg-image">
-    <div class="overlay-itro"></div>
+<div id="hero" class="hero route bg-image" style="background: var(--purple-color) ">
+    <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell">
             <br><br><br>
@@ -11,9 +11,9 @@
                 <!-- content block -->
                 <div class="row">
                     <div class="col-4">
-                        <h1 class="text-left">Share your real-life story to help other people</h1>
+                        <h1 class="text-left text-white">Share your real-life story to help other people</h1>
                     </div>
-                        <div class="col-8">
+                        <div class="col-8 text-white">
                                 <form class="ms-3" method="POST">
                                     {{ form.hidden_tag() }}
                                         <div class="text-left">
@@ -25,7 +25,7 @@
                                         
                                 
                                         <div class="d-grid gap-2 mt-5">
-                                            {{ form.submit(class = 'btn btn-primary') }}
+                                            {{ form.submit(class = 'btn btn-outline-secondary') }}
                                         </div>
                                     </div>
                                 </form>

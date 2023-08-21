@@ -1,13 +1,13 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-<div id="hero" class="hero route bg-image">
-    <div class="overlay-itro"></div>
+<div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/Refined/Background_mountain.png)">
+    <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell-2">
             <!-- content block -->
-            <h1> Hello {{user.name}}. This is your dashboard</h1>
-            <p class="opacity-8 mt-4" >This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with everyone <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
+            <h1 class="text-purple"> Hello {{user.name}}. This is your dashboard</h1>
+            <p class="opacity-8 mt-4 text-purple">This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with everyone <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
             <div class="container">
                 <br>
                 <div class="row mt-3"> 

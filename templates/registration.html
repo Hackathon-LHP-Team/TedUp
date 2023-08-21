@@ -8,23 +8,21 @@
 {% else %}
 
 <!-- main block -->
-<div id="hero" class="hero route bg-image" style="background-image: url('static/imgs/The_lake.jpg')">
-    <div class="overlay-itro"></div>
+<div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/Refined/Background_Reg.png)">
+    <div class=""></div>
     <div class="hero-content display-table">
-        <div class="table-cell">
+        <div class="table-cell-signup">
             <div class="container">
                 <!-- content block -->
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6 opacity-9">
-                        <div class="shadow-sm p-5 mt-5 bg-black mb-5 rounded up">
-                            <!-- mini logo -->
-                            <img src="https://cdn.glitch.global/0b0c1622-4f23-4acc-8587-e456a037e413/logo.png?v=1691301492279" alt="" width="30px" class="text-left">
+                    <div class="col-7"></div>
+                    <div class="col-5">
+                        <div class="">
                             
                             <!-- registration form -->
                             <form method="POST">
                                 {{ form.hidden_tag() }}
-                                <div class="mb-3 row mt-3">
+                                <div class="mb-3 row">
 
                                     <!-- left column -->
                                     <div class="text-left col-sm-4 col-form-label">
@@ -45,7 +43,7 @@
                                     </div>
                                     
                                     <!-- button and link -->
-                                    <div class="d-grid gap-2 mt-5">
+                                    <div class="d-grid gap-2 mt-3">
                                         {{ form.submit(class = 'btn btn-primary') }}
                                         <p class="mt-3">Already have an account? <a href="{{ url_for('login')}}">Login now <i class="bi bi-arrow-right"></a></i></p>
                                     </div>
@@ -54,7 +52,6 @@
                             <!-- end registration form -->
                         </div>
                     </div>
-                    <div class="col-3"></div>
                 </div>
                 <!-- end content block -->
             </div>

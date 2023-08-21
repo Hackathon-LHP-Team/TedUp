@@ -53,7 +53,7 @@
     </header>
 
     <!-- ======= Main theme Section ======= -->
-    <div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/The_desert.jpeg)">
+    <div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/Refined/Background_mountain.png)">
         <div class="overlay-itro"></div>
         <div class="hero-content display-table">
             <div class="table-cell">
@@ -124,7 +124,7 @@
     </section>
 
     <!-- ======= Scroller Section ======= -->
-    <div class="scroller">
+    <!-- <div class="scroller">
         <div id="scroll-item">
             <h3>CHATTING.</h3>
             <h3>USE APP.</h3>
@@ -135,10 +135,13 @@
             <h3>READ STORY.</h3>
             <h3>WRITE BLOGS.</h3>
           </div>
-    </div>
+    </div>-->
 
+    
+        
+    </div>
     <!-- ======= Features Section ======= -->
-    <section id="services" class="services-mf pt-5 route">
+    <section id="services" class="services-mf pt-5 route bg-image">
         <div class="page">
             <div class="row mt-5 m-3 p-5">
                 <div class="col-sm-12">
@@ -160,9 +163,9 @@
                         <div class="col-md-6">
                             <div class="col-8">
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active moveLeft" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><img src="static\imgs\chat.png" style="width:800px" alt=""></div>
-                                    <div class="tab-pane fade moveLeft" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><img src="static\imgs\progress.png" style="width:800px" alt=""> </div>
-                                    <div class="tab-pane fade moveLeft" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> <img src="static\imgs\blogs.png" style="width:800px" alt=""></div>
+                                    <div class="tab-pane fade show active moveLeft" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><img src="" style="width:800px" alt=""></div>
+                                    <div class="tab-pane fade moveLeft" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><img src="" style="width:800px" alt=""> </div>
+                                    <div class="tab-pane fade moveLeft" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> <img src="" style="width:800px" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +177,7 @@
     <br><br><br>
 
     <!-- ======= Counter Section ======= -->
-    <div class="section-counter paralax-mf bg-image" style="background-image: url(https://i.pinimg.com/originals/bb/f3/99/bbf399ef3eb7649b9cc2b69656b574af.gif)">
+    <div class="section-counter paralax-mf bg-image" style="background-image: url(static/imgs/Refined/Background_mountain.png)">
         <div class="overlay-mf"></div>
             <div class="container position-relative">
                 <div class="row">
@@ -259,9 +262,9 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a href="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                    <a href="" data-gallery="portfolioGallery" class="portfolio-lightbox">
                         <div class="work-img">
-                        <img src="https://i.pinimg.com/originals/26/b7/c6/26b7c65e04d7d6c373adff19abd73212.gif" alt="" class="img-fluid">
+                        <img src="" alt="" class="img-fluid">
                         </div>
                     </a>
                 </div>
@@ -355,6 +358,45 @@
         </div>
     </section>
 
+    <!-- ======= Contact Section ======= -->
+    <br><br><br>
+    <h2>  </h2>
+    <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box text-center">
+                        <h3 class="developer-docs-header"><span>Want to contact us? Leave your message</span></h3>
+                    </div>
+                </div>
+            </div>
+    <div class="container">
+        <div class="row  text-purple opacity-8">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <form action="">
+                    <div class="mb-3 row mt-3">
+                        <!-- left column -->
+                        <div class="text-left col-sm-4 col-form-label">
+                            <label class="form-label">Enter your email address</label>
+                            <label class="form-label">Enter your name</label>
+                            <label class="form-label">Leave your message</label>
+                        </div>
+
+                        <!-- right column -->
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control-contact">
+                            <input type="text" class="form-control-contact">
+                            <input class="form-control-contact" rows="3">
+
+                            <button type="submit" class="btn btn-outline-primary mb-3 mt-4">Send now</button>
+                        </div>
+                    </div>
+                </form>
+                <br><br><br>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    
 
     <!-- ======= Footer Section ======= -->
     <br><br><br>
@@ -427,5 +469,18 @@
 
 
 </body>
+
+    <script type="text/javascript"> 
+        // Get the textarea element 
+        var textarea = document.getElementById ("content");
+
+        // Add an event listener for input event 
+        textarea.addEventListener ("input", function () { 
+            // Reset the height to 0 
+            textarea.style.height = 0; 
+            // Set the height to the scroll height (the actual height of the content) 
+            textarea.style.height = textarea.scrollHeight + "px"; 
+        }); 
+    </script>
 
 </html>
