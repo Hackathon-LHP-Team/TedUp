@@ -1,13 +1,15 @@
+<!-- navbar -->
+{% include 'navbar.html' %}
+
+
 <audio controls id="myAudio">
-  <source src="{{ url_for('static', filename = 'audio_files/audio_1.ogg') }}" type="audio/ogg" />
-  <source src="{{ url_for('static', filename = 'audio_files/audio_1.mp3') }}" type="audio/mpeg" />Your browser does not support the audio element.
+  <source src="{{ url_for('static', filename = name) }}" type="audio/mpeg" />Your browser does not support the audio element.
 </audio>
 
 <button onclick="playAudio()" type="button">Play Podcast</button>
 
 
 
-<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.podcasts.apple.com/us/podcast/the-positive-psychology-podcast-bringing-the/id912190084"></iframe>
 
 
 <script>
@@ -17,4 +19,4 @@
     function playAudio() {
       podcast.play()
     }
-  </script>
+</script>

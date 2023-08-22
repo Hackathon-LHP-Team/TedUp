@@ -6,16 +6,23 @@
     {{ form.hidden_tag() }}
 
     <div class="text-left">
-    {{ form.title.label(class = 'form-label') }}
-    {{ form.title(class = 'form-control') }}
+        {{ form.title.label(class = 'form-label') }}
+        {{ form.title(class = 'form-control') }}
 
-    {{ form.description.label(class = 'form-label mt-4') }}
-    {{ form.description(class = "form-control")}}
+        {{ form.description.label(class = 'form-label mt-4') }}
+        {{ form.description(class = "form-control")}}
 
-    <div class="input-group mb-3">
-        <input type="file" class="form-control" id="inputGroupFile02" name="file">
-        <div class="d-grid gap-2">
-            <input class="btn btn-primary" type="submit" value="Upload now" />
+        {{ form.playlist_id.label(class = 'form-label mt-4') }}
+        {{ form.playlist_id(class = "form-control")}}
+
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02" name="file">
+            <div class="d-grid gap-2">
+                <input class="btn btn-primary" type="submit" value="Upload now" />
+            </div>
         </div>
     </div>
 </form>
+
+
+

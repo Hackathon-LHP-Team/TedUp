@@ -36,10 +36,17 @@ class UpdateInfo(FlaskForm):
 class SearchForm(FlaskForm):
     searched = StringField("Searched", validators=[DataRequired()]) 
     submit = SubmitField("Search now")  
-    
-class UploadAudio(FlaskForm):
+
+class NewPlaylist(FlaskForm):
     title = StringField("Enter Title", validators=[DataRequired()])
     description = StringField("Enter description", validators=[DataRequired()])
     submit = SubmitField("Upload now")   
     
+class UploadAudio(FlaskForm):
+    title = StringField("Enter Title", validators=[DataRequired()])
+    description = StringField("Enter description", validators=[DataRequired()])
+    playlist_id = StringField("Enter playlist id", validators=[DataRequired()])
+    submit = SubmitField("Upload now")   
+
+
     

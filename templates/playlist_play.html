@@ -1,0 +1,47 @@
+<!-- navbar -->
+{% include 'navbar3.html' %}
+
+
+    <div class="row">
+        <div class="col-4" style="background-color: var(--purple-color); height: 675px; margin-top: 50px;">
+            <h1 class="text-bg medium-heading" style="margin-left:30px; margin-top: 50px;">{{playlist.title}}</h1>
+            <p class="text-bg opacity-8" style="margin-left: 80px; margin-top: 120px; max-width: 250px;">{{playlist.description}}</p>
+            <h1 class="text-bg small-heading text-right" style="margin-right:30px; margin-top: 100px;">Healing <br> Podcast Playlist</h1>
+        </div>
+        <div class="col-4 text-center" style="border-right: 2px solid var(--purple-color); margin-top:50px">
+            <div class="card" style="width: 23rem; margin: auto; margin-top:130px; ">
+                <h5 class="card-header border-purple">Episode 1</h5>
+                <img src="{{ url_for('static', filename = 'imgs/shapes/rm_6.png') }}" class="card-img-top border-purple" style="background: transparents;">
+                <div class="card-body card-primary-color">
+                  <h4 class="card-title">{{podcast.title}}</h4>
+                  <p class="card-text">{{podcast.description}}</p>
+                  <i id="playButton" class="bi bi-play-circle-fill"></i>
+
+                  <audio controls id="myAudio" style="background-color: transparent;"   > 
+                    <source src="{{ url_for('static', filename = name) }}" type="audio/mpeg" />Your browser does not support the audio element.
+                  </audio>
+
+                </div>
+              </div>
+        </div>
+
+        
+          
+          
+
+
+        <div class="col-4">
+           
+        </div>
+    </div>
+
+
+    <script>
+        // Get the audio element by id
+        var podcast = document.getElementById('myAudio')
+        var playButton = document.getElementById('playButton')
+        // Define a function to play the audio
+        playButton.addEventListener("click", function() {
+          podcast.play();
+        })
+    </script>

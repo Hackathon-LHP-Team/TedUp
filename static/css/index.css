@@ -58,6 +58,12 @@ hr {
 }
 
 
+/*--/ =================== Audio =================== /--*/
+audio::-webkit-media-controls-play-button{
+  background-color:var(--purple-color);
+}
+
+
 /*--/ =================== Boder =================== /--*/
 .border-bottom {
   border-bottom: 2px solid var(--purple-color);
@@ -81,9 +87,23 @@ hr {
   color: var(--purple-color-light);
 }
 
+.text-bg {
+  color: var(--bg-color);
+}
+
 .big-heading {
   font-size: 80px;
   line-height: 80%;
+}
+
+.medium-heading {
+  font-size: 60px;
+  line-height: 80%;
+}
+
+.small-heading {
+  font-size: 50px;
+  line-height: 100%;
 }
 
 .text-right {
@@ -100,6 +120,10 @@ hr {
   background-color: var(--purple-color);
   border: none;
   color: var(--bg-color);
+}
+
+.card{
+  --bs-card-bg: transparent;
 }
 
 /*--/ ===================  Form Customization =================== /--*/
@@ -861,6 +885,12 @@ p.lead {
   padding: 20px 0;
 }
 
+#header-outline {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 5px 0;
+}
+
 #header .logo {
   font-size: 28px;
   margin: 0;
@@ -928,6 +958,21 @@ p.lead {
   text-transform: uppercase;
 }
 
+.navbar .nav3{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--purple-color);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0;
+  white-space: nowrap;
+  transition: 0.3s;
+  letter-spacing: 0.4px;
+  position: relative;
+  text-transform: uppercase;
+}
+
 .navbar a i,
 .navbar a:focus i {
   font-size: 12px;
@@ -948,6 +993,19 @@ p.lead {
   transition: all 0.3s ease-in-out 0s;
 }
 
+.navbar>ul>li>.nav3:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  background-color: var(--purple-color);
+  visibility: hidden;
+  transition: all 0.3s ease-in-out 0s;
+}
+
 .navbar a:hover:before,
 .navbar li:hover>a:before,
 .navbar .active:before {
@@ -960,6 +1018,10 @@ p.lead {
 .navbar .active:focus,
 .navbar li:hover>a {
   color: #fff;
+}
+
+.navbar li:hover>.nav3 {
+  color: var(--purple-color-dark);
 }
 
 .navbar .dropdown ul {

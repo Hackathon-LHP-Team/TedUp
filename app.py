@@ -71,18 +71,41 @@ class Blogs(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
+  
+class Playlists(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    audios = db.relationship('Audio', backref='playlist')
+    
+    
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
     title = db.Column(db.String(255), nullable=False)
-    desscription = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
     path = db.Column(db.String(256)) 
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
+    
     
 
 # ----------- Form -----------
-from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, NewPlaylist
 
+# ----------- Playlist -----------
+@app.route('/new_playlist', methods=["GET", "POST"])
+def new_playlist():
+    form = NewPlaylist()
+    if form.validate_on_submit():
+        playlist = Playlists(title=form.title.data,
+                     description=form.description.data,
+                     )
+        db.session.add(playlist)
+        db.session.commit()
+        form.title.data = ''
+        form.description.data = ''
+    return render_template('new_playlist.html', form=form)
 
 # ----------- Podcast -----------
 @app.route('/create_podcast')
@@ -93,12 +116,21 @@ def upload_page():
 @app.route('/all_podcasts')
 def all_podcasts():
     all_podcasts = Audio.query.order_by(Audio.date_posted)
-    return render_template("all_podcasts.html", all_podcasts=all_podcasts)
+    playlists = Playlists.query.order_by(Playlists.id)
+    return render_template("all_podcasts.html", all_podcasts=all_podcasts, playlists=playlists)
+
+@app.route("/playlist_play/<int:id>", methods=["GET", "POST"])   
+def playlist_play(id):
+    playlist = Playlists.query.get_or_404(id)
+    podcast = Audio.query.filter_by(playlist_id=id).first()
+    name = 'audio_files/' + podcast.name 
+    return render_template('playlist_play.html', playlist=playlist, podcast=podcast, name=name)
 
 @app.route("/podcast/<int:id>", methods=["GET", "POST"])   
 def podcast(id):
     podcast = Audio.query.get_or_404(id)
-    return render_template('podcast.html', podcast=podcast)
+    name = 'audio_files/' + podcast.name 
+    return render_template('podcast.html', podcast=podcast, name=name)
 
 
 @app.route('/upload', methods=['POST'])
@@ -113,8 +145,9 @@ def upload_file():
         # Get the title and description from the form
         title = request.form.get('title')
         description = request.form.get('description')
+        playlist_id = request.form.get('playlist_id')
         # Create the audio object with the title and description
-        audio = Audio(name=name, title=title, desscription=description)
+        audio = Audio(name=name, title=title, description=description, playlist_id=playlist_id)
         audio.path = path
         db.session.add(audio)
         db.session.commit()
