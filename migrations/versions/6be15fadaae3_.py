@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f8e10d313026
+Revision ID: 6be15fadaae3
 Revises: 
-Create Date: 2023-08-22 02:09:30.222107
+Create Date: 2023-08-22 14:15:31.896788
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f8e10d313026'
+revision = '6be15fadaae3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,8 @@ def upgrade():
     op.create_table('audio',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=64), nullable=True),
+    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('desscription', sa.Text(), nullable=False),
     sa.Column('path', sa.String(length=256), nullable=True),
     sa.Column('date_posted', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
@@ -39,7 +41,7 @@ def upgrade():
     op.create_table('blogs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
-    sa.Column('content', sa.Text(), nullable=True),
+    sa.Column('content', sa.Text(), nullable=False),
     sa.Column('date_posted', sa.DateTime(), nullable=True),
     sa.Column('poster_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['poster_id'], ['users.id'], ),

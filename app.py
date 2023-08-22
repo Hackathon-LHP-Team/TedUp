@@ -67,25 +67,28 @@ class Users(db.Model, UserMixin):
 class Blogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    content = db.Column(db.Text)
+    content = db.Column(db.Text, nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
+    title = db.Column(db.String(255), nullable=False)
+    desscription = db.Column(db.Text, nullable=False)
     path = db.Column(db.String(256)) 
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     
 
 # ----------- Form -----------
-from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio
 
 
 # ----------- Podcast -----------
 @app.route('/create_podcast')
 def upload_page():
-    return render_template('create_podcast.html')
+    form = UploadAudio()
+    return render_template('create_podcast.html', form=form)
 
 @app.route('/all_podcasts')
 def all_podcasts():
@@ -101,13 +104,17 @@ def podcast(id):
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files['file']
-    if file and file.filename.endswith('.mp3') and file.content_length < 10 * 1024 * 1024:
+    if file and file.content_length < 10 * 1024 * 1024:
         name = f'audio_{Audio.query.count() + 1}.mp3'
         folder = 'static/audio_files'
         os.makedirs(folder, exist_ok=True)
         path = os.path.join(folder, name)
         file.save(path)
-        audio = Audio(name=name)
+        # Get the title and description from the form
+        title = request.form.get('title')
+        description = request.form.get('description')
+        # Create the audio object with the title and description
+        audio = Audio(name=name, title=title, desscription=description)
         audio.path = path
         db.session.add(audio)
         db.session.commit()

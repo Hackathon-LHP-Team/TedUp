@@ -46,6 +46,7 @@
         <hr class="hr-2" style="width:68%; margin:auto">
         <br>
         {% for podcast in all_podcasts %}
+        
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
@@ -56,12 +57,12 @@
                                     <img src="static/imgs/Refined/shape.png" style="max-width: 40px;" alt="">
                                 </div>
                                 <div class="col-9">
-                                    <h2>{{podcast.name}}</h2>
+                                    <h2>{{podcast.title}}</h2>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <p>Podcasts are a popular and convenient way to learn, entertain, and inspire yourself</p>
+                            <p>{{podcast.path}}</p>
                             <a href="">Listen now <i class="bi bi-arrow-right"></i></a>
                         </div>
                         <hr class="mt-3 hr-2">
