@@ -27,6 +27,10 @@ class UpdateBlogForm(FlaskForm):
     content = StringField("Enter Content", validators=[DataRequired()], widget=TextArea())
     submit = SubmitField("Update story now")   
     
+class CommentForm(FlaskForm):
+    content = StringField("Comment", validators=[DataRequired()], widget=TextArea())
+    submit = SubmitField("Comment now")  
+    
 class UpdateInfo(FlaskForm):
     name = StringField("Change name", validators=[DataRequired()])
     email = StringField("Change email", validators=[DataRequired()])

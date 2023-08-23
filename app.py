@@ -49,6 +49,7 @@ class Users(db.Model, UserMixin):
     user_name = db.Column(db.String(120), nullable=False)
     password_hash = db.Column(db.String(200))
     posts = db.relationship('Blogs', backref='poster')
+    comments = db.relationship('Comments', backref='commenter')
     
     @property
     def password():
@@ -63,21 +64,27 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return '<Name %r>' % self.name
     
-    
 class Blogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    blog_commented = db.relationship('Comments', backref='blog_commented')
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment_content = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
   
+
 class Playlists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
     audios = db.relationship('Audio', backref='playlist')
-    
     
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -88,10 +95,9 @@ class Audio(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'))
     
-    
 
 # ----------- Form -----------
-from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, NewPlaylist
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, CommentForm, NewPlaylist 
 
 # ----------- Playlist -----------
 @app.route('/new_playlist', methods=["GET", "POST"])
@@ -305,6 +311,7 @@ def convert_to_sec(time_to_convert):
     seconds = hour * 3600 + minute * 60 + second
     return seconds
 
+
 @app.route("/time/<int:start_time_sec>/<int:id>", methods=["GET", "POST"])
 def time(start_time_sec, id):
     end_time = datetime.utcnow()
@@ -316,14 +323,27 @@ def time(start_time_sec, id):
     return redirect(url_for('all_blogs'))
 
 import time
-@app.route("/blog/<int:id>")
+@app.route("/blog/<int:id>", methods=["GET", "POST"])
 def blog(id):
     blog = Blogs.query.get_or_404(id)
+    commentForm = CommentForm()
+    if commentForm.validate_on_submit():
+        comment = Comments(blog_id=blog.id,
+                     commenter_id = current_user.id,
+                     comment_content=commentForm.content.data,
+                     )
+        db.session.add(comment)
+        db.session.commit()
+        
+        commentForm.content.data = ''
+    
+    all_comments = Comments.query.order_by(Comments.date_posted)
+    
     start_time = datetime.utcnow()
     start_time_str = start_time.strftime("%H:%M:%S")
     start_time_sec = convert_to_sec(start_time_str)
     print(start_time_sec)
-    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime)
+    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime, commentForm=commentForm, all_comments=all_comments)
 
 @app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
 @login_required

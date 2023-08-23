@@ -1,16 +1,13 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-
-
-
 <div class="blog-theme bg-image text-purple">
     <div class=""></div>
 
     <div class="hero-content display-table">
         <div class="table-cell-2 opacity-1">
             <div class="container text-left">
-                <!-- content block -->
+                <!-- Blog content block -->
                 <div class="">
                     <h3 class="ms-3">Read this story might help you!</h3>
                     <br>
@@ -56,14 +53,49 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- end content block -->
+                <!-- end blog content block -->
 
-                <br><br>
-                <hr>
+                <!-- comment block -->
+                <br><hr><br>
+                <h1 class="text-center"> Comments Section</h1>
                 <br>
-                <h1 class="text-center"> More content like this</h1>
+                <div class="container" >
+                <div class="hr-3"></div>
+                    {% for comment in all_comments  %}
+                        {% if comment.blog_id == blog.id %}
+                            <div class="container border-left border-right border-bottom-new p-3">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div >{{comment.commenter.user_name}}</div>
+                                        <div class="text-purple-dark">{{comment.comment_content}}</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <!-- Use the <time> element with the datetime attribute -->
+                                        <time datetime="{{comment.date_posted.strftime('%Y-%m-%dT%H:%M:%S')}}" >
+                                            <!-- Use the text content to display the date and time in a readable format -->
+                                            <div style="margin-top: 15px">{{comment.date_posted.strftime('%B %d, %Y %H:%M:%S')}}</div>
+                                        </time>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="container">
+                    <form action="" method="POST">
+                        {{ commentForm.hidden_tag() }}
+                        <div class="text-left">
+                            {{ commentForm.content.label(class = 'form-label mt-4') }} 
+                            {{ commentForm.content(class = 'text-output text-area form-control-comment border-remove form-border-radius', rows="1")}}
+                            {{ commentForm.submit(class = 'btn btn-primary mt-4') }}
+                    </form>
+                </div>
+                <!-- end comment block -->
 
+
+                <!-- Suggest similar content -->
+                <br><br><hr><br>
+                <h1 class="text-center"> More content like this</h1>
                 <div class="row mt-4 text-center">
                         <div class="col-4 mt-4">
                             <div class="card ">
@@ -125,3 +157,6 @@
 
 <!-- nav bar -->
 {% include 'footer.html' %}
+
+
+<script src="{{ url_for('static', filename='js/text-box-control.js') }}"></script>

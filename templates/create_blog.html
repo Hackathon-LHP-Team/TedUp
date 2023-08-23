@@ -1,7 +1,7 @@
 <!-- nav bar -->
 {% include 'navbar.html' %}
 
-<div id="hero" class="hero route bg-image" style="background: var(--purple-color) ">
+<div id="hero" class="hero route bg-image" style="background-color: var(--purple-color) ">
     <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell">
@@ -38,15 +38,4 @@
         <br><br><br>
     </div>
 
-    <script type="text/javascript"> 
-        // Get the textarea element 
-        var textarea = document.getElementById ("content");
-
-        // Add an event listener for input event 
-        textarea.addEventListener ("input", function () { 
-            // Reset the height to 0 
-            textarea.style.height = 0; 
-            // Set the height to the scroll height (the actual height of the content) 
-            textarea.style.height = textarea.scrollHeight + "px"; 
-        }); 
-    </script>
+    <script src="{{ url_for('static', filename='js/text-box-control.js') }}"></script>

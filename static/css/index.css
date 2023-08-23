@@ -57,6 +57,21 @@ hr {
   padding: 0;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.hr-3 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid var(--purple-color);
+}
+
 
 /*--/ =================== Audio =================== /--*/
 audio::-webkit-media-controls-play-button{
@@ -91,7 +106,7 @@ audio::-webkit-media-controls-play-button{
 
 
 /*--/ =================== Boder =================== /--*/
-.border-bottom {
+.border-bottom-new {
   border-bottom: 2px solid var(--purple-color);
 }
 
@@ -128,6 +143,9 @@ audio::-webkit-media-controls-play-button{
 
 .text-purple {
   color: var(--purple-color-light);
+}
+.text-purple-dark {
+  color: var(--purple-color-dark);
 }
 
 .text-bg {
@@ -172,13 +190,22 @@ audio::-webkit-media-controls-play-button{
 /*--/ ===================  Form Customization =================== /--*/
 .form-control-blog { 
   border: none; 
-  border-bottom: 
-  2px solid var(--white-color); 
+  border-bottom: 2px solid var(--white-color); 
   outline: none; 
   background: transparent; 
   width: 100%;
-  color: var(--bs-btn-active-color);
+  color: var(--white-color);
 }
+
+.form-control-comment { 
+  border: none; 
+  border-bottom: 2px solid var(--purple-color); 
+  outline: none; 
+  background: transparent; 
+  width: 100%;
+  color: var(--purple-color);
+}
+
 
 .form-control-contact { 
   border: none; 
