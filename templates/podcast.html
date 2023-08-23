@@ -1,22 +1,106 @@
 <!-- navbar -->
-{% include 'navbar.html' %}
+{% include 'navbar3.html' %}
 
 
-<audio controls id="myAudio">
-  <source src="{{ url_for('static', filename = name) }}" type="audio/mpeg" />Your browser does not support the audio element.
-</audio>
+    <div class="row">
+        <!-- Playlist overall description -->
+        <div class="col-4" style="background-color: var(--purple-color); height: 675px; margin-top: 50px;">
+            <h1 class="text-bg medium-heading" style="margin-left:30px; margin-top: 50px;">{{playlist.title}}</h1>
+            <p class="text-bg opacity-8" style="margin-left: 80px; margin-top: 120px; max-width: 250px;">{{playlist.description}}</p>
+            <h1 class="text-bg small-heading text-right" style="margin-right:30px; margin-top: 100px;">Healing <br> Podcast Playlist</h1>
+        </div>
 
-<button onclick="playAudio()" type="button">Play Podcast</button>
+        <!-- Podcast play section -->
+        <div class="col-4 text-center border-right" style="margin-top: 50px;">
+            <div class="card" style="width: 23rem; margin: auto; margin-top:50px; ">
+              <h5 class="card-header border-purple">Episode</h5>
+                
+              <img src="{{ url_for('static', filename = 'imgs/shapes/rm_6.png') }}" class="card-img-top border-purple" style="background: transparents;">
+              <!-- audio card player -->
+              <div class="card-body card-primary-color">
 
+                <h4 class="card-title">{{podcast.title}}</h4>
+                <p class="card-text">{{podcast.description}}</p>
 
+                <!-- audio element -->
+                <audio id="myAudio" preload="metadata" > 
+                  <source src="{{ url_for('static', filename = name) }}" type="audio/mpeg" />Your browser does not support the audio element.
+                </audio>
+                
+                <br>
+                <!-- customized audio element -->
+                <div id="audio-player-container">
+                  <!-- Slider Play Audio-->
+                  <div id="seek-container">
+                    <div class="row">
+                      <!-- current time -->
+                      <div class="col">
+                        <div id="current-time"></div>
+                      </div>
+                      <!-- Play/Pause control -->
+                      <div class="col" style="font-size: larger;">
+                        <div id="play-pause-container">
+                          <i id="play-button" class="bi bi-play-circle-fill"></i>
+                          <i id="pause-button" class="bi bi-pause-circle-fill display-none"></i>
+                        </div>
+                      </div>
+                      <!-- total time -->
+                      <div class="col">
+                        <div id="total-time"></div>
+                      </div>
+                    </div>
+                    <div id="seek-values" style="display:flex">
+                    </div>
+                    <input id="seekslider" class="my-slider" type="range" min="0" step="1" value="">
+                  </div>
 
+                  <br>
+                  <!-- Volumn control -->
+                  <div id="volume-container">
+                    <div class="row">
+                      <!-- Volumn up -->
+                      <div class="col">
+                        <div id="vol-down-btn" class="vol-btn" style="font-size:larger">
+                          <i class="bi bi-volume-down-fill"></i>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div>Volumn</div>
+                      </div>
+                      <!-- Volumn down -->
+                      <div class="col">
+                        <div id="vol-up-btn" class="vol-btn" style="font-size:larger">
+                          <i class="bi bi-volume-up-fill"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <input id="volume-slider" class="my-slider" type="range" min="0" max="1" value="1" step="0.1"> <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
 
+        <!-- Episodes Sections -->
+        <div class="col-4 text-purple" style="margin-top: 90px;">
+          <div class="container" style="margin-left: 15px">
+            <h2 class="">Playlist Episodes</h2>
+            <br><br>
+            {% for podcast in all_podcasts %}
+              {% if podcast.playlist_id == playlist.id %}
+                <div class="row">
+                  <div class="col-2">
+                    <div>{{podcast.id}}</div>
+                  </div>
+                  <div class="col-10">
+                    <a href=" {{url_for('podcast', id=podcast.id)}}">{{podcast.title}} <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>
+              {% endif %}
+              <hr>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
 
-<script>
-    // Get the audio element by id
-    var podcast = document.getElementById('myAudio')
-    // Define a function to play the audio
-    function playAudio() {
-      podcast.play()
-    }
-</script>
+    <script src="{{ url_for('static', filename='js/podcast_audio_control.js') }}"></script>

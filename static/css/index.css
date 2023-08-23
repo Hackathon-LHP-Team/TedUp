@@ -63,6 +63,32 @@ audio::-webkit-media-controls-play-button{
   background-color:var(--purple-color);
 }
 
+.display-none {
+  display: none;
+}
+
+.my-slider {
+  -webkit-appearance: none;
+   width:100%;
+   height: 10px;
+   border:2px solid var(--purple-color);
+   /* transform: rotate(270deg); */
+}
+
+.my-slider::-webkit-slider-runnable-track {
+ background-color: var(--bg-color);
+ height: 8px;
+}
+
+.my-slider::-webkit-slider-thumb {
+ -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: var(--purple-color);
+  box-shadow: 2px 2px 1px #000000;
+}
+
 
 /*--/ =================== Boder =================== /--*/
 .border-bottom {
@@ -72,6 +98,23 @@ audio::-webkit-media-controls-play-button{
 .border-purple {
   border: 2px solid var(--purple-color);
 }
+
+.border-left {
+  border-left: 2px solid var(--purple-color);
+}
+
+.border-right {
+  border-right: 2px solid var(--purple-color);
+}
+
+.border-bottom {
+  border-bottom: 2px solid var(--purple-color);
+}
+
+.border-top {
+  border-top: 2px solid var(--purple-color);
+}
+
 
 .footer-color {
   color: var(--bg-color);

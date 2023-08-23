@@ -124,13 +124,16 @@ def playlist_play(id):
     playlist = Playlists.query.get_or_404(id)
     podcast = Audio.query.filter_by(playlist_id=id).first()
     name = 'audio_files/' + podcast.name 
-    return render_template('playlist_play.html', playlist=playlist, podcast=podcast, name=name)
+    all_podcasts = Audio.query.order_by(Audio.date_posted)
+    return render_template('playlist_play.html', playlist=playlist, podcast=podcast, name=name, all_podcasts=all_podcasts)
 
 @app.route("/podcast/<int:id>", methods=["GET", "POST"])   
 def podcast(id):
     podcast = Audio.query.get_or_404(id)
+    playlist = Playlists.query.get_or_404(podcast.playlist_id)
     name = 'audio_files/' + podcast.name 
-    return render_template('podcast.html', podcast=podcast, name=name)
+    all_podcasts = Audio.query.order_by(Audio.date_posted)
+    return render_template('podcast.html', podcast=podcast, playlist=playlist, name=name, all_podcasts=all_podcasts)
 
 
 @app.route('/upload', methods=['POST'])
