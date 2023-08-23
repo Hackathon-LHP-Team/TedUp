@@ -7,7 +7,7 @@
   --purple-color-dark: #5215fc;
   --purple-color: #885fff;
   --purple-color-light: #8774f1;
-  --pink-color: #ee93a9;    
+  --pink-color: #ee93a9;
   --light-color: #febfad;
   --bg-color: #fdf2fc;
   --dark-light-color: #1e1e1e;
@@ -18,7 +18,7 @@
 }
 
 body {
-  background-color: var(--bg-color); 
+  background-color: var(--bg-color);
   background-attachment: fixed;
   color: #4e4e4e;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -65,7 +65,7 @@ hr {
 }
 
 /*--/ =================== Reactions =================== /--*/
-.margin-right{
+.margin-right {
   margin-right: 15px;
 }
 
@@ -74,10 +74,47 @@ hr {
   border-color: var(--purple-color);
 }
 
+/* Hide the original radio buttons */
+.form-check-input {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style the icons */
+.form-check-label i {
+  cursor: pointer;
+  color: var(--purple-color);
+}
+
+/* Change the icon color when hovered */
+.form-check-label:hover i {
+  font-size: 25px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  color: var(--purple-color-dark);
+}
+
+/* Change the icon to fill version when checked */
+.form-check-input:checked+label i {
+  color: var(--dark-color);
+  font-weight: bold;
+}
+
+.custom-popover {
+  --bs-popover-max-width: 200px;
+  --bs-popover-border-color: var(--bd-violet-bg);
+  --bs-popover-header-bg: var(--bd-violet-bg);
+  --bs-popover-header-color: var(--bs-white);
+  --bs-popover-body-padding-x: 1rem;
+  --bs-popover-body-padding-y: .5rem;
+}
+
+.modal-content {
+  background-color: var(--bg-color);
+}
 
 /*--/ =================== Audio =================== /--*/
-audio::-webkit-media-controls-play-button{
-  background-color:var(--purple-color);
+audio::-webkit-media-controls-play-button {
+  background-color: var(--purple-color);
 }
 
 .display-none {
@@ -86,19 +123,19 @@ audio::-webkit-media-controls-play-button{
 
 .my-slider {
   -webkit-appearance: none;
-   width:100%;
-   height: 10px;
-   border:2px solid var(--purple-color);
-   /* transform: rotate(270deg); */
+  width: 100%;
+  height: 10px;
+  border: 2px solid var(--purple-color);
+  /* transform: rotate(270deg); */
 }
 
 .my-slider::-webkit-slider-runnable-track {
- background-color: var(--bg-color);
- height: 8px;
+  background-color: var(--bg-color);
+  height: 8px;
 }
 
 .my-slider::-webkit-slider-thumb {
- -webkit-appearance: none;
+  -webkit-appearance: none;
   height: 15px;
   width: 15px;
   border-radius: 50%;
@@ -146,6 +183,7 @@ audio::-webkit-media-controls-play-button{
 .text-purple {
   color: var(--purple-color-light);
 }
+
 .text-purple-dark {
   color: var(--purple-color-dark);
 }
@@ -177,78 +215,85 @@ audio::-webkit-media-controls-play-button{
   color: var(--dark-color);
 }
 
-.text-area::-webkit-scrollbar { display: none; }
-.text-output { white-space: pre-line; }
+.text-area::-webkit-scrollbar {
+  display: none;
+}
+
+.text-output {
+  white-space: pre-line;
+}
+
 .card-secondary-color {
   background-color: var(--purple-color);
   border: none;
   color: var(--bg-color);
 }
 
-.card{
+.card {
   --bs-card-bg: transparent;
 }
 
 /*--/ ===================  Form Customization =================== /--*/
-.form-control-blog { 
-  border: none; 
-  border-bottom: 2px solid var(--white-color); 
-  outline: none; 
-  background: transparent; 
+.form-control-blog {
+  border: none;
+  border-bottom: 2px solid var(--white-color);
+  outline: none;
+  background: transparent;
   width: 100%;
   color: var(--white-color);
 }
 
-.form-control-comment { 
-  border: none; 
-  border-bottom: 2px solid var(--purple-color); 
-  outline: none; 
-  background: transparent; 
+.form-control-comment {
+  border: none;
+  border-bottom: 2px solid var(--purple-color);
+  outline: none;
+  background: transparent;
   width: 100%;
   color: var(--purple-color);
 }
 
 
-.form-control-contact { 
-  border: none; 
-  border-bottom: 
-  2px solid var(--purple-color); 
-  outline: none; 
-  background: transparent; 
+.form-control-contact {
+  border: none;
+  border-bottom:
+    2px solid var(--purple-color);
+  outline: none;
+  background: transparent;
   width: 100%;
   color: var(--bs-btn-active-color);
 }
 
-.form-control-subscribe { 
-  border: none; 
-  border-bottom: 
-  2px solid var(--bg-color); 
-  outline: none; 
-  background: transparent; 
+.form-control-subscribe {
+  border: none;
+  border-bottom:
+    2px solid var(--bg-color);
+  outline: none;
+  background: transparent;
   width: 40%;
   color: var(--bs-btn-active-color);
 }
+
 .form-control-subscribe::-webkit-input-placeholder {
   color: var(--bg-color);
 }
 
-.form-control-registration { 
-  border: none; 
-  border-bottom: 
-  2px solid white; 
-  outline: none; 
-  background: transparent; 
+.form-control-registration {
+  border: none;
+  border-bottom:
+    2px solid white;
+  outline: none;
+  background: transparent;
   width: 80%;
   margin-left: 30px;
   color: var(--bs-btn-active-color);
 }
 
-.form-control-login { 
-  border: none; 
-  border-bottom: 
-  2px solid white; 
-  outline: none; 
-  background: transparent; 
+.form-control-login {
+  border: none;
+  border-bottom:
+    2px solid white;
+  outline: none;
+  background: transparent;
   width: 100%;
   color: var(--bs-btn-active-color);
 }
@@ -266,27 +311,27 @@ audio::-webkit-media-controls-play-button{
 .search-custom {
   color: var(--purple-color);
   border-bottom: 2px solid var(--purple-color);
-  border: none; 
-  outline: none; 
-  background: transparent; 
+  border: none;
+  outline: none;
+  background: transparent;
   width: 100%;
 }
 
 .search-custom:active {
   color: var(--purple-color);
-  border: none; 
+  border: none;
   border-bottom: 2px solid var(--purple-color);
-  outline: none; 
-  background: transparent; 
+  outline: none;
+  background: transparent;
   width: 100%;
 }
 
 .search-custom:hover {
   color: var(--purple-color);
-  border: none; 
+  border: none;
   border-bottom: 2px solid var(--purple-color);
-  outline: none; 
-  background: transparent; 
+  outline: none;
+  background: transparent;
   width: 100%;
 }
 
@@ -317,11 +362,11 @@ audio::-webkit-media-controls-play-button{
   border: var(--bs-border-width) var(--bs-border-style) var(--dark-light-color) !important
 }
 
-.bg-black{
+.bg-black {
   background-color: #000000;
 }
 
-.bg-purple{
+.bg-purple {
   background-color: var(--purple-color);
 }
 
@@ -483,6 +528,7 @@ a:hover {
   .bg-image {
     background-attachment: scroll;
   }
+
   .developer-docs-header {
     font-size: 1.9rem;
   }
@@ -610,7 +656,7 @@ p.lead {
 }
 
 .developer-docs-header {
-  font-size:4rem;
+  font-size: 4rem;
   position: relative;
   color: var(--purple-color);
   line-height: 0.9;
@@ -625,6 +671,7 @@ p.lead {
   .our-story {
     font-size: 7rem;
   }
+
   .core-features {
     margin-left: 5em;
   }
@@ -690,10 +737,11 @@ p.lead {
 
 @keyframes scroll {
   from {
-       transform: translateX(0);
+    transform: translateX(0);
   }
+
   to {
-       transform: translateX(-100%);
+    transform: translateX(-100%);
   }
 }
 
@@ -893,11 +941,13 @@ p.lead {
   color: var(--body-font-color);
 }
 
-.list-group-item:hover, .listgroup a .active {
+.list-group-item:hover,
+.listgroup a .active {
   color: var(--purple-color-light);
 }
 
-.list-group-item-footer:hover, .listgroup a .active {
+.list-group-item-footer:hover,
+.listgroup a .active {
   color: var(--bg-color);
 }
 
@@ -1030,7 +1080,7 @@ p.lead {
   text-transform: uppercase;
 }
 
-.navbar .nav3{
+.navbar .nav3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1523,6 +1573,7 @@ p.lead {
 .work-img img {
   transition: all 0.2s;
 }
+
 .work-box:hover img {
   transform: translateY(-25px);
 }
@@ -2046,28 +2097,37 @@ footer .credits a {
   opacity: 0;
   filter: blur(10px);
   transform: translateX(-400px);
-  transition: all 1.5s;}
+  transition: all 1.5s;
+}
+
 .moveRightAlready {
   opacity: 1;
   filter: blur(0);
-  transform: translateX(0);}
+  transform: translateX(0);
+}
 
 .moveLeft {
   opacity: 0;
   filter: blur(10px);
   transform: translateX(400px);
-  transition: all 1.5s;}
+  transition: all 1.5s;
+}
+
 .moveLeftAlready {
   opacity: 1;
   filter: blur(0);
-  transform: translateX(0);}
+  transform: translateX(0);
+}
 
 .up {
   opacity: 0;
   filter: blur(10px);
   transform: translateY(200px);
-  transition: all 1.5s;}
+  transition: all 1.5s;
+}
+
 .upAlready {
   opacity: 1;
   filter: blur(0);
-  transform: translateY(0);}
+  transform: translateY(0);
+}
