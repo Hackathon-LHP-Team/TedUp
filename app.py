@@ -50,6 +50,7 @@ class Users(db.Model, UserMixin):
     password_hash = db.Column(db.String(200))
     posts = db.relationship('Blogs', backref='poster')
     comments = db.relationship('Comments', backref='commenter')
+    reacts = db.relationship('Reactions', backref='reacter')
     
     @property
     def password():
@@ -70,6 +71,7 @@ class Blogs(db.Model):
     content = db.Column(db.Text, nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     blog_commented = db.relationship('Comments', backref='blog_commented')
+    blog_reacted = db.relationship('Reactions', backref='blog_reacted')
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 class Comments(db.Model):
@@ -79,6 +81,12 @@ class Comments(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
   
+class Reactions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reaction_type = db.Column(db.String(255), nullable=False)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    reacter_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
 
 class Playlists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -99,14 +107,15 @@ class Audio(db.Model):
 # ----------- Form -----------
 from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, CommentForm, NewPlaylist 
 
+
 # ----------- Playlist -----------
 @app.route('/new_playlist', methods=["GET", "POST"])
 def new_playlist():
     form = NewPlaylist()
     if form.validate_on_submit():
         playlist = Playlists(title=form.title.data,
-                     description=form.description.data,
-                     )
+                           description=form.description.data,
+                            )
         db.session.add(playlist)
         db.session.commit()
         form.title.data = ''
@@ -322,28 +331,39 @@ def time(start_time_sec, id):
     util_matrix.fill_uitlity_matrix(blog_id=id, user_id=current_user.id, duration=duration)
     return redirect(url_for('all_blogs'))
 
+@app.route("/reactions", methods=["GET", "POST"])
+def reactions():
+    emotion = request.form['emotion'] 
+    blogid = request.form['id']
+    reaction = Reactions(reaction_type=emotion, reacter_id=current_user.id, blog_id=blogid)
+    db.session.add(reaction)
+    db.session.commit()
+    return render_template('reactions.html', emotion=emotion)
+
 import time
 @app.route("/blog/<int:id>", methods=["GET", "POST"])
 def blog(id):
     blog = Blogs.query.get_or_404(id)
+    # Comments
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
         comment = Comments(blog_id=blog.id,
-                     commenter_id = current_user.id,
-                     comment_content=commentForm.content.data,
-                     )
+                        commenter_id = current_user.id,
+                        comment_content=commentForm.content.data,
+                        )
         db.session.add(comment)
         db.session.commit()
         
         commentForm.content.data = ''
     
     all_comments = Comments.query.order_by(Comments.date_posted)
+    reactions = Reactions.query.order_by(Reactions.date_posted)
     
     start_time = datetime.utcnow()
     start_time_str = start_time.strftime("%H:%M:%S")
     start_time_sec = convert_to_sec(start_time_str)
     print(start_time_sec)
-    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime, commentForm=commentForm, all_comments=all_comments)
+    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime, commentForm=commentForm, all_comments=all_comments, reactions=reactions)
 
 @app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
 @login_required

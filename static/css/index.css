@@ -57,19 +57,21 @@ hr {
   padding: 0;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
-.margin-right {
-  margin-right: 10px;
-}
-
 .hr-3 {
   display: block;
   height: 1px;
   border: 0;
   border-top: 2px solid var(--purple-color);
+}
+
+/*--/ =================== Reactions =================== /--*/
+.margin-right{
+  margin-right: 15px;
+}
+
+.form-check-input:checked {
+  background-color: var(--purple-color);
+  border-color: var(--purple-color);
 }
 
 
