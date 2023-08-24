@@ -99,7 +99,8 @@ class Reactions(db.Model):
     
 class BookMarks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bookmarked = db.Column(db.String(255), nullable=False)
+    bookmark_state = db.Column(db.String(255), nullable=False)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     bookmarker_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
 
@@ -315,17 +316,10 @@ def create_blog():
               
     return render_template("create_blog.html", title=title, form=form)
 
-@app.route("/bookmark", methods=["GET", "POST"])
-def bookmark():
-    emotion = request.form['emotion'] 
-    blogid = request.form['id']    
-    
-    all_blogs = Blogs.query.order_by(Blogs.date_posted)
-    return render_template("bookmark.html")
 
 @app.route("/all_blogs")
 def all_blogs():
-    all_blogs = Blogs.query.order_by(Blogs.date_posted)
+    all_blogs = Blogs.query.order_by(Blogs.date_posted)    
     return render_template("all_blogs.html", all_blogs=all_blogs)
 
 @app.route("/recsys")
@@ -374,12 +368,27 @@ def reactions():
         reaction = Reactions(reaction_type=emotion, reacter_id=current_user.id, blog_id=blogid)
         db.session.add(reaction)
         db.session.commit()
+                    
+    return redirect(url_for('blog', id=blogid))
+
+@app.route("/bookmark", methods=["GET", "POST"])
+def bookmark():
+    if request.method == "POST":
+        blogid = request.form.get("id")
+        bookmarked_state = request.form.get("bookmark_state") 
+        if bookmarked_state == "true":
+            # Add to the database
+            bookmark = BookMarks(bookmark_state=bookmarked_state, bookmarker_id=current_user.id, blog_id=blogid)
+            db.session.add(bookmark)
+            db.session.commit()
+        else:
+            # find the existing bookmark object and delete it from the database
+            bookmark = BookMarks.query.filter_by(bookmarker_id=current_user.id, blog_id=blogid).first()
+            db.session.delete(bookmark)
+            db.session.commit()
+
+        return redirect(url_for('blog', id=blogid))
         
-    blog = Blogs.query.get_or_404(int(blogid))
-    commentForm = CommentForm()
-    all_comments = Comments.query.order_by(Comments.date_posted)
-    temp = "randomstring"
-    return render_template('blog.html', blog=blog, start_time_sec=0, datetime=datetime, commentForm=commentForm, all_comments=all_comments, reactions=reactions, temp=temp)
 
 
 import time
@@ -405,12 +414,19 @@ def blog(id):
     for reaction in reactions:
         if reaction.reacter.id == current_user.id and reaction.blog_id == id:
             temp = reaction.reaction_type
+            
+    # Bookmarks
+    temp2 = None
+    bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
+    for bookmark in bookmarks:
+        if bookmark.bookmarker.id == current_user.id and bookmark.blog_id == id:
+            temp2 = bookmark.bookmark_state
+            print("TEMP2: ", temp2)
     
     start_time = datetime.utcnow()
     start_time_str = start_time.strftime("%H:%M:%S")
     start_time_sec = convert_to_sec(start_time_str)
-    print(start_time_sec)
-    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime, commentForm=commentForm, all_comments=all_comments, reactions=reactions, temp=temp)
+    return render_template('blog.html', blog=blog, start_time_sec=start_time_sec, datetime=datetime, commentForm=commentForm, all_comments=all_comments, reactions=reactions, bookmarks=bookmarks, temp=temp, temp2=temp2)
 
 @app.route("/all_blogs/edit_blog/<int:id>", methods=["GET", "POST"])
 @login_required

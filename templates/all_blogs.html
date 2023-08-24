@@ -57,8 +57,7 @@
                 <p class="text-purple opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
                 <br>
 
-                
-                
+
                 <div class="row mt-4">
                     {% for blog in all_blogs %}
                         <div class="col-4 mt-4">
@@ -67,27 +66,25 @@
                                     Featured story 
                                 </div>
                                 <div class="card-body card-primary-color">
-                                    <h3 class="card-title-blog" style="margin-right:15px">
-                                        <div class="modal fade" id="Bookmark" aria-hidden="true" aria-labelledby="Bookmark" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                              <div class="modal-content">
+                                    <div class="modal fade" id="bookmark" aria-hidden="true" aria-labelledby="bookmark" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h1 class="modal-title fs-5" id="Bookmark">Modal 1</h1>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h1 class="modal-title fs-5" id="bookmark">Confirmation</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                  Bookmark this blog?
+                                                <div class="modal-body" style="font-size: larger">
+                                                    Bookmark this blog?
                                                 </div>
-                                                <div class="modal-footer">
-                                                  <form action="/bookmark" method="post">
-                                                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
-                                                  </form>
+                                                <div class="modal-footer">    
+                                                    <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
                                                 </div>
-                                              </div>
                                             </div>
-                                          </div>
+                                        </div>
+                                    </div>
+                                    
 
-                                        <i class="bi bi-bookmark-heart" data-bs-toggle="modal" data-bs-target="#Bookmark"></i> 
+                                    <h3 class="card-title-blog" style="margin-right:15px">
                                         {{blog.title[:25]}}
                                     </h3>
                                     

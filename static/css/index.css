@@ -89,7 +89,7 @@ hr {
 /* Change the icon color when hovered */
 .form-check-label:hover i {
   font-size: 25px;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.3s;
   color: var(--purple-color-dark);
 }
 
