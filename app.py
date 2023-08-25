@@ -20,6 +20,9 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 import os
 import time
 
+# jinja
+
+
 
 
 # ----------- Keys and Global Variables -----------
@@ -299,12 +302,6 @@ def update_info(id):
 def tags():
     taglist = request.form.getlist('tags[]') 
     return render_template("tags.html", taglist=taglist)
-
-def encoding(tag_list):
-    return '/'.join(tag_list)
-
-def decoding(str_list):
-    return str_list.split('/')
     
     
 # ----------- Blog management -----------
@@ -342,16 +339,46 @@ def create_blog():
               
     return render_template("create_blog.html", title=title, form=form)
 
+def encoding(tag_list):
+    return '/'.join(tag_list)
+
+def decoding(str_list):
+    return str_list.split('/')
+
+def blog_id_bookmark(blogid):
+    # Bookmarks
+    temp2 = None
+    bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
+    for bookmark in bookmarks:
+        if bookmark.bookmarker.id == current_user.id and bookmark.blog_id == blogid:
+            temp2 = bookmark.bookmark_state
+            
+    return temp2
 
 @app.route("/all_blogs")
 def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)    
     
     # Bookmarks
-    temp2 = None
     bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
-            
-    return render_template("all_blogs.html", all_blogs=all_blogs, bookmarks=bookmarks, temp2=temp2)
+    tags = Tags.query.order_by(Tags.date_posted)
+    list_tags = ["cảm xúc", "chủng tộc", "sở thích", "du lịch", "thể thao", "hẹn hò", "gia đình", "đồng nghiệp", "bạn bè", "tâm lý", "nhân cách", "âm nhạc", "sách truyện", "áp lực", "thi cử"]
+    
+    return render_template("all_blogs.html", all_blogs=all_blogs, bookmarks=bookmarks, blog_id_bookmark=blog_id_bookmark, tags=tags, decoding=decoding, list_tags=list_tags)
+
+@app.route("/all_blogs_filter/<string:query>")
+def all_blogs_filter(query):
+    all_blogs = Blogs.query.order_by(Blogs.date_posted)    
+    print(query)
+    
+    # Bookmarks
+    bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
+    tags = Tags.query.order_by(Tags.date_posted)
+    list_tags = ["cảm xúc", "chủng tộc", "sở thích", "du lịch", "thể thao", "hẹn hò", "gia đình", "đồng nghiệp", "bạn bè", "tâm lý", "nhân cách", "âm nhạc", "sách truyện", "áp lực", "thi cử"]
+    
+    return render_template("all_blogs_filter.html", all_blogs=all_blogs, bookmarks=bookmarks, blog_id_bookmark=blog_id_bookmark, tags=tags, decoding=decoding, list_tags=list_tags, query=query)
+
+
 
 @app.route("/recsys")
 def recsys():
@@ -425,6 +452,8 @@ def bookmark2():
     if request.method == "POST":
         blogid = request.form.get("id")
         bookmarked_state = request.form.get("bookmark_state") 
+        bookmark_id = request.form.get("bookmark_id") 
+        
         if bookmarked_state == "true":
             # Add to the database
             bookmark = BookMarks(bookmark_state=bookmarked_state, bookmarker_id=current_user.id, blog_id=blogid)

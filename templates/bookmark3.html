@@ -1,10 +1,10 @@
 <!-- Bookmark section -->
 <form action="/bookmark2" method="post">
-    <input type="hidden" name="id" value="{{ blog.id }}">
+    <input type="hidden" name="id" value="{{ tag.blog_tags.id }}">
     
 
     <!-- bookmarking -->
-    {% set temp2 = blog_id_bookmark(blog.id) %}
+    {% set temp2 = blog_id_bookmark(tag.blog_tags.id) %}
 
         {% if temp2==None %}
             <!-- bookmarking -->

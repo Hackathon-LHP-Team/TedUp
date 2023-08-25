@@ -60,47 +60,50 @@
                     <a href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
                 {% endfor %}
 
+                
                 <div class="row mt-4">
-                    {% for blog in all_blogs %}
-                        <div class="col-4 mt-4">
-                            <div class="card ">
-                                <div class="card-header card-secondary-color">
-                                    Featured story 
-                                </div>
-                                <div class="card-body card-primary-color">
-                                    <!-- bookmark -->
-                                    <div class="row" style="padding:0px">
-                                        <div class="col-2">
-                                            {% include 'bookmark2.html' %} 
+                    {% for tag in tags %}
+                        {% set tag_list = decoding(tag.content) %} 
+                        {% for str_tag in tag_list %} 
+                            {% if str_tag == query %}
+                                <div class="col-4">
+                                    <div class="card mt-4">
+                                        <div class="card-header card-secondary-color">
+                                            Featured story 
                                         </div>
-                                        <div class="col-10">
-                                            <h3 class="card-title-blog text-left" style="margin-left: 15px">
-                                                {{blog.title[:25]}}
-                                            </h3> 
+                                        <div class="card-body card-primary-color">
+                                            <!-- bookmark -->
+                                            <div class="row" style="padding:0px">
+                                                <div class="col-2">
+                                                    {% include 'bookmark3.html' %} 
+                                                </div>
+                                                <div class="col-10">
+                                                    <h3 class="card-title-blog text-left" style="margin-left: 15px">
+                                                        {{tag.blog_tags.title[:25]}}
+                                                    </h3> 
+                                                </div>
+                                            </div>
+                                            
+                                            <a href="{{url_for('other_user_blogs', id=tag.blog_tags.poster.id)}}"><p class="card-text">{{tag.blog_tags.poster.user_name}}</p></a>
+                                            <p class="card-text opacity-8 mt-4">{{tag.blog_tags.content[:140]}}......</p>
+                                            <br>
+                                            <div class="d-grid gap-2">
+                                                <a href="{{url_for('blog', id=tag.blog_tags.id)}}" class="btn btn-outline-primary">Read story now</a>
+                                            </div>
+                                            <br>
+                                            <div class="tag-footer">
+                                                {% for t in tag_list %} 
+                                                    <li class="badge tag-tag ">{{t}}</li> 
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
-                                    <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>
-                                    <br>
-                                    <div class="d-grid gap-2">
-                                        <a href="{{url_for('blog', id=blog.id)}}" class="btn btn-outline-primary">Read story now</a>
-                                    </div>
-                                    <br>
-                                    <div class="tag-footer">
-                                        {% for tag in tags %}
-                                            {% if tag.blog_id == blog.id %}
-                                                {% set tag_list = decoding(tag.content) %} 
-                                                    {% for t in tag_list %} 
-                                                        <li class="badge tag-tag ">{{t}}</li> 
-                                                    {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    {% endfor %} 
                 </div>
             </div>
             <!-- end content block -->
