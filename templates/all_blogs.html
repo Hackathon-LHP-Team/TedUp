@@ -6,32 +6,56 @@
 
     <div class="row" style="margin-top:60px">
         <div class="col-6">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/d2292f168637769.643e5842bfcc3.png" alt="" style="width: 100%;">      
+            <img src="static/imgs/shapes/bg.png" alt="" style="width: 100%;">      
         </div>
         <div class="col-6 text-left">
-            <h1 class="text-purple" style="margin-top:70px; margin-left: 20px;">Reading Categories</h1>
-            <h3 class="text-purple" style="margin-top:50px; margin-left: 20px;">News <i class="bi bi-arrow-right"></i></h3>
-            <h3 class="text-purple" style="margin-left: 20px;">Stories <i class="bi bi-arrow-right"></i></h3>
+            <h1 class="text-purple medium-heading" style="margin-top:30px; margin-left: 20px;">Reading Blogs</h1>
+            <br>
+            <hr style="margin-left: 20px;">
+            <p style="margin-left: 20px; max-width: 300px; margin-top: 70px;">A blog about mental health is a platform where you can share your thoughts, feelings, and experiences related to your mental well-being. You can also learn from other people’s stories, get tips and advice, and find support and resources. A blog about mental health can help you cope with stress, anxiety, depression, and other mental health issues. It can also inspire you to live a happier and healthier life.</p>
         </div>
     </div>
 
-    <div class="subscribe p-5">
-        <br>
-        <h2> Subscribe to get notified to get daily suggested blogs  </h2>
-        <br><br>
-        <form action="">
-            <div class="row" style="text-align: right;">
-                <div class="col-7">
-                    <input type="email" placeholder="Email" class="form-control-subscribe">
+    <div class="row">
+        <div class="subscribe p-5">
+            <br>
+            <h2> Subscribe to get notified to get daily suggested blogs  </h2>
+            <br><br>
+            <form action="">
+                <div class="row" style="text-align: right;">
+                    <div class="col-7">
+                        <input type="email" placeholder="Email" class="form-control-subscribe">
+                    </div>
+                    <div class="col-5 text-left" style="max-width:120px">
+                        <button type="submit" class="btn btn-outline-secondary">Send now</button>
+                    </div>
                 </div>
-                <div class="col-5 text-left" style="max-width:120px">
-                    <button type="submit" class="btn btn-outline-secondary">Send now</button>
-                </div>
-            </div>
-        </form> 
-        <br><br>
+            </form> 
+            <br><br>
+        </div>
     </div>
-    
+
+    <!-- Categories Topics Section - Running -->
+    <h1 class="text-purple mt-4">Reading Categories</h1>
+    <div class="mt-4">
+        <div class="row">
+            {% for category, img in zip(categories, img_categories) %}
+                <div class="col-2 col-2-custom">
+                    <div class="card card-category">
+                        <div class="card-body card-primary-color">
+                            <img src="static/imgs/shapes/{{img}}" class="card-img-top" alt="...">
+                            <!-- bookmark -->
+                            <h3 class="card-title-blog">{{ category.title }}</h3> 
+                            <p class="card-text opacity-8 mt-4">{{ category.description }}</p>
+                            <a href="">View <i class="bi bi-arrow-right"></i></a>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 
     <div class="hero-content display-table">
         <br> <br> <br> 

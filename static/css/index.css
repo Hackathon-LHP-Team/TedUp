@@ -64,6 +64,44 @@ hr {
   border-top: 2px solid var(--purple-color);
 }
 
+
+/*--/ =================== Categories Animation =================== /--*/
+.col-2-custom {
+  width: 20%;
+}
+
+/* Define the animation */
+@keyframes move-card {
+
+  /* Start from the right edge of the container */
+  0% {
+    transform: translateX(50%);
+  }
+
+  /* Move to the left edge of the container */
+  50% {
+    transform: translateX(-100%);
+  }
+
+  /* End at the right edge of the container */
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Apply the animation to the card */
+/* .card-category {
+  animation-name: move-card;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+} */
+
+.card-category:hover{
+  background-color: var(--purple-color);
+}
+
 /*--/ =================== Tags =================== /--*/
 .tag-footer {
   color: var(--purple-color);
@@ -84,7 +122,7 @@ hr {
   cursor: pointer;
 }
 
-.tag-choose:hover{
+.tag-choose:hover {
   color: var(--bg-color);
   background-color: var(--purple-color);
   transition: 0.2s ease;
@@ -236,6 +274,11 @@ hr {
 /*--/ =================== Audio =================== /--*/
 audio::-webkit-media-controls-play-button {
   background-color: var(--purple-color);
+}
+
+.form-check-input-custom:checked {
+  background-color: var(--purple-color);
+  color: var(--purple-color);
 }
 
 .display-none {

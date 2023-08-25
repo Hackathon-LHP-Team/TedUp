@@ -80,6 +80,7 @@ class Blogs(db.Model):
     blog_reacted = db.relationship('Reactions', backref='blog_reacted')
     tags = db.relationship('Tags', backref='blog_tags')
     blog_bookmarked = db.relationship('BookMarks', backref='blog_bookmarked')
+    blog_category = db.relationship('Categories', backref='blog_category')
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 class Tags(db.Model):
@@ -116,6 +117,13 @@ class Playlists(db.Model):
     description = db.Column(db.Text, nullable=False)
     audios = db.relationship('Audio', backref='playlist')
     
+class Categories(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+    
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
@@ -127,7 +135,7 @@ class Audio(db.Model):
     
 
 # ----------- Form -----------
-from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, CommentForm, NewPlaylist 
+from form_backup import Registration, Login, PostBlogForm, UpdateBlogForm, UpdateInfo, SearchForm, UploadAudio, CommentForm, NewPlaylist, NewCategory
 
 
 # ----------- Playlist -----------
@@ -143,6 +151,20 @@ def new_playlist():
         form.title.data = ''
         form.description.data = ''
     return render_template('new_playlist.html', form=form)
+
+# ----------- Category -----------
+@app.route('/new_category', methods=["GET", "POST"])
+def new_category():
+    form = NewCategory()
+    if form.validate_on_submit():
+        category = Categories(title=form.title.data,
+                            description=form.description.data,
+                            )
+        db.session.add(category)
+        db.session.commit()
+        form.title.data = ''
+        form.description.data = ''
+    return render_template('new_category.html', form=form)
 
 # ----------- Podcast -----------
 @app.route('/create_podcast')
@@ -255,7 +277,7 @@ def login():
         if user:
             if check_password_hash(user.password_hash, form.password_hash.data):
                 login_user(user)
-                return redirect(url_for('all_users'))
+                return redirect(url_for('dashboard', id=current_user.id))
             else:
                 flash('Wrong password. Please try again')
         else:
@@ -355,6 +377,8 @@ def blog_id_bookmark(blogid):
             
     return temp2
 
+    
+
 @app.route("/all_blogs")
 def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)    
@@ -363,8 +387,11 @@ def all_blogs():
     bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
     tags = Tags.query.order_by(Tags.date_posted)
     list_tags = ["cảm xúc", "chủng tộc", "sở thích", "du lịch", "thể thao", "hẹn hò", "gia đình", "đồng nghiệp", "bạn bè", "tâm lý", "nhân cách", "âm nhạc", "sách truyện", "áp lực", "thi cử"]
+    categories = Categories.query.order_by(Categories.date_posted)
     
-    return render_template("all_blogs.html", all_blogs=all_blogs, bookmarks=bookmarks, blog_id_bookmark=blog_id_bookmark, tags=tags, decoding=decoding, list_tags=list_tags)
+    img_categories = ['rm_2.png', 'rm_3.png', 'rm_4.png', 'rm_5.png', 'rm_6.png'] 
+    
+    return render_template("all_blogs.html", all_blogs=all_blogs, bookmarks=bookmarks, blog_id_bookmark=blog_id_bookmark, tags=tags, decoding=decoding, list_tags=list_tags, categories=categories, img_categories=img_categories, zip=zip)
 
 @app.route("/all_blogs_filter/<string:query>")
 def all_blogs_filter(query):

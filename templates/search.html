@@ -3,10 +3,11 @@
 
 
 
-<div id="hero" class="hero route bg-image">
+<div id="hero" class="hero route bg-image" style="background-color: var(--bg-color); color: var(--purple-color);">
     
-    <div class="overlay-itro"></div>
+    <div class="overlay-itro" style="background-color: var(--bg-color);"></div>
     
+    <br><br>
     <div class="hero-content display-table">
         <br> <br> <br> 
         <div class="container-fluid" style="max-width: 300px;">
@@ -17,14 +18,14 @@
                 <button class="btn btn-outline-search" type="submit"><i class="bi bi-search"></i></button>
                 <!-- Suggestion -->
                 <a href="{{url_for('recsys')}}" style="margin-top: 6px;" >
-                    <i class="bi bi-book ms-4"></i>
+                    <i class="bi bi-envelope-exclamation ms-4"></i>
                 </a>
                 <!-- End Suggestion -->
             </form>
             <!-- End Searching bar -->
         </div>
         
-        <div class="table-cell-3">
+        <div class="table-cell-3" style="background-color: var(--bg-color);"s>
             <!-- content block -->
             <div class="container">
                 <h2> Searching for "{{searched}}"</h2>
@@ -35,6 +36,9 @@
                     {% for blog in blogs %}
                         <div class="col-4 mt-4">
                             <div class="card card-primary-color">
+                                <div class="card-header card-secondary-color">
+                                    Related story 
+                                </div>
                                 <div class="card-body">
                                     <h3 class="card-title-blog">{{blog.title}}</h3>
                                     <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>

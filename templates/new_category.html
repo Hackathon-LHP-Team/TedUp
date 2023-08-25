@@ -1,0 +1,21 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<form method="POST">
+
+    {{ form.hidden_tag() }}
+
+    <div class="text-left">
+        {{ form.title.label(class = 'form-label') }}
+        {{ form.title(class = 'form-control') }}
+
+        {{ form.description.label(class = 'form-label mt-4') }}
+        {{ form.description(class = "form-control")}}
+
+
+        {{ form.submit(class = 'btn btn-primary') }}
+    </div>
+</form>
+
+
+

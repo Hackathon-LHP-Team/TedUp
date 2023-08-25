@@ -46,6 +46,11 @@ class NewPlaylist(FlaskForm):
     description = StringField("Enter description", validators=[DataRequired()])
     submit = SubmitField("Upload now")   
     
+class NewCategory(FlaskForm):
+    title = StringField("Enter Title", validators=[DataRequired()])
+    description = StringField("Enter description", validators=[DataRequired()])
+    submit = SubmitField("Upload now")  
+    
 class UploadAudio(FlaskForm):
     title = StringField("Enter Title", validators=[DataRequired()])
     description = StringField("Enter description", validators=[DataRequired()])
