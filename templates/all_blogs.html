@@ -66,27 +66,17 @@
                                     Featured story 
                                 </div>
                                 <div class="card-body card-primary-color">
-                                    <div class="modal fade" id="bookmark" aria-hidden="true" aria-labelledby="bookmark" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="bookmark">Confirmation</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body" style="font-size: larger">
-                                                    Bookmark this blog?
-                                                </div>
-                                                <div class="modal-footer">    
-                                                    <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
-                                                </div>
-                                            </div>
+                                    <!-- bookmark -->
+                                    <div class="row" style="padding:0px">
+                                        <div class="col-2">
+                                            {% include 'bookmark2.html' %} 
+                                        </div>
+                                        <div class="col-10">
+                                            <h3 class="card-title-blog text-left" style="margin-left: 15px">
+                                                {{blog.title[:25]}}
+                                            </h3> 
                                         </div>
                                     </div>
-                                    
-
-                                    <h3 class="card-title-blog" style="margin-right:15px">
-                                        {{blog.title[:25]}}
-                                    </h3>
                                     
                                     <a href="{{url_for('other_user_blogs', id=blog.poster.id)}}"><p class="card-text">{{blog.poster.user_name}}</p></a>
                                     <p class="card-text opacity-8 mt-4">{{blog.content[:140]}}......</p>

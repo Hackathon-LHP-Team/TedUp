@@ -5,7 +5,7 @@
     <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell-2">
-            <!-- content block -->
+            <!-- User profile block -->
             <h1 class="text-purple"> Hello {{user.name}}. This is your dashboard</h1>
             <p class="opacity-8 mt-4 text-purple">This dashboard is only displayed to you. Only your displayed name is visible to other people, so feel free to share your story with everyone <br> Start sharing your experience to help people <a href="{{url_for('create_blog')}}">here <i class="bi bi-arrow-right"></i></a></p>
             <div class="container">
@@ -49,10 +49,11 @@
                 </div>
                 
             </div>
-
-            <p class="opacity-8  mt-5 text-purple" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
+            <!-- end user profile block -->   
+            
 
             <!-- Posts Management -->
+            <p class="opacity-8  mt-5 text-purple" >This is all your stories. See how your stories displayed to people <a href="{{url_for('all_blogs')}}">here <i class="bi bi-arrow-right"></i></a></p>
             <div class="container mt-4">
 
                 <div class="row mt-4">
@@ -97,7 +98,35 @@
                     {% endfor %}
                 </div>
             </div>
-            <!-- end content block -->   
+            <br><br><br>
+
+            <!-- Bookmark Management -->
+            <br>
+            <h2 class="text-purple">Your bookmark</h2>
+            <div class="container mt-5">
+                <div class="row">
+                    {% for bookmark in bookmarks %}
+                        {% if bookmark.bookmarker.id == current_user.id %}
+                                <div class="col-3 mt-4">
+                                    <div class="card">         
+                                        <div class="card-header card-secondary-color">
+                                            Featured story 
+                                        </div>                           
+                                        <div class="card-body card-primary-color">
+                                            <h3 class="card-title-blog">{{bookmark.blog_bookmarked.title[:20]}}</h3>
+                                            <a href="{{url_for('other_user_blogs', id=bookmark.bookmarker.id)}}"><p class="card-text">{{bookmark.bookmarker.user_name}}</p></a>
+                                            <p class="card-text mt-4">{{bookmark.blog_bookmarked.content[:150]}}......</p>
+                                            <br>
+                                            <div class="d-grid gap-2">
+                                                <a href="{{url_for('blog', id=bookmark.blog_bookmarked.id)}}" class="btn btn-outline-primary">Read story now</a>                  
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>  
+            </div>
             <br><br><br>
         </div>
     </div>

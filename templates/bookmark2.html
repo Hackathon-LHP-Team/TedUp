@@ -1,0 +1,69 @@
+<!-- Bookmark section -->
+<form action="/bookmark2" method="post">
+    <input type="hidden" name="id" value="{{ blog.id }}">
+    
+
+    <!-- bookmarking -->
+    {% with temp2 = None %}
+        {% for bookmark in bookmarks %}
+            {% if bookmark.bookmarker.id == current_user.id and bookmark.blog_id == blog.id %}
+                {% set temp2=bookmark.bookmark_state %}
+            {% endif %}  
+        {% endfor %}
+
+        {% if temp2==None %}
+            <!-- bookmarking -->
+            <div class="form-check form-check-inline" style="font-size: 25px;">
+                <input class="form-check-input" type="radio" name="bookmark_state" id="true" value="true" >
+                <label class="form-check-label" for="true"><i class="bi bi-bookmark-heart" data-bs-toggle="modal" data-bs-target="#ConfirmBookmark"></i></label>
+            </div>  
+                                
+        {% else %}
+            <!-- Cancel bookmarking -->
+            <div class="form-check form-check-inline" style="font-size: 25px;">
+                <input class="form-check-input" type="radio" name="bookmark_state" id="false" value="false" >
+                <label class="form-check-label-2" for="false"><i class="bi bi-bookmark-heart-fill" data-bs-toggle="modal" data-bs-target="#CancelBookMark"></i></label>
+            </div>  
+        {% endif %}  
+    {% endwith %}
+
+    
+    <!-- Bookmark Confirm Modal -->
+    <div class="modal fade" id="ConfirmBookmark" tabindex="-1" aria-labelledby="ConfirmBookmark" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h1 class="modal-title fs-5" id="ConfirmBookmark">Bookmark this blog</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-left">
+                Do you want to add this blog to your bookmark?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Bookmark Cancel Modal -->
+    <div class="modal fade" id="CancelBookMark" tabindex="-1" aria-labelledby="CancelBookMark" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content text-left">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="CancelBookMark">Cancel bookmarking</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-left">
+                Do you want to remove this blog from your bookmark?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</form>

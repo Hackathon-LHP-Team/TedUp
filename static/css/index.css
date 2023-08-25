@@ -69,6 +69,10 @@ hr {
   margin-right: 15px;
 }
 
+.margin-right-tag {
+  margin-right: 10px;
+}
+
 .form-check-input:checked {
   background-color: var(--purple-color);
   border-color: var(--purple-color);
@@ -81,7 +85,7 @@ hr {
 }
 
 /* Style the icons */
-.form-check-label i {
+.form-check-label-2 i {
   cursor: pointer;
   color: var(--purple-color);
 }
@@ -93,10 +97,89 @@ hr {
   color: var(--purple-color-dark);
 }
 
+/* Change the icon color when hovered */
+.form-check-label-2:hover i {
+  transition: all 0.3s;
+  color: var(--purple-color-dark);
+}
+
+
 /* Change the icon to fill version when checked */
 .form-check-input:checked+label i {
   color: var(--dark-color);
   font-weight: bold;
+}
+
+
+
+/*--/ =================== Form Check Customization =================== /--*/
+.form-check-input-custom {
+  --bs-form-check-bg: var(--bs-body-bg);
+  width: 1em;
+  height: 1em;
+  margin-top: .25em;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-form-check-bg);
+  background-image: var(--bs-form-check-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+  print-color-adjust: exact
+}
+
+.form-check-input-custom[type=checkbox] {
+  border-radius: .25em
+}
+
+.form-check-input-custom[type=radio] {
+  border-radius: 50%
+}
+
+.form-check-input-custom:active {
+  filter: brightness(90%)
+}
+
+.form-check-input-custom:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25)
+}
+
+.form-check-input-custom:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd
+}
+
+.form-check-input-custom:checked[type=checkbox] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")
+}
+
+.form-check-input-custom:checked[type=radio] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e")
+}
+
+.form-check-input-custom[type=checkbox]:indeterminate {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e")
+}
+
+.form-check-input-custom:disabled {
+  pointer-events: none;
+  filter: none;
+  opacity: .5
+}
+
+.form-check-input-custom:disabled~.form-check-label-custom,
+.form-check-input-custom[disabled]~.form-check-label-custom {
+  cursor: default;
+  opacity: .5
 }
 
 .custom-popover {

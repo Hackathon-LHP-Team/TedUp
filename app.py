@@ -21,6 +21,7 @@ import os
 import time
 
 
+
 # ----------- Keys and Global Variables -----------
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "hackathon_round_3_LHP_team" 
@@ -74,14 +75,16 @@ class Blogs(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     blog_commented = db.relationship('Comments', backref='blog_commented')
     blog_reacted = db.relationship('Reactions', backref='blog_reacted')
-    tags = db.relationship('Reactions', backref='blog_tags')
-    blog_bookmarked = db.relationship('Reactions', backref='blog_bookmarked')
+    tags = db.relationship('Tags', backref='blog_tags')
+    blog_bookmarked = db.relationship('BookMarks', backref='blog_bookmarked')
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
 class Tags(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+
     
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -269,7 +272,8 @@ def all_users():
 def dashboard(id):
     user = Users.query.get_or_404(id)
     all_blogs = Blogs.query.order_by(Blogs.date_posted)
-    return render_template('dashboard.html', user=user, all_blogs=all_blogs)
+    bookmarks = BookMarks.query.order_by(BookMarks.date_posted)
+    return render_template('dashboard.html', user=user, all_blogs=all_blogs, bookmarks=bookmarks)
 
 @app.route("/dashboard/update_info/<int:id>", methods=["GET", "POST"])
 @login_required
@@ -290,6 +294,18 @@ def update_info(id):
     form.user_name.data = user.user_name
     return render_template('update_info.html', form=form, user=user)
     
+# ----------- Tags management -----------
+@app.route("/tags", methods=["GET", "POST"]) 
+def tags():
+    taglist = request.form.getlist('tags[]') 
+    return render_template("tags.html", taglist=taglist)
+
+def encoding(tag_list):
+    return '/'.join(tag_list)
+
+def decoding(str_list):
+    return str_list.split('/')
+    
     
 # ----------- Blog management -----------
 @app.route("/create_blog", methods=["GET", "POST"]) 
@@ -299,6 +315,7 @@ def create_blog():
     form = PostBlogForm()
     if form.validate_on_submit():
         poster = current_user.id
+        title = form.title.data
         post = Blogs(title=form.title.data,
                      poster_id = poster,
                      content=form.content.data,
@@ -311,6 +328,15 @@ def create_blog():
         form.title.data = ''
         form.content.data = ''
         
+        # tags processing
+        tag_list = request.form.getlist('tags[]') 
+        str_tag = encoding(tag_list)
+        blog = Blogs.query.filter_by(poster_id=poster, title=title).first()
+        tag = Tags(blog_id = blog.id, content=str_tag)
+        db.session.add(tag)
+        db.session.commit()
+        print(tag_list)
+        
         util_matrix.init_or_update_csv(Users_query=Users.query.count(), Blogs_query=Blogs.query.count())
         return redirect(url_for('dashboard', id=current_user.id))
               
@@ -320,7 +346,12 @@ def create_blog():
 @app.route("/all_blogs")
 def all_blogs():
     all_blogs = Blogs.query.order_by(Blogs.date_posted)    
-    return render_template("all_blogs.html", all_blogs=all_blogs)
+    
+    # Bookmarks
+    temp2 = None
+    bookmarks =  BookMarks.query.order_by(BookMarks.date_posted)
+            
+    return render_template("all_blogs.html", all_blogs=all_blogs, bookmarks=bookmarks, temp2=temp2)
 
 @app.route("/recsys")
 def recsys():
@@ -388,6 +419,24 @@ def bookmark():
             db.session.commit()
 
         return redirect(url_for('blog', id=blogid))
+    
+@app.route("/bookmark2", methods=["GET", "POST"])
+def bookmark2():
+    if request.method == "POST":
+        blogid = request.form.get("id")
+        bookmarked_state = request.form.get("bookmark_state") 
+        if bookmarked_state == "true":
+            # Add to the database
+            bookmark = BookMarks(bookmark_state=bookmarked_state, bookmarker_id=current_user.id, blog_id=blogid)
+            db.session.add(bookmark)
+            db.session.commit()
+        else:
+            # find the existing bookmark object and delete it from the database
+            bookmark = BookMarks.query.filter_by(bookmarker_id=current_user.id, blog_id=blogid).first()
+            db.session.delete(bookmark)
+            db.session.commit()
+ 
+        return redirect(url_for('all_blogs'))
         
 
 
@@ -421,7 +470,6 @@ def blog(id):
     for bookmark in bookmarks:
         if bookmark.bookmarker.id == current_user.id and bookmark.blog_id == id:
             temp2 = bookmark.bookmark_state
-            print("TEMP2: ", temp2)
     
     start_time = datetime.utcnow()
     start_time_str = start_time.strftime("%H:%M:%S")

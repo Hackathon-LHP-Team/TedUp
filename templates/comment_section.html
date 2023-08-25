@@ -1,0 +1,46 @@
+<h1 class="text-center"> Comments Section</h1>
+                <br>
+                <div class="container" >
+                    <div class="hr-3"></div>
+                        {% for comment in all_comments  %}
+                            {% if comment.blog_id == blog.id %}
+                                <div class="container border-left border-right border-bottom-new p-3">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div >{{comment.commenter.user_name}}</div>
+                                            <div class="text-purple-dark">{{comment.comment_content}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <!-- Use the <time> element with the datetime attribute -->
+                                            <time datetime="{{comment.date_posted.strftime('%Y-%m-%dT%H:%M:%S')}}" >
+                                                <!-- Use the text content to display the date and time in a readable format -->
+                                                <div style="margin-top: 15px">{{comment.date_posted.strftime('%B %d, %Y %H:%M:%S')}}</div>
+                                            </time>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="container mt-4">
+                        <form action="" method="POST">
+                            {{ commentForm.hidden_tag() }}
+                            <div class="text-left">
+                                <div class="row">
+                                    <div class="col">
+                                        {{ commentForm.content.label(class = 'form-label mt-4') }} as {{current_user.user_name}}
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-10">
+                                        {{ commentForm.content(class = 'text-output text-area form-control-comment border-remove form-border-radius', rows="1")}}
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        {{ commentForm.submit(class = 'btn btn-primary') }}
+                                    </div>
+
+                                </div>
+                        </form>
+                    </div>
+                </div>

@@ -13,24 +13,29 @@
                     <div class="col-4">
                         <h1 class="text-left text-white">Share your real-life story to help other people</h1>
                     </div>
-                        <div class="col-8 text-white">
-                                <form class="ms-3" method="POST">
-                                    {{ form.hidden_tag() }}
-                                        <div class="text-left">
-                                        {{ form.title.label(class = 'form-label') }}
-                                        {{ form.title(class = 'form-control-blog  border-remove form-border-radius') }}
 
-                                        {{ form.content.label(class = 'form-label mt-4') }}
-                                        {{ form.content(class = 'text-output text-area form-control-blog border-remove form-border-radius', rows="1")}}
-                                        
-                                
-                                        <div class="d-grid gap-2 mt-5">
-                                            {{ form.submit(class = 'btn btn-outline-secondary') }}
-                                        </div>
-                                    </div>
-                                </form>
-                                <br><br><br>
-                        </div>
+                    <div class="col-8 text-white">
+                        
+
+                        <form class="ms-3" method="POST">
+                            {{ form.hidden_tag() }}
+                            <div class="text-left">
+                                {{ form.title.label(class = 'form-label') }}
+                                {{ form.title(class = 'form-control-blog  border-remove form-border-radius') }}
+
+                                {{ form.content.label(class = 'form-label mt-4') }}
+                                {{ form.content(class = 'text-output text-area form-control-blog border-remove form-border-radius', rows="1")}}
+
+                                <!-- tags -->
+                                {% include 'tag_section.html' %}
+                                                            
+                                <div class="d-grid gap-2 mt-5">
+                                    {{ form.submit(class = 'btn btn-outline-secondary') }}
+                                </div>
+                            </div>
+                        </form>
+                        <br><br><br>
+                    </div>
                 </div>
                 <!-- end content block -->
             </div>

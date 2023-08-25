@@ -1,0 +1,170 @@
+<!-- Reaction form -->
+<div style="font-size: larger">
+    {% if temp == None %}
+        <form action="/reactions" method="post" class="align-bottom">
+            <input type="hidden" name="id" value="{{ blog.id }}">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up"></i></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes"></i></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing"></i></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless"></i></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                <label class="form-check-label-custom" for="angry"><i class="bi bi-emoji-angry"></i></label>
+            </div>
+            <button type="submit" class="btn btn-primary">React</button>
+        </form>
+    {% else %}
+        {% for reaction in reactions %}
+            {% if reaction.blog_id == blog.id and reaction.reacter.id == current_user.id %}                
+            
+                {% if reaction.reaction_type == "laugh" %}
+                    <form action="/reactions" method="post" class="align-bottom">
+                        <input type="hidden" name="id" value="{{ blog.id }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                            <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                            <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                            <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing-fill"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                            <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                            <label class="form-check-label" for="angry"><i class="bi bi-emoji-angry"></i></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">React</button>
+                    </form>
+                {% endif %}
+
+                {% if reaction.reaction_type == "like" %}
+                    <form action="/reactions" method="post" class="align-bottom">
+                        <input type="hidden" name="id" value="{{ blog.id }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                            <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up-fill"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                            <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                            <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                            <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                            <label class="form-check-label" for="angry"><i class="bi bi-emoji-angry"></i></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">React</button>
+                    </form>
+                {% endif %}
+
+                {% if reaction.reaction_type == "love" %}
+                    <form action="/reactions" method="post" class="align-bottom">
+                        <input type="hidden" name="id" value="{{ blog.id }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                            <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                            <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes-fill"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                            <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                            <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                            <label class="form-check-label" for="angry"><i class="bi bi-emoji-angry"></i></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">React</button>
+                    </form>
+                {% endif %}
+
+                {% if reaction.reaction_type == "dislike" %}
+                    <form action="/reactions" method="post" class="align-bottom">
+                        <input type="hidden" name="id" value="{{ blog.id }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                            <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                            <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                            <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                            <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless-fill"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                            <label class="form-check-label" for="angry"><i class="bi bi-emoji-angry"></i></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">React</button>
+                    </form>
+                {% endif %} 
+            
+                {% if reaction.reaction_type == "angry" %}
+                    <form action="/reactions" method="post" class="align-bottom">
+                        <input type="hidden" name="id" value="{{ blog.id }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="like" value="like" >
+                            <label class="form-check-label" for="like"><i class="bi bi-hand-thumbs-up"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="love" value="love">
+                            <label class="form-check-label" for="love"><i class="bi bi-emoji-heart-eyes"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="laugh" value="laugh">
+                            <label class="form-check-label" for="laugh"><i class="bi bi-emoji-laughing"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="dislike" value="dislike">
+                            <label class="form-check-label" for="dislike"><i class="bi bi-emoji-expressionless"></i></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="emotion" id="angry" value="angry">
+                            <label class="form-check-label" for="angry"><i class="bi bi-emoji-angry-fill"></i></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">React</button>
+                    </form>
+                {% endif %} 
+            
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
