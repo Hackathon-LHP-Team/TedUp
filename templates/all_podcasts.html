@@ -69,7 +69,8 @@
                                         <div>{{podcast.title}}</div>
                                     {% endif %}
                                 {% endfor %}
-                                <a href=" {{url_for('playlist_play', id=playlist.id)}} ">Listen now <i class="bi bi-arrow-right"></i></a>
+                                <br>
+                                <a class="mt-3" href=" {{url_for('playlist_play', id=playlist.id)}} ">Listen now <i class="bi bi-arrow-right"></i></a>
                             </div>
                             <div class="col-3">
                                 <div>{{playlist.description[:120]}}</div>

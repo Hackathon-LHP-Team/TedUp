@@ -17,6 +17,9 @@ page_configure()
 st.title('Progress Record and Mental Health Assessment')
 tab1, tab2, tab3 = st.tabs(["Detailed Analysis", "Analysis for user", "Detailed Dataframe"])
 
+# deep translation
+from deep_trans import translate
+
 
 # This function is used when developer want to quickly get a big database
 # when using model to predict for all chats. This function can be used to quickly
@@ -35,6 +38,7 @@ def developer():
         texts.extend(Chats[1:])
         
         # Call class to do analysis (see example in test.py)
+        Chats = translate(Chats)
         score_obj = score(Chats)
         tokenizer = score_obj.generate_token()
         padded_chat_seq = score_obj.tokenize_text(tokenizer)
@@ -68,7 +72,7 @@ def user():
     st.subheader('Chat history')
     df = pd.read_csv('assets/Chats.csv')
     st.dataframe(df, use_container_width=True)
-    Chat_need_process = df.iloc[:,(len(df.columns) - 1)].tolist()
+    Chat_need_process = df.iloc[:,24].tolist()
     st.write(Chat_need_process)
     
     st.subheader('Assessment on new chat')
@@ -133,7 +137,7 @@ def barchart():
     list_emotions.to_csv('assets/list_emotions.csv', index=False)
     fig = px.histogram(list_emotions, color=list_emotions.iloc[:,0])
     st.plotly_chart(fig, use_container_width=True)
-    
+    st.success("You have positive emotions more frequently than negative emotions. It's awesome. Wish you keep this progress.")
     
 
 # User mode
@@ -169,8 +173,8 @@ def barchart_2():
         
 
 with tab1:
-    # developer()
-    user()
+    developer()
+    # user()
     
     
 with tab2:
@@ -184,8 +188,8 @@ with tab2:
     fig = px.line(s_res_list, x=s_res_list.index, y=s_res_list.columns)
     st.plotly_chart(fig, use_container_width=True)
     
-    # barchart()
-    barchart_2()
+    barchart()
+    # barchart_2()
     
     
 with tab3:

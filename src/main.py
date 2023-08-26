@@ -28,6 +28,8 @@ management()
 # css configuration
 customization()
 
+
+
 # Function to get response from chatbot
 async def main(res, input_text):
     bot = await Chatbot.create(cookies=cookies) 
@@ -40,7 +42,7 @@ async def main(res, input_text):
 
 
 def chat_function():
-    st.title("Virtual Therapist")
+    st.title("Tedupbot")
 
     # Initialize chat history
     if "messages" not in st.session_state:
