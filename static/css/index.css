@@ -579,10 +579,10 @@ audio::-webkit-media-controls-play-button {
 }
 
 .btn-outline-secondary {
-  --bs-btn-color: var(--bg-color);
-  --bs-btn-border-color: var(--bg-color);
+  --bs-btn-color: white;
+  --bs-btn-border-color: white;
   --bs-btn-hover-color: var(--purple-color);
-  --bs-btn-hover-bg: var(--bg-color);
+  --bs-btn-hover-bg: white;
   --bs-btn-hover-border-color: var(--bg-color);
   --bs-btn-focus-shadow-rgb: 13, 110, 253;
   --bs-btn-active-color: #fff;
