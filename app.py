@@ -377,6 +377,7 @@ def blog_id_bookmark(blogid):
             
     return temp2
 
+
     
 
 @app.route("/all_blogs")

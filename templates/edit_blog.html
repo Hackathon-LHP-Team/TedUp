@@ -26,7 +26,7 @@
                                 
                                         <div class="d-grid gap-2 mt-5">
                                             {{ form.submit(class = 'btn btn-primary') }}
-                                            <a href="{{ url_for('blog', id=blog.id) }}" class="btn btn-outline-primary">Back to story</a>
+                                            
                                         </div>
                                     </div>
                                 </form>
@@ -55,3 +55,53 @@
 
 
     
+
+
+    <!-- nav bar -->
+{% include 'navbar.html' %}
+<div style="background-color: var(--purple-color)">
+    <div id="hero" class="hero route bg-imag ">
+        <div class=""></div>
+        <div class="hero-content display-table">
+            <div class="table-cell">
+                <br><br><br>
+                <br><br><br>
+                <div class="container">
+                    <!-- content block -->
+                    <div class="row">
+                        <div class="col-4">
+                            <h1 class="text-left text-white">Share your real-life story to help other people</h1>
+                        </div>
+    
+                        <div class="col-8 text-white">
+                            <form class="ms-3" method="POST">
+                                {{ form.hidden_tag() }}
+                                <div class="text-left">
+                                    {{ form.title.label(class = 'form-label') }}
+                                    {{ form.title(class = 'form-control-blog  border-remove form-border-radius') }}
+    
+                                    {{ form.content.label(class = 'form-label mt-4') }}
+                                    {{ form.content(class = 'text-output text-area form-control-blog border-remove form-border-radius', rows="1")}}
+    
+                                    <!-- tags -->
+                                    {% include 'tag_section.html' %}
+                                                                
+                                    <div class="d-grid gap-2 mt-5">
+                                        {{ form.submit(class = 'btn btn-outline-secondary') }}
+                                        <a href="{{ url_for('blog', id=blog.id) }}" class="btn btn-outline-primary">Back to story</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <br><br><br>
+                        </div>
+                    </div>
+                    <!-- end content block -->
+                </div>
+            </div>
+            <br><br><br>
+            <br><br><br>
+        </div>
+</div>
+
+
+    <script src="{{ url_for('static', filename='js/text-box-control.js') }}"></script>
