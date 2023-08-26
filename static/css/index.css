@@ -313,6 +313,11 @@ audio::-webkit-media-controls-play-button {
   border-bottom: 2px solid var(--purple-color);
 }
 
+.episode:hover{
+  border-bottom: 1px solid var(--purple-color);
+}
+
+
 .border-purple {
   border: 2px solid var(--purple-color);
 }

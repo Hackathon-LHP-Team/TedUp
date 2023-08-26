@@ -40,7 +40,6 @@
                                
                                 <!-- Login Logic -->
                                 {% if current_user.is_authenticated %}
-                                    <li><a class="nav-link scrollto nav3" href="{{ url_for('all_users')}}">All users</a></li>
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('all_blogs')}}">Read stories</a></li>
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('create_blog')}}">Share story</a></li>
