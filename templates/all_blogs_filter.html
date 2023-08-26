@@ -6,7 +6,7 @@
 
     <div class="row" style="margin-top:60px">
         <div class="col-6">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/d2292f168637769.643e5842bfcc3.png" alt="" style="width: 100%;">      
+            <img src="static/imgs/shapes/bg.png" alt="" style="width: 100%;">      
         </div>
         <div class="col-6 text-left">
             <h1 class="text-purple" style="margin-top:70px; margin-left: 20px;">Reading Categories</h1>
@@ -56,9 +56,15 @@
                 <h1 class="text-purple">Welcome {{current_user.name}} to stories gallary </h1>
                 <p class="text-purple opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
                 <br>
-                {% for each_tag in list_tags %}
-                    <a href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
-                {% endfor %}
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                        {% for each_tag in list_tags %}
+                            <a style="margin-bottom:10px;" href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
+                        {% endfor %}
+                    </div>
+                    <div class="col"></div>
+                </div>
 
                 
                 <div class="row mt-4">

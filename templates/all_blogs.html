@@ -12,7 +12,7 @@
             <h1 class="text-purple medium-heading" style="margin-top:30px; margin-left: 20px;">Reading Blogs</h1>
             <br>
             <hr style="margin-left: 20px;">
-            <p style="margin-left: 20px; max-width: 300px; margin-top: 70px;">A blog about mental health is a platform where you can share your thoughts, feelings, and experiences related to your mental well-being. You can also learn from other people’s stories, get tips and advice, and find support and resources. A blog about mental health can help you cope with stress, anxiety, depression, and other mental health issues. It can also inspire you to live a happier and healthier life.</p>
+            <p class="moveLeft" style="margin-left: 20px; max-width: 300px; margin-top: 70px;">A blog about mental health is a platform where you can share your thoughts, feelings, and experiences related to your mental well-being. You can also learn from other people’s stories, get tips and advice, and find support and resources. A blog about mental health can help you cope with stress, anxiety, depression, and other mental health issues. It can also inspire you to live a happier and healthier life.</p>
         </div>
     </div>
 
@@ -41,12 +41,12 @@
         <div class="row">
             {% for category, img in zip(categories, img_categories) %}
                 <div class="col-2 col-2-custom">
-                    <div class="card card-category">
+                    <div class="card card-category up">
                         <div class="card-body card-primary-color">
                             <img src="static/imgs/shapes/{{img}}" class="card-img-top" alt="...">
                             <!-- bookmark -->
                             <h3 class="card-title-blog">{{ category.title }}</h3> 
-                            <p class="card-text opacity-8 mt-4">{{ category.description }}</p>
+                            <p class="card-text opacity-8 mt-4 text-gray">{{ category.description }}</p>
                             <a href="">View <i class="bi bi-arrow-right"></i></a>
                             <br>
                         </div>
@@ -78,16 +78,25 @@
             <!-- content block -->  
             <div class="container">
                 <h1 class="text-purple">Welcome {{current_user.name}} to stories gallary </h1>
-                <p class="text-purple opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
+                <p class="text-purple opacity-8 mt-4 text-gray"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
                 <br>
-                {% for each_tag in list_tags %}
-                    <a href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
-                {% endfor %}
+                
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                        {% for each_tag in list_tags %}
+                            <a style="margin-bottom:10px;" href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
+                        {% endfor %}
+                    </div>
+                    <div class="col"></div>
+                </div>
+            
+                
 
                 <div class="row mt-4">
                     {% for blog in all_blogs %}
                         <div class="col-4 mt-4">
-                            <div class="card ">
+                            <div class="card up">
                                 <div class="card-header card-secondary-color">
                                     Featured story 
                                 </div>
@@ -136,6 +145,8 @@
 
 <br><br><br>
 {% include 'footer.html' %}
+
+<script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
 
 
 

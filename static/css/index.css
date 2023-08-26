@@ -353,6 +353,10 @@ audio::-webkit-media-controls-play-button {
   color: var(--purple-color-light);
 }
 
+.text-gray {
+  color: var(--dark-light-color);
+}
+
 .text-purple-dark {
   color: var(--purple-color-dark);
 }

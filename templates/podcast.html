@@ -84,11 +84,11 @@
         <!-- Episodes Sections -->
         <div class="col-4 text-purple" style="margin-top: 90px;">
           <div class="container" style="margin-left: 15px">
-            <h2 class="">Playlist Episodes</h2>
+            <h2 class="moveLeft">Playlist Episodes</h2>
             <br><br>
             {% for podcast in all_podcasts %}
               {% if podcast.playlist_id == playlist.id %}
-                <div class="row">
+                <div class="row border-bottom-episode episode moveLeft">
                   <div class="col-2">
                     <div>{{podcast.id}}</div>
                   </div>
@@ -96,11 +96,13 @@
                     <a href=" {{url_for('podcast', id=podcast.id)}}">{{podcast.title}} <i class="bi bi-arrow-right"></i></a>
                   </div>
                 </div>
+                <br>
               {% endif %}
-              <hr>
+              
             {% endfor %}
           </div>
         </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/podcast_audio_control.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
