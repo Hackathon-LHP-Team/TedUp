@@ -205,7 +205,6 @@ hr {
   background-size: contain;
   border: var(--bs-border-width) solid var(--bs-border-color);
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
   print-color-adjust: exact
 }
 
@@ -286,7 +285,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .my-slider {
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 10px;
   border: 2px solid var(--purple-color);
@@ -558,7 +557,7 @@ audio::-webkit-media-controls-play-button {
   --bs-btn-bg: var(--purple-color);
   --bs-btn-border-color: var(--purple-color);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--purple-color);
+  --bs-btn-hover-bg: var(--purple-color-light);
   --bs-btn-hover-border-color: var(--purple-color);
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: #fff;
@@ -588,10 +587,10 @@ audio::-webkit-media-controls-play-button {
 }
 
 .btn-outline-secondary {
-  --bs-btn-color: var(--bg-color);
-  --bs-btn-border-color: var(--bg-color);
+  --bs-btn-color: white;
+  --bs-btn-border-color: white;
   --bs-btn-hover-color: var(--purple-color);
-  --bs-btn-hover-bg: var(--bg-color);
+  --bs-btn-hover-bg: white;
   --bs-btn-hover-border-color: var(--bg-color);
   --bs-btn-focus-shadow-rgb: 13, 110, 253;
   --bs-btn-active-color: #fff;
