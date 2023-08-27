@@ -4,13 +4,32 @@
 
 
 <!-- main block -->
-<div id="hero" class="hero route bg-image" style="background-image: url(static/imgs/Refined/Background_Log.png)">
+<div id="hero" class="hero route bg-image">
     <div class=""></div>
     <div class="hero-content display-table">
         <div class="table-cell-signup">
             <div class="container">
                 <!-- content block -->
                 <h1 class="text-gray">Để bắt đầu hãy cho chúng tôi biết <br> những chủ đề bạn quan tâm nhất</h1>
+                <br><br>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body border-purple" style="border-radius: 5px;">
+                                {% for each_tag in list_tags  %}
+                                <input type="checkbox" class="form-check-input-custom" name="tags[]" value="thi cử" id="thi_cu">
+                                    <label class="form-check-label-custom" for="thi_cu" style="margin-right:20px; margin-left: 20px;">
+                                        <li class="badge tag-choose-cold">{{each_tag}}</li>
+                                    </label>
+                                {% endfor %}
+                                
+                            </div>
+                          </div>
+                          <a type="button" class="btn btn-primary mt-4" href="{{url_for('dashboard', id=user_id)}}">Continue</a>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
                 <!-- end content block -->
             </div>
         </div>

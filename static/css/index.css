@@ -1323,6 +1323,18 @@ p.lead {
   color: var(--purple-color-dark);
 }
 
+.tag-choose-cold {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tag-choose:active{
+  background-color: var(--purple-color);
+}
+
 .navbar .dropdown ul {
   display: block;
   position: absolute;

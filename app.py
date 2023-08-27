@@ -286,7 +286,9 @@ def login():
 
 @app.route("/cold_start/<int:id>", methods=["GET", "POST"])
 def cold_start(id):
-    return render_template('cold_start.html', user_id = id)
+    tags = Tags.query.order_by(Tags.date_posted)
+    list_tags = ["cảm xúc", "chủng tộc", "sở thích", "du lịch", "thể thao", "hẹn hò", "gia đình", "đồng nghiệp", "bạn bè", "tâm lý", "nhân cách", "âm nhạc", "sách truyện", "áp lực", "thi cử"]
+    return render_template('cold_start.html', user_id = id, tags=tags, list_tags=list_tags)
 
 # ----------- User and Dashboard -----------
 @app.route("/all_users", methods=["GET", "POST"])   
