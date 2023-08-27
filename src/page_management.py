@@ -5,6 +5,7 @@ def management():
     show_pages(
         [
             Page("home.py", "Home"),
+            Page("app.py", "Authentication"),
             Page("main.py", "App"),
             Page("progress_record.py", "Progress Record"),
         ]

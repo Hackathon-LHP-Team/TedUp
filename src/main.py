@@ -3,6 +3,9 @@ import asyncio, json
 from EdgeGPT.EdgeGPT import Chatbot, ConversationStyle
 import re
 
+# flask
+from database import Users, Chat_sessions, Chat_messages, Q_values, S_values
+
 # Import streamlit components
 import streamlit as st
 from st_pages import Page, show_pages, add_page_title
@@ -30,6 +33,7 @@ customization()
 
 
 
+
 # Function to get response from chatbot
 async def main(res, input_text):
     bot = await Chatbot.create(cookies=cookies) 
@@ -42,7 +46,7 @@ async def main(res, input_text):
 
 
 def chat_function():
-    st.title("Tedupbot")
+    st.title("TedupBot")
 
     # Initialize chat history
     if "messages" not in st.session_state:
@@ -61,11 +65,7 @@ def chat_function():
         # Display user message in chat message container
         with st.chat_message("user"):
             st.markdown(prompt)
-            df = pd.read_csv('assets/temp.csv')
-            Chats = prompt
-            Chats = pd.DataFrame([Chats])
-            df = pd.concat([df, Chats], axis=1)
-            df.to_csv('assets/temp.csv', index=False)
+            
 
         # Display assistant response in chat message container
         with st.chat_message("assistant"):

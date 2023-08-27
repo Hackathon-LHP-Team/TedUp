@@ -4165,8 +4165,8 @@ fieldset:disabled .btn {
 
 .dropdown-item:focus,
 .dropdown-item:hover {
-    color: var(--bs-dropdown-link-hover-color);
-    background-color: var(--bs-dropdown-link-hover-bg)
+    color: white;
+    background-color: #cab9ff;
 }
 
 .dropdown-item.active,
@@ -4178,9 +4178,9 @@ fieldset:disabled .btn {
 
 .dropdown-item.disabled,
 .dropdown-item:disabled {
-    color: var(--bs-dropdown-link-disabled-color);
+    color: red;
     pointer-events: none;
-    background-color: transparent
+    background-color: transparent;
 }
 
 .dropdown-menu.show {

@@ -13,27 +13,3 @@ st.subheader('Chức năng chính:')
 st.markdown('''**Trang App** : Bạn có thể trò chuyện với chatbot và kể cho nó nghe câu chuyện của bạn. Nó sẽ giúp bạn giải quyết vấn đề của bạn
             \n  **Trang Record Progress**: Phân tích cảm xúc của bạn qua từng tin nhắn, từng cuộc trò chuyện và đưa ra cảnh báo cho bạn nếu tâm trạng của bạn có xu hướng đi xuống đáng kể''')
 
-st.title('Đăng nhập để tiếp tục:')
-gmail = st.text_input('Nhập email')
-password = st.text_input('Nhập mật khẩu')
-
-continue_btn = None
-with st.expander("**Điều Khoản**"):
-    st.markdown("""
-        Điều khoản sử dụng dịch vụ theo dõi sức khoẻ
-        Khi bạn chấp thuận và sử dụng dịch vụ theo dõi sức khoẻ của chúng tôi, bạn đồng ý với các điều khoản và điều kiện sau đây:
-        \n- Bạn cho phép chúng tôi truy cập, thu thập, lưu trữ và xử lý các thông tin cá nhân và sức khoẻ của bạn ở mức cần thiết để cung cấp cho bạn các dịch vụ và tính năng liên quan đến việc theo dõi sức khoẻ của bạn, bao gồm  các thông tin phân tích, đồ thị miêu tả cảm xúc và các chỉ số khác. Đây là thông tin giúp chúng tôi có thể cung cấp cho bạn một dịch vụ toàn diện và cá nhân hoá.
-        \n- Bạn cho phép chúng tôi sử dụng các thông tin cá nhân và sức khoẻ của bạn để phân tích, đánh giá và đưa ra các gợi ý, khuyến nghị và cảnh báo về tình trạng sức khoẻ của bạn, cũng như để liên lạc với bạn qua các kênh như email, tin nhắn, điện thoại hoặc các phương tiện khác khi cần thiết.
-        \n- Bạn cho phép chúng tôi chia sẻ các thông tin cá nhân và sức khoẻ của bạn với các bên thứ ba có liên quan khi có yêu cầu của bạn hoặc khi có sự cho phép của bạn, hoặc khi có nhu cầu pháp lý hoặc y tế khẩn cấp. Các bên thứ ba có liên quan. Chúng tôi sẽ không thực hiện hành động này nếu không có sự cho phép của bạn.
-        \n- Bạn hiểu rằng chúng tôi cam kết bảo mật và bảo vệ các thông tin cá nhân và sức khoẻ của bạn theo quy định của pháp luật và theo chính sách bảo mật của chúng tôi. Chúng tôi sẽ không tiết lộ, bán, cho thuê hoặc chuyển nhượng các thông tin cá nhân và sức khoẻ của bạn cho bất kỳ ai mà không có sự đồng ý của bạn, trừ khi có quyền hoặc nghĩa vụ pháp lý hoặc y tế để làm như vậy.
-        \n- Bạn hiểu rằng việc sử dụng dịch vụ theo dõi sức khoẻ của chúng tôi không thay thế cho việc khám bệnh, chẩn đoán hoặc điều trị bởi các chuyên gia y tế. Bạn nên luôn tuân theo các hướng dẫn và lời khuyên của bác sĩ hoặc nhân viên y tế khi có liên quan đến sức khoẻ của bạn. Bạn không nên bỏ qua hoặc trì hoãn việc tìm kiếm sự giúp đỡ y tế khi cần thiết.
-        \n- Bạn hiểu rằng việc sử dụng dịch vụ theo dõi sức khoẻ của chúng tôi có thể gặp phải các rủi ro, sai sót, lỗi hoặc sự cố kỹ thuật, và bạn chịu hoàn toàn trách nhiệm và rủi ro cho việc sử dụng dịch vụ của bạn. Chúng tôi không chịu trách nhiệm hoặc bồi thường cho bất kỳ thiệt hại, tổn thất, khiếu nại hoặc yêu cầu nào phát sinh từ việc sử dụng dịch vụ của bạn, trừ khi có quy định khác bằng văn bản.
-        \n- Bạn có thể từ chối cho phép truy cập thông tin của bạn, nhưng điều đó có thể ảnh hưởng đến chất lượng và hiệu quả của dịch vụ theo dõi sức khoẻ của chúng tôi. Bạn có thể thay đổi cài đặt quyền riêng tư của bạn trong phần cài đặt tài khoản, hoặc liên hệ với chúng tôi để yêu cầu xóa hoặc sửa đổi các thông tin của bạn. Chúng tôi luôn tôn trọng quyền riêng tư và sự lựa chọn của bạn.
-        \n Nếu bạn có bất kỳ câu hỏi, ý kiến hoặc phản hồi nào về điều khoản sử dụng dịch vụ theo dõi sức khoẻ của chúng tôi, xin vui lòng liên hệ với chúng tôi qua email: healthtracker@gmail.com. Xin cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.
-    """)
-    agree  = st.checkbox('Tôi đồng ý')
-    if agree:
-        continue_btn = st.button("Tiêp tục", type="primary")
-
-if continue_btn:
-    st.success('Bạn đã đăng nhập thành công')

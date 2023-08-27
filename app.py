@@ -277,13 +277,16 @@ def login():
         if user:
             if check_password_hash(user.password_hash, form.password_hash.data):
                 login_user(user)
-                return redirect(url_for('dashboard', id=current_user.id))
+                return redirect(url_for('cold_start', id=current_user.id))
             else:
                 flash('Wrong password. Please try again')
         else:
             flash('User does not exist. Please sign up to create an account')
     return render_template("login.html", form=form)
 
+@app.route("/cold_start/<int:id>", methods=["GET", "POST"])
+def cold_start(id):
+    return render_template('cold_start.html', user_id = id)
 
 # ----------- User and Dashboard -----------
 @app.route("/all_users", methods=["GET", "POST"])   
