@@ -10,15 +10,15 @@
 
 
 ## Feedback from Round 2 and solutions
-- UI is relatively dark --> New clean minimal and more friendly UI 
-- Virtual Therapist is not suitable --> TedUp (TedupBot, TedupBlog, TedupPod)
-- Focus in the target audience (competitive advantage over Woebot and Wysa) --> Released Vietnamese version for the chatbot and progess recorder
-- Leak of information of user when the system uses info to analyze and teams take action --> Connect database between app and web for user can login and accept the term and condition 
-- Categories for blog --> 5 main categories and tags for each blog
-- Community building --> reactions, comments, bookmarks
+- UI is relatively dark $\rightarrow$ New clean minimal and more friendly UI 
+- Virtual Therapist is not suitable $\rightarrow$ TedUp (TedupBot, TedupBlog, TedupPod)
+- Focus in the target audience (competitive advantage over Woebot and Wysa) $\rightarrow$ Released Vietnamese version for the chatbot and progess recorder
+- Leak of information of user when the system uses info to analyze and teams take action $\rightarrow$ Connect database between app and web for user can login and accept the term and condition 
+- Categories for blog $\rightarrow$ 5 main categories and tags for each blog
+- Community building $\rightarrow$ reactions, comments, bookmarks
 - What's new?
     - Hybrid Recommender System = Neighborhood Collaborative Filtering + Content-based Filtering (with the help of Tags)
-    - Cold Start problem --> solved 
+    - Cold Start problem $\rightarrow$ solved 
     - New playlists of podcasts
     - Synced Database between App function and Web function (Bot can query the content from blogs to give advice to user)
 
