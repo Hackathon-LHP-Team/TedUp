@@ -43,7 +43,16 @@
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('all_blogs')}}">Read stories</a></li>
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('dashboard', id=current_user.id)}}">Dashboard</a></li>
                                     <li><a class="nav-link scrollto nav3" href="{{ url_for('create_blog')}}">Share story</a></li>
-                                    <li><a class="nav-link scrollto nav3" href="{{ url_for('logout')}}">Log out</a></li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-person-circle"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">{{current_user.name}}</a></li>
+                                            <li><a class="dropdown-item" href="#">{{current_user.email}}</a></li>
+                                            <li><a class="dropdown-item" href="{{ url_for('logout')}}">log out</a></li>
+                                        </ul>
+                                    </div>
                                 
                                 {% else %}
                                     <li><a class="nav-link scrollto nav3" href="{{url_for ('registration')}}">Sign up</a></li>

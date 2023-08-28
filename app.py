@@ -579,7 +579,15 @@ def other_user_blogs(id):
 def logout():
     logout_user()
     return redirect(url_for('home'))
- 
+
+@app.route("/edit_podcast")
+def edit_podcast():
+    podcast = Audio.query.get_or_404(1)
+    podcast.title = "Bài học trưởng thành"
+    db.session.add(podcast)
+    db.session.commit()
+    return redirect(url_for('all_podcasts'))
+    
  
 
 # ----------- Additional pages -----------

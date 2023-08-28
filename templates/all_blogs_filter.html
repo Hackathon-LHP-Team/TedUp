@@ -3,23 +3,23 @@
 
 
 <div id="hero" class="text-center">
-
     <div class="row" style="margin-top:60px">
         <div class="col-6">
-            <img src="static/imgs/shapes/bg.png" alt="" style="width: 100%;">      
+            <img src="{{ url_for('static', filename='imgs/shapes/bg.png') }}" alt="" style="width: 100%;">      
         </div>
         <div class="col-6 text-left">
-            <h1 class="text-purple" style="margin-top:70px; margin-left: 20px;">Reading Categories</h1>
-            <h3 class="text-purple" style="margin-top:50px; margin-left: 20px;">News <i class="bi bi-arrow-right"></i></h3>
-            <h3 class="text-purple" style="margin-left: 20px;">Stories <i class="bi bi-arrow-right"></i></h3>
+            <h1 class="text-purple medium-heading" style="margin-top:30px; margin-left: 20px;">Reading Blogs</h1>
+            <br>
+            <hr style="margin-left: 20px;">
+            <p class="moveLeft" style="margin-left: 20px; max-width: 300px; margin-top: 70px;" >Blog về sức khỏe tâm thần là một nền tảng nơi bạn có thể chia sẻ suy nghĩ, cảm xúc và kinh nghiệm liên quan đến sức khỏe tinh thần của bạn. Bạn cũng có thể học hỏi từ câu chuyện của người khác, nhận mẹo và lời khuyên, đồng thời tìm hỗ trợ và tài nguyên. Một blog về sức khỏe tâm thần có thể giúp bạn đối phó với căng thẳng, lo lắng, trầm cảm và các vấn đề sức khỏe tâm thần khác. Nó cũng có thể truyền cảm hứng cho bạn để sống một cuộc sống hạnh phúc và khỏe mạnh hơn.</p>
         </div>
     </div>
 
     <div class="subscribe p-5">
         <br>
-        <h2> Subscribe to get notified to get daily suggested blogs  </h2>
+        <h2> Đăng ký để nhận được cập nhật đề xuất blog mới  </h2>
         <br><br>
-        <form action="">
+        <form action="https://formsubmit.co/tedupcom@gmail.com" method="post">
             <div class="row" style="text-align: right;">
                 <div class="col-7">
                     <input type="email" placeholder="Email" class="form-control-subscribe">
@@ -57,13 +57,13 @@
                 <p class="text-purple opacity-8 mt-4"> Reading real-life stories from others and exploring how they overcome their problems might help you a lot to solve your problems</p>
                 <br>
                 <div class="row">
-                    <div class="col"></div>
-                    <div class="col">
+                    <div class="col-3"></div>
+                    <div class="col-6">
                         {% for each_tag in list_tags %}
                             <a style="margin-bottom:10px;" href="{{ url_for('all_blogs_filter', query=each_tag)}}"><li class="badge tag-choose ">{{each_tag}}</li> </a>
                         {% endfor %}
                     </div>
-                    <div class="col"></div>
+                    <div class="col-3"></div>
                 </div>
 
                 
@@ -121,7 +121,7 @@
 
 <br><br><br>
 {% include 'footer.html' %}
-
+<script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
 
 
 

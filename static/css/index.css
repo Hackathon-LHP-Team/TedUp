@@ -136,6 +136,24 @@ hr {
   cursor: pointer;
 }
 
+.tag-choose-cold {
+  color: var(--purple-color);
+  background-color: transparent;
+  border: 2px solid var(--purple-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tag-choose-cold:hover {
+  color: var(--bg-color);
+  background-color: var(--purple-color);
+  transition: 0.2s ease;
+  border: 2px solid var(--purple-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 .text-bg-primary {
   color: var(--purple-color);
   background-color: var(--bg-color);
