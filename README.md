@@ -8,7 +8,7 @@
 
 
 ## Acknowledgement
-- Mentor: Lê Nguyễn Thanh Huy (CoTAI - Center of Talent in AI)
+- Mentor: Lê Nguyễn Thanh Huy ([CoTAI - Center of Talent in AI](https://gem.cot.ai/))
 - We would like to thank our mentor Lê Nguyễn Thanh Huy (CoTAI - Center of Talent in AI) for valuable guidance from round 1 to round 3 (final round). He is more than just a mentor to us. He is an inspiration, a role model, and a friend. Special thanks to teacher Huy for sharing your wisdom and experience with us. You have taught us so much and motivated us to work hard and achieve our goals. We are so grateful for your mentorship and guidance
 
 ## Feedback from Round 2 and solutions
