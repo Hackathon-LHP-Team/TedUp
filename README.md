@@ -7,7 +7,10 @@
 [![> All models](https://img.shields.io/badge/All%20models-white)](https://drive.google.com/drive/folders/16ig9NcXq4Cn39F2h7c8YvgRFNaegVj7F?usp=sharing)
 
 
-
+## Acknowledgement
+Instructors: Ngô Quốc Hưng, Lê Nguyễn Thanh Huy
+Mentor: Lê Nguyễn Thanh Huy (CoTAI - Center of Talent in AI)
+We would like to thank our mentor Lê Nguyễn Thanh Huy (CoTAI - Center of Talent in AI) for valuable guidance from round 1 to round 3 (final round). He is are more than just a mentor to us. He is an inspiration, a role model, and a friend. Special thanks to teacher Huy for sharing your wisdom and experience with us. You have taught us so much and motivated us to work hard and achieve our goals. We are so grateful for your mentorship and guidance
 
 ## Feedback from Round 2 and solutions
 - UI is relatively dark $\rightarrow$ New clean minimal and more friendly UI 
@@ -22,9 +25,7 @@
     - New playlists of podcasts
     - Synced Database between App function and Web function (Bot can query the content from blogs to give advice to user)
 
-[LINK VIDEO DEMO HERE](https://www.youtube.com/watch?v=EkW7s3Nhtyc)
-
-
+[LINK NEW VIDEO DEMO HERE](https://www.youtube.com/watch?v=EkW7s3Nhtyc)
 
 
 
