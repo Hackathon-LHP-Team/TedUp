@@ -16,7 +16,7 @@
 - UI is relatively dark $\rightarrow$ New clean minimal and more friendly UI 
 - Virtual Therapist is not suitable $\rightarrow$ TedUp (TedupBot, TedupBlog, TedupPod)
 - Focus in the target audience (competitive advantage over Woebot and Wysa) $\rightarrow$ Released Vietnamese version for the chatbot, progess recorder, blogs, and podcasts
-- Leak of information of user when the system uses info to analyze and teams take action $\rightarrow$ Connect database between app and web for user can login and accept the term and condition 
+- Leak of user information when the system uses info to analyze for the team to take action $\rightarrow$ Connect database between app and web for user can login and accept the term and condition 
 - Categories for blog $\rightarrow$ 5 main categories and tags for each blog
 - Community building $\rightarrow$ reactions, comments, bookmarks
 - What's new?
