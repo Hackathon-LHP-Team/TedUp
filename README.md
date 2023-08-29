@@ -77,10 +77,6 @@ Next move into the cloned directory
 ```
 cd Virtual-Therapist
 ```
-(optional) Type this to open your default code editor. As usual, it will open vscode if you use vscode as your default code editor
-```
-. code
-```
 Create a virtual environment with venv to avoid conflicts in library versions and modules
 ```
 python -m venv .venv
@@ -92,10 +88,6 @@ Activate the environment
 Install all neccessary libraries with a specific version
 ```
 pip install -r requirements.txt
-```
-Now if you want to view all libraries and modules in your virtual environment, paste this command line
-```
-pip freeze
 ```
 To run the server backend flask python, run this line of command
 ```
